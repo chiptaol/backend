@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Chiptaol API Documentation",
+        "description": "Open API Documentation for https://chiptaol.uz",
+        "contact": {
+            "email": "bakhadyrovf@gmail.com"
+        },
+        "version": "3.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://chiptaol.uz"
+        }
+    ],
+    "paths": {
+        "/api/dashboard/auth/sign-in": {
+            "post": {
+                "tags": [
+                    "Dashboard Auth"
+                ],
+                "summary": "Sign in to dashboard",
+                "operationId": "b69cea5504457d21d3c4494b21cf3006",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "bakhadyrovfbb@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123455678A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success (No content)"
+                    },
+                    "422": {
+                        "description": "Email does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Выбранное значение для email некорректно."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid password",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Неверный пароль."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/auth/sign-out": {
+            "post": {
+                "tags": [
+                    "Dashboard Auth"
+                ],
+                "summary": "Sign out from dashboard",
+                "operationId": "1e820e7459fefa1bad97414cb6045c8b",
+                "responses": {
+                    "200": {
+                        "description": "Success (No content)"
+                    },
+                    "401": {
+                        "description": "Unauthenticated (Unauthorized)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Не аутентифицирован."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/me": {
+            "get": {
+                "tags": [
+                    "Dashboard Auth"
+                ],
+                "summary": "Get the current authenticated user",
+                "operationId": "1b03b12995e7221dba46e1b3e6be8d1d",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string",
+                                            "example": "bakhadyrovfbb@gmail.com"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2022-08-15T20:19:33.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2022-08-15T20:20:33.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated (Unauthorized)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Не аутентифирован."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
