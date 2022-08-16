@@ -41,7 +41,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             \App\Http\Middleware\EncryptCookies::class,
-            \App\Http\Middleware\AppendHeadersToResponse::class,
+            \App\Http\Middleware\AppendHeadersToRequest::class,
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
