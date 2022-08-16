@@ -69,7 +69,7 @@ class AuthController extends Controller
      *     summary="Sign out from dashboard",
      *
      *     @OA\Response (
-     *          response=200,
+     *          response=204,
      *          description="Success (No content)"
      *     ),
      *
