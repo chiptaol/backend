@@ -92,7 +92,7 @@
                 "summary": "Sign out from dashboard",
                 "operationId": "1e820e7459fefa1bad97414cb6045c8b",
                 "responses": {
-                    "200": {
+                    "204": {
                         "description": "Success (No content)"
                     },
                     "401": {
