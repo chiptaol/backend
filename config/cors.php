@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'dashboard/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:7000', 'https://chiptaol.uz'],
+    'allowed_origins' => ['http://localhost:7000', 'https://chiptaol.uz', 'https://admin.chiptaol.uz'],
 
     'allowed_origins_patterns' => [],
 
