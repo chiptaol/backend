@@ -16,6 +16,7 @@ use Illuminate\Support\Collection;
  * @property numeric $latitude
  *
  * @property Collection $halls
+ * @property FileSource $logo
  */
 class Cinema extends Model
 {
