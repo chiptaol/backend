@@ -22,20 +22,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('300620036Fbb')
         ]);
 
-        Cinema::factory()->count(5)->create();
-        Cinema::create([
-            'title' => 'Magic City',
-            'address' => 'some address',
-            'longitude' => 69.245077,
-            'latitude' => 41.303663
-        ]);
-        Cinema::create([
-            'title' => 'Minor метро',
-            'address' => 'some address',
-            'longitude' => 69.283407,
-            'latitude' => 41.326226
-
-        ]);
+        Cinema::factory()->count(4)->create();
 
 
     }
