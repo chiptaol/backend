@@ -28,6 +28,7 @@ class CinemaUpdateFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:75', Rule::unique('cinemas', 'title')->ignore($this->route('id'))],
             'address' => ['required', 'string', 'max:150'],
+            'logo_id' => ['required', 'string', 'exists:file_sources,id'],
             'reference_point' => ['nullable', 'string', 'max:75'],
             'longitude' => ['required', new CoordinateRule()],
             'latitude' => ['required', new CoordinateRule(), Rule::unique('cinemas', 'latitude')

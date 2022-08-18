@@ -195,7 +195,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Success (OK)",
                         "content": {
                             "application/json": {
@@ -231,6 +231,18 @@
             }
         },
         "/api/dashboard/cinemas/{id}": {
+            "get": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Get a specific cinema",
+                "operationId": "7bdbab5f92108f33b75d255dd6ffd095",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Dashboard Cinemas"
@@ -281,6 +293,49 @@
                     }
                 }
             }
+        },
+        "/api/dashboard/cinemas/logo": {
+            "post": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Store a logo for cinema",
+                "operationId": "31e209a03530fca8ec951536b101298e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "type": "file",
+                                        "example": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success (OK)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "929e45b4-084c-4160-b314-13cf7e0407d8"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -290,7 +345,8 @@
                     "title",
                     "address",
                     "longitude",
-                    "latitude"
+                    "latitude",
+                    "logo_id"
                 ],
                 "properties": {
                     "title": {
@@ -300,6 +356,9 @@
                     "address": {
                         "type": "string",
                         "example": "Some-address"
+                    },
+                    "logo_id": {
+                        "type": "string"
                     },
                     "reference_point": {
                         "type": "string",

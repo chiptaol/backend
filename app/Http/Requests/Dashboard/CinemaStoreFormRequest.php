@@ -22,9 +22,10 @@ class CinemaStoreFormRequest extends FormRequest
      *
      * @OA\Schema (
      *     schema="CinemaStoreFormRequest",
-     *     required={"title", "address", "longitude", "latitude"},
+     *     required={"title", "address", "longitude", "latitude", "logo_id"},
      *     @OA\Property (property="title", type="string", example="Magic Cinema"),
      *     @OA\Property (property="address", type="string", example="Some-address"),
+     *     @OA\Property (property="logo_id", type="string"),
      *     @OA\Property (property="reference_point", type="string", example="Cafe castillo olymp"),
      *     @OA\Property (property="longitude", type="numeric", example=69.245077),
      *     @OA\Property (property="latitude", type="numeric", example=41.326226)
@@ -40,6 +41,7 @@ class CinemaStoreFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:75', 'unique:cinemas'],
             'address' => ['required', 'string', 'max:150'],
+            'logo_id' => ['required', 'string', 'exists:file_sources,id'],
             'reference_point' => ['nullable', 'string', 'max:75'],
             'longitude' => ['required', new CoordinateRule()],
             'latitude' => ['required', new CoordinateRule(), Rule::unique('cinemas', 'latitude')

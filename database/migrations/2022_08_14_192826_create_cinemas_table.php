@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('cinemas', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
+            $table->foreignUuid('logo_id')->nullable()->constrained('file_sources')->nullOnDelete();
             $table->string('address');
             $table->string('reference_point')->nullable();
             $table->decimal('longitude', 9, 6);

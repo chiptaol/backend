@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Actions\StoreFileAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\CinemaStoreFormRequest;
+use App\Http\Requests\Dashboard\CinemaStoreLogoFormRequest;
 use App\Http\Requests\Dashboard\CinemaUpdateFormRequest;
 use App\Http\Resources\Dashboard\CinemaResource;
 use App\Models\Cinema;
@@ -38,6 +40,30 @@ class CinemaController extends Controller
 
     /**
      *
+     * @OA\Get (
+     *     path="/api/dashboard/cinemas/{id}",
+     *     summary="Get a specific cinema",
+     *     tags={"Dashboard Cinemas"},
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
+     *     )
+     * )
+     *
+     *
+     * @param int $id
+     * @return CinemaResource
+     */
+    public function show(int $id)
+    {
+        $cinema = Cinema::findOrFail($id);
+
+        return new CinemaResource($cinema);
+    }
+
+    /**
+     *
      * @OA\Post (
      *     path="/api/dashboard/cinemas",
      *     summary="Add a new cinema",
@@ -49,7 +75,7 @@ class CinemaController extends Controller
      *     ),
      *
      *     @OA\Response (
-     *          response=200,
+     *          response=201,
      *          description="Success (OK)",
      *          @OA\JsonContent (
      *              @OA\Property (property="id", type="integer", example=7)
@@ -75,7 +101,43 @@ class CinemaController extends Controller
 
         return response()->json([
             'id' => $cinema->id
-        ]);
+        ], 201);
+    }
+
+    /**
+     *
+     * @OA\Post (
+     *     path="/api/dashboard/cinemas/logo",
+     *     summary="Store a logo for cinema",
+     *     tags={"Dashboard Cinemas"},
+     *
+     *     @OA\RequestBody (
+     *          required=true,
+     *          @OA\JsonContent (
+     *              @OA\Property (property="file", type="file", example="file")
+     *          )
+     *     ),
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK)",
+     *          @OA\JsonContent (
+     *              @OA\Property (property="id", type="string", example="929e45b4-084c-4160-b314-13cf7e0407d8")
+     *          )
+     *     )
+     * )
+     *
+     *
+     *
+     * @param CinemaStoreLogoFormRequest $request
+     * @param StoreFileAction $action
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeLogo(CinemaStoreLogoFormRequest $request, StoreFileAction $action)
+    {
+        return response()->json([
+            'id' => $action($request->validated('file'), 'cinema-logo')
+        ], 201);
     }
 
     /**
