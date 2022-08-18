@@ -35,7 +35,7 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        $cinemas = Cinema::with('logo:id,path')->orderByDesc('created_at')->get();
+        $cinemas = Cinema::orderByDesc('created_at')->get();
 
         return CinemaResource::collection($cinemas);
     }
@@ -60,7 +60,6 @@ class CinemaController extends Controller
     public function show(int $id)
     {
         $cinema = Cinema::findOrFail($id);
-        $cinema->load('logo:id,path');
 
         return new CinemaResource($cinema);
     }
@@ -79,10 +78,7 @@ class CinemaController extends Controller
      *
      *     @OA\Response (
      *          response=201,
-     *          description="Success (OK)",
-     *          @OA\JsonContent (
-     *              @OA\Property (property="id", type="integer", example=7)
-     *          )
+     *          description="Success (Created) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
      *     ),
      *
      *     @OA\Response (
@@ -96,15 +92,13 @@ class CinemaController extends Controller
      *
      *
      * @param CinemaStoreFormRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return CinemaResource
      */
     public function store(CinemaStoreFormRequest $request)
     {
         $cinema = $this->service->store($request->validated());
 
-        return response()->json([
-            'id' => $cinema->id
-        ], 201);
+        return new CinemaResource($cinema);
     }
 
     /**

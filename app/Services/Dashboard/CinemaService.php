@@ -10,7 +10,10 @@ final class CinemaService
 {
     public function store(array $validatedData)
     {
-        return Cinema::create($validatedData);
+        $cinema = Cinema::create($validatedData);
+        $cinema->load('logo:id,path');
+
+        return $cinema;
     }
 
     public function update(array $validatedData, Cinema $cinema)

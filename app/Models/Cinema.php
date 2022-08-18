@@ -25,6 +25,8 @@ class Cinema extends Model
         'title', 'address', 'reference_point', 'longitude', 'latitude', 'logo_id'
     ];
 
+    protected $with = ['logo:id,path'];
+
     public function halls(): HasMany
     {
         return $this->hasMany(Hall::class, 'cinema_id', 'id');
