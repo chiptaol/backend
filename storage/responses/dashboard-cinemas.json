@@ -1,49 +1,67 @@
 {
     "data": [
         {
+            "id": 8,
+            "title": "Magic City upd",
+            "address": "Some address",
+            "logo": {
+                "id": "e9946446-9d24-48db-8a50-b491bc522219",
+                "path": "storage/file_sources/2022/8/18/cinema-logo/f8iPYB0ms7gN6GlmVcrGTBKa7hl1j533vi6RY3E5.png"
+            },
+            "reference_point": null,
+            "longitude": "69.245077",
+            "latitude": "41.303662"
+        },
+        {
             "id": 1,
-            "title": "By this time she.",
-            "address": "94055 Adolph Fork\nCummerataborough, HI 51054-4413",
-            "reference_point": "854 Crooks Stravenue Apt. 414\nEusebioburgh, MS 15589-5945",
-            "longitude": "-74.646821",
-            "latitude": "66.722558"
+            "title": "King said to the.",
+            "address": "25876 Connelly Club Suite 396\nPort Eileen, CO 18797",
+            "logo": null,
+            "reference_point": "77002 Grady Course Apt. 445\nLindchester, MD 84576",
+            "longitude": "-33.120223",
+            "latitude": "-79.983566"
         },
         {
             "id": 2,
-            "title": "AT ALL. Soup does.",
-            "address": "6619 Block Trail\nPort Kylafort, IN 01987",
-            "reference_point": "3491 Jed Isle Apt. 854\nMorissettefort, AR 29196",
-            "longitude": "139.105800",
-            "latitude": "39.481351"
+            "title": "Come on!' So they.",
+            "address": "15612 Kling Park\nMosciskistad, TX 19568-3993",
+            "logo": null,
+            "reference_point": "6505 Reuben Ports Apt. 348\nOpalside, WV 65755-7733",
+            "longitude": "118.756340",
+            "latitude": "45.137012"
         },
         {
             "id": 3,
-            "title": "I think.' And she.",
-            "address": "5485 Tony Point\nNew Raphaelberg, OH 68450-7149",
+            "title": "BE TRUE--\" that's.",
+            "address": "5621 Price Inlet\nNorth Iliana, NC 75581-2500",
+            "logo": null,
             "reference_point": null,
-            "longitude": "148.249812",
-            "latitude": "-71.746280"
+            "longitude": "10.444860",
+            "latitude": "-47.208809"
         },
         {
             "id": 4,
-            "title": "Alice to herself.",
-            "address": "77802 Reilly Mountain Suite 207\nHoegermouth, IN 53114-7148",
+            "title": "I meant,' the King.",
+            "address": "5261 Pfeffer Greens\nSouth Germainefort, OK 12468",
+            "logo": null,
             "reference_point": null,
-            "longitude": "-139.880219",
-            "latitude": "-28.052496"
+            "longitude": "120.410178",
+            "latitude": "81.105571"
         },
         {
             "id": 5,
-            "title": "Knave, 'I didn't.",
-            "address": "969 Bosco Path Apt. 392\nKristinfort, OH 37642",
-            "reference_point": null,
-            "longitude": "-25.676306",
-            "latitude": "-1.197033"
+            "title": "Atheling to meet.",
+            "address": "6249 Michale Forge\nPort Elmira, WI 33366-1683",
+            "logo": null,
+            "reference_point": "573 Metz Valley Suite 243\nNew Elenor, NJ 96059-0465",
+            "longitude": "25.886013",
+            "latitude": "26.083890"
         },
         {
             "id": 6,
             "title": "Magic City",
             "address": "some address",
+            "logo": null,
             "reference_point": null,
             "longitude": "69.245077",
             "latitude": "41.303663"
@@ -52,6 +70,7 @@
             "id": 7,
             "title": "Minor метро",
             "address": "some address",
+            "logo": null,
             "reference_point": null,
             "longitude": "69.283407",
             "latitude": "41.326226"

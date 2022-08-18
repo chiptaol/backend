@@ -4,6 +4,7 @@ namespace App\Services\Dashboard;
 
 use App\Http\Requests\Dashboard\CinemaStoreFormRequest;
 use App\Models\Cinema;
+use Illuminate\Support\Facades\Storage;
 
 final class CinemaService
 {
@@ -14,6 +15,10 @@ final class CinemaService
 
     public function update(array $validatedData, Cinema $cinema)
     {
+//        if ($validatedData['logo_id'] !== $cinema->logo_id) {
+//            Storage::disk('public')->delete()
+//        }
+
         return $cinema->update($validatedData);
     }
 

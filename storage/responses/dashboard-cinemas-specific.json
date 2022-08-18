@@ -1,1 +1,14 @@
-{"data":{"id":1,"title":"King said to the.","address":"25876 Connelly Club Suite 396\nPort Eileen, CO 18797","reference_point":"77002 Grady Course Apt. 445\nLindchester, MD 84576","longitude":"-33.120223","latitude":"-79.983566"}}
+{
+    "data": {
+        "id": 8,
+        "title": "Magic City upd",
+        "address": "Some address",
+        "logo": {
+            "id": "e9946446-9d24-48db-8a50-b491bc522219",
+            "path": "storage/file_sources/2022/8/18/cinema-logo/f8iPYB0ms7gN6GlmVcrGTBKa7hl1j533vi6RY3E5.png"
+        },
+        "reference_point": null,
+        "longitude": "69.245077",
+        "latitude": "41.303662"
+    }
+}

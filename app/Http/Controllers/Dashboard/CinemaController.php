@@ -35,7 +35,9 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        return CinemaResource::collection(Cinema::orderBy('created_at', 'DESC')->get());
+        $cinemas = Cinema::with('logo:id,path')->orderByDesc('created_at')->get();
+
+        return CinemaResource::collection($cinemas);
     }
 
     /**
@@ -58,6 +60,7 @@ class CinemaController extends Controller
     public function show(int $id)
     {
         $cinema = Cinema::findOrFail($id);
+        $cinema->load('logo:id,path');
 
         return new CinemaResource($cinema);
     }
