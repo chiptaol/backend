@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('cinemas', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('address')->nullable();
+            $table->string('title')->unique();
+            $table->string('address');
+            $table->string('reference_point')->nullable();
+            $table->decimal('longitude', 9, 6);
+            $table->decimal('latitude', 9, 6);
             $table->timestamps();
         });
     }

@@ -121,5 +121,11 @@
 
 
     "Unauthenticated.": "Не аутентифицирован.",
-    "Invalid password provided.": "Неверный пароль."
+    "Invalid password provided.": "Неверный пароль.",
+
+    "Invalid coordinate provided.": "Указаны неверные координаты.",
+    "Cinema with this coordinates already exists.": "Кинотеатр с такими координатами уже существует.",
+
+    "Updating is not possible, something went wrong.": "Обновление невозможно, что-то пошло не так.",
+    "Deleting is not possible, something went wrong.": "Удаление невозможно, что-то пошло не так."
 }

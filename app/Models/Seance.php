@@ -28,7 +28,7 @@ class Seance extends Model
 
     protected $fillable = [
         'cinema_id', 'hall_id', 'premiere_id', 'format_ids',
-        'start_date_time'
+        'start_date_time', 'start_date'
     ];
 
     protected $casts = [

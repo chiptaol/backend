@@ -18,7 +18,7 @@ class Cinema extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'address'
+        'title', 'address', 'reference_point', 'longitude', 'latitude'
     ];
 
     public function halls(): HasMany

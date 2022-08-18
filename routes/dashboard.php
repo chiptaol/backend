@@ -21,3 +21,10 @@ Route::group(['middleware' => 'auth:api', 'controller' => \App\Http\Controllers\
 });
 
 
+Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\CinemaController::class], function () {
+    Route::get('/', 'index')->name('dashboard.cinemas.index');
+    Route::post('/', 'store')->name('dashboard.cinemas.store');
+    Route::put('/{id}', 'update')->name('dashboard.cinemas.update');
+    Route::delete('/{id}', 'delete')->name('dashboard.cinemas.delete');
+});
+

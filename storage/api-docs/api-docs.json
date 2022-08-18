@@ -164,6 +164,158 @@
                     }
                 }
             }
+        },
+        "/api/dashboard/cinemas": {
+            "get": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Get a list of cinemas",
+                "operationId": "e4720ecf51354fba325c6e5499c38b6a",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas)"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Add a new cinema",
+                "operationId": "ef37ee8994342a5be4dc67d7da30b6e0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CinemaStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success (OK)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 7
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid coordinates (Unproccessable content)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Указаны неверные координаты."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/cinemas/{id}": {
+            "put": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Update an existing cinema",
+                "operationId": "af8c9edc72805febb1340b2c36555c37",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Cinema ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CinemaStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success (No Content)"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dashboard Cinemas"
+                ],
+                "summary": "Delete an existing cinema",
+                "operationId": "694698dda4361f2605eb5e0c3d609543",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Cinema ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success (No Content)"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CinemaStoreFormRequest": {
+                "required": [
+                    "title",
+                    "address",
+                    "longitude",
+                    "latitude"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Magic Cinema"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Some-address"
+                    },
+                    "reference_point": {
+                        "type": "string",
+                        "example": "Cafe castillo olymp"
+                    },
+                    "longitude": {
+                        "type": "numeric",
+                        "example": 69.245077
+                    },
+                    "latitude": {
+                        "type": "numeric",
+                        "example": 41.326226
+                    }
+                },
+                "type": "object"
+            }
         }
     }
 }
