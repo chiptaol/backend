@@ -53,7 +53,7 @@ class SeatController extends Controller
      *
      * @OA\Post (
      *     path="/api/dashboard/cinemas/{cinema-id}/halls/{hall-id}/seats",
-     *     summary="Add a new seats for specific hall",
+     *     summary="Add new seats for specific hall",
      *     tags={"Dashboard Halls"},
      *
      *     @OA\Parameter (ref="#/components/parameters/cinema-id-path"),
