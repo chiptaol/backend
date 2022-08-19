@@ -17,6 +17,23 @@ class SeatStoreFormRequest extends FormRequest
     }
 
     /**
+     *
+     * @OA\Schema (
+     *     schema="SeatStoreFormRequest",
+     *     @OA\Property (property="seats", type="array", @OA\Items (
+     *          type="object",
+     *          required={"row", "place", "x", "y"},
+     *          properties={
+     *              @OA\Property (property="is_vip", type="boolean", example=true),
+     *              @OA\Property (property="row", type="integer", example=10),
+     *              @OA\Property (property="place", type="integer", example=30),
+     *              @OA\Property (property="x", type="integer", example=335),
+     *              @OA\Property (property="y", type="integer", example=90)
+     *          }
+     *     ))
+     * )
+     *
+     *
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>

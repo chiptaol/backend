@@ -457,6 +457,78 @@
                     }
                 }
             }
+        },
+        "/api/dashboard/cinemas/{cinema-id}/halls/{hall-id}/seats": {
+            "get": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Get a list of seats for specific hall",
+                "operationId": "4ebf16a1346f62dc592ef008d77dfa80",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seats)"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Add a new seats for specific hall",
+                "operationId": "a6abf2e010993879ff47a814a891e33b",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SeatStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success (Created)"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Delete all seats for specific hall",
+                "operationId": "f024f36dbe300f113ecccf938bdd25c1",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success (No Content)"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -517,6 +589,45 @@
                         "type": "boolean",
                         "default": false,
                         "example": true
+                    }
+                },
+                "type": "object"
+            },
+            "SeatStoreFormRequest": {
+                "properties": {
+                    "seats": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "row",
+                                "place",
+                                "x",
+                                "y"
+                            ],
+                            "properties": {
+                                "is_vip": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "row": {
+                                    "type": "integer",
+                                    "example": 10
+                                },
+                                "place": {
+                                    "type": "integer",
+                                    "example": 30
+                                },
+                                "x": {
+                                    "type": "integer",
+                                    "example": 335
+                                },
+                                "y": {
+                                    "type": "integer",
+                                    "example": 90
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
