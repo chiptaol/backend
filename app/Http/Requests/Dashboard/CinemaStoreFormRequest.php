@@ -5,6 +5,7 @@ namespace App\Http\Requests\Dashboard;
 use App\Rules\CoordinateRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Psy\Util\Str;
 
 class CinemaStoreFormRequest extends FormRequest
 {
@@ -50,6 +51,14 @@ class CinemaStoreFormRequest extends FormRequest
             ],
             'phone' => ['required', 'string', 'starts_with:+998', 'size:13', 'unique:cinemas']
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'longitude' => \Illuminate\Support\Str::substr($this->input('longitude'), 0, 9),
+            'latitude' => \Illuminate\Support\Str::substr($this->input('latitude'), 0, 9)
+        ]);
     }
 
     public function messages()

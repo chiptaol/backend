@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('seance_id')->constrained('seances')->cascadeOnDelete();
             $table->foreignId('seat_id')->constrained('seats')->cascadeOnDelete();
             $table->bigInteger('price');
+            $table->enum('status', ['available', 'in_progress', 'not_available'])->default('available');
             $table->timestamps();
         });
     }

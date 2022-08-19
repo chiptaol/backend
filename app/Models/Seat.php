@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property string $color
+ * @property bool $is_vip
  * @property bool $is_available
  * @property int $row
  * @property int $place
@@ -22,12 +22,12 @@ class Seat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'color', 'is_available', 'row', 'place', 'x',
+        'is_vip', 'row', 'place', 'x',
         'y', 'hall_id'
     ];
 
     protected $casts = [
-        'is_available' => 'boolean'
+        'is_vip' => 'boolean'
     ];
 
     public function hall(): BelongsTo

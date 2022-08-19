@@ -38,3 +38,9 @@ Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' =>
     Route::delete('/{cinemaId}/halls/{id}', 'delete')->name('dashboard.halls.delete');
 });
 
+Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\SeatController::class], function () {
+    Route::get('/{cinemaId}/halls/{hallId}/seats', 'index')->name('dashboard.seats.index');
+    Route::post('/{cinemaId}/halls/{hallId}/seats', 'store')->name('dashboard.seats.store');
+//    Route::delete('/{cinemaId}, delete')-
+});
+

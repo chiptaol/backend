@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
-            $table->boolean('is_available')->default(true);
+            $table->boolean('is_vip')->default(false);
             $table->smallInteger('row');
             $table->smallInteger('place');
             $table->integer('x');

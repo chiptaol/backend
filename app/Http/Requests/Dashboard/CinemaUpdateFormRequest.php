@@ -38,4 +38,12 @@ class CinemaUpdateFormRequest extends FormRequest
             'phone' => ['required', 'string', 'starts_with:+998', 'size:13', Rule::unique('cinemas', 'phone')->ignore($this->route('id'))]
         ];
     }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'longitude' => \Illuminate\Support\Str::substr($this->input('longitude'), 0, 9),
+            'latitude' => \Illuminate\Support\Str::substr($this->input('latitude'), 0, 9)
+        ]);
+    }
 }
