@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Dashbaord\Auth;
+namespace App\Http\Requests\Dashboard\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Password;
 
 class SignInFormRequest extends FormRequest
 {

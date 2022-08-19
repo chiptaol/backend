@@ -11,9 +11,8 @@ final class CinemaService
     public function store(array $validatedData)
     {
         $cinema = Cinema::create($validatedData);
-        $cinema->load('logo:id,path');
 
-        return $cinema;
+        return $cinema->fresh();
     }
 
     public function update(array $validatedData, Cinema $cinema)
@@ -23,11 +22,8 @@ final class CinemaService
             $cinema->logo->delete();
         }
 
-        return $cinema->update($validatedData);
-    }
+        $cinema->update($validatedData);
 
-    public function delete(Cinema $cinema)
-    {
-        return $cinema->delete();
+        return $cinema->fresh();
     }
 }

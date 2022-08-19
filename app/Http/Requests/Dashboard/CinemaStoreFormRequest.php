@@ -28,7 +28,8 @@ class CinemaStoreFormRequest extends FormRequest
      *     @OA\Property (property="logo_id", type="string"),
      *     @OA\Property (property="reference_point", type="string", example="Cafe castillo olymp"),
      *     @OA\Property (property="longitude", type="numeric", example=69.245077),
-     *     @OA\Property (property="latitude", type="numeric", example=41.326226)
+     *     @OA\Property (property="latitude", type="numeric", example=41.326226),
+     *     @OA\Property (property="phone", type="string", example="+998909144615", description="Must start with `+998`")
      * )
      *
      *
@@ -41,12 +42,13 @@ class CinemaStoreFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:75', 'unique:cinemas'],
             'address' => ['required', 'string', 'max:150'],
-            'logo_id' => ['required', 'string', 'exists:file_sources,id'],
+            'logo_id' => ['required', 'string', 'exists:file_sources,id', 'unique:cinemas'],
             'reference_point' => ['nullable', 'string', 'max:75'],
             'longitude' => ['required', new CoordinateRule()],
             'latitude' => ['required', new CoordinateRule(), Rule::unique('cinemas', 'latitude')
                 ->where('longitude', $this->input('longitude'))
-            ]
+            ],
+            'phone' => ['required', 'string', 'starts_with:+998', 'size:13', 'unique:cinemas']
         ];
     }
 

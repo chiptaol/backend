@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('reference_point')->nullable();
             $table->decimal('longitude', 9, 6);
             $table->decimal('latitude', 9, 6);
+            $table->string('phone')->unique();
             $table->timestamps();
         });
     }

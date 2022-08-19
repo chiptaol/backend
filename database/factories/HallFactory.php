@@ -17,7 +17,9 @@ class HallFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->realText(30),
+            'description' => mt_rand(0, 1) ? $this->faker->text(50) : null,
+            'is_vip' => (bool)mt_rand(0, 1)
         ];
     }
 }

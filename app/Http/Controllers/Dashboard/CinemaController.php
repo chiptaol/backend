@@ -77,8 +77,8 @@ class CinemaController extends Controller
      *     ),
      *
      *     @OA\Response (
-     *          response=201,
-     *          description="Success (Created) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
      *     ),
      *
      *     @OA\Response (
@@ -157,25 +157,21 @@ class CinemaController extends Controller
      *     ),
      *
      *     @OA\Response (
-     *          response=204,
-     *          description="Success (No Content)"
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
      *     )
      * )
      *
      *
      * @param CinemaUpdateFormRequest $request
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return CinemaResource
      */
     public function update(CinemaUpdateFormRequest $request, int $id)
     {
         $cinema = Cinema::findOrFail($id);
 
-        return $this->service->update($request->validated(), $cinema)
-            ? response()->noContent()
-            : response()->json([
-                'message' => trans('Updating is not possible, something went wrong.')
-            ], 400);
+        return new CinemaResource($this->service->update($request->validated(), $cinema));
     }
 
     /**
@@ -205,12 +201,9 @@ class CinemaController extends Controller
     public function delete(int $id)
     {
         $cinema = Cinema::findOrFail($id);
+        $cinema->delete();
 
-        return $this->service->delete($cinema)
-            ? response()->noContent()
-            : response()->json([
-                'message' => trans('Deleting is not possible, something went wrong.')
-            ]);
+        return response()->noContent();
     }
 
 

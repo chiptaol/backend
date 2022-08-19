@@ -30,3 +30,11 @@ Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' =>
     Route::delete('/{id}', 'delete')->name('dashboard.cinemas.delete');
 });
 
+Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\HallController::class], function () {
+    Route::get('/{cinemaId}/halls', 'index')->name('dashboard.halls.index');
+    Route::get('/{cinemaId}/halls/{id}', 'show')->name('dashboard.halls.show');
+    Route::post('/{cinemaId}/halls', 'store')->name('dashboard.halls.store');
+    Route::put('/{cinemaId}/halls/{id}', 'update')->name('dashboard.halls.update');
+    Route::delete('/{cinemaId}/halls/{id}', 'delete')->name('dashboard.halls.delete');
+});
+

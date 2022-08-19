@@ -195,21 +195,8 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Success (OK)",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": 7
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
                     },
                     "422": {
                         "description": "Invalid coordinates (Unproccessable content)",
@@ -268,8 +255,8 @@
                     }
                 },
                 "responses": {
-                    "204": {
-                        "description": "Success (No Content)"
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
                     }
                 }
             },
@@ -336,6 +323,140 @@
                     }
                 }
             }
+        },
+        "/api/dashboard/cinemas/{cinema-id}/halls": {
+            "get": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Get a list of halls for specific cinema",
+                "operationId": "b4c91652b5486386f67f67b81aea9326",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-halls)"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Add a new hall for specific cinema",
+                "operationId": "d0ca0dcf784044299be4f5baf2c4efb0",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HallStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-halls-specific)"
+                    }
+                }
+            }
+        },
+        "/api/dashboard/cinemas/{cinema-id}/halls/{hall-id}": {
+            "get": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Get a specific hall for specific cinema",
+                "operationId": "b52145874e74e25e244acfd17d5785cd",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-halls-specific)"
+                    },
+                    "404": {
+                        "description": "Non exists hall-id (Not Found)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "No query results for model [App\\\\Models\\\\Hall] 6"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Update a specific hall for specific cinema",
+                "operationId": "fcd4594e9f866b6fc55ac8f0275fa206",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HallStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-halls-specific)"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Delete a specific hall for specific cinema",
+                "operationId": "e7344daaad7444bd71f65b3f8fe033b5",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/hall-id-path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success (No Content)"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -371,9 +492,48 @@
                     "latitude": {
                         "type": "numeric",
                         "example": 41.326226
+                    },
+                    "phone": {
+                        "description": "Must start with `+998`",
+                        "type": "string",
+                        "example": "+998909144615"
                     }
                 },
                 "type": "object"
+            },
+            "HallStoreFormRequest": {
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Зал Номер - 6 (VIP)"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "is_vip": {
+                        "type": "boolean",
+                        "default": false,
+                        "example": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "cinema-id-path": {
+                "name": "cinema-id",
+                "in": "path",
+                "description": "Cinema ID",
+                "required": true
+            },
+            "hall-id-path": {
+                "name": "hall-id",
+                "in": "path",
+                "description": "Hall ID",
+                "required": true
             }
         }
     }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('halls', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('seats_quantity');
+            $table->integer('seats_quantity')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_vip')->default(false);
             $table->foreignId('cinema_id')->constrained('cinemas')->cascadeOnDelete();

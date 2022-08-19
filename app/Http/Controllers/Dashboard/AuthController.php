@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashbaord\Auth\SignInFormRequest;
+use App\Http\Requests\Dashboard\Auth\SignInFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,7 +47,7 @@ class AuthController extends Controller
      *     )
      *)
      *
-     * @param SignInFormRequest $request
+     * @param \App\Http\Requests\Dashboard\Auth\SignInFormRequest $request
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function signIn(SignInFormRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse

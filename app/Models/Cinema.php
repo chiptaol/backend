@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
  * @property string $logo_id
  * @property numeric $longitude
  * @property numeric $latitude
+ * @property string $phone
  *
  * @property Collection $halls
  * @property FileSource $logo
@@ -23,7 +24,7 @@ class Cinema extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'address', 'reference_point', 'longitude', 'latitude', 'logo_id'
+        'title', 'address', 'reference_point', 'longitude', 'latitude', 'logo_id', 'phone'
     ];
 
     protected $with = ['logo:id,path'];

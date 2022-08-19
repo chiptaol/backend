@@ -4,7 +4,7 @@ namespace App\Http\Resources\Dashboard;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CinemaResource extends JsonResource
+class HallResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +17,11 @@ class CinemaResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'address' => $this->address,
-            'logo' => $this->logo,
-            'reference_point' => $this->reference_point,
-            'longitude' => $this->longitude,
-            'latitude' => $this->latitude,
-            'phone' => $this->phone
+            'description' => $this->description,
+            'is_vip' => $this->is_vip,
+            'cinema' => $this->whenLoaded('cinema'),
+            'seances' => $this->whenLoaded('seances'),
+            'seats' => $this->whenLoaded('seats')
         ];
     }
 }

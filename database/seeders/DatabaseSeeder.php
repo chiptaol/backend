@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Cinema;
+use App\Models\Hall;
 use App\Models\User;
 use Database\Factories\CinemaFactory;
+use Database\Factories\HallFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +24,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('300620036Fbb')
         ]);
 
-        Cinema::factory()->count(4)->create();
+        Cinema::factory()
+            ->has(Hall::factory()->count(5))
+            ->count(4)->create();
+
 
 
     }

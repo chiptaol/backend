@@ -47,7 +47,8 @@ class CinemaFactory extends Factory
             'address' => $this->faker->address(),
             'reference_point' => mt_rand(0, 1) ? $this->faker->address() : null,
             'longitude' => $realData[self::$i]['cinema_longitude'],
-            'latitude' => $realData[self::$i++]['cinema_latitude']
+            'latitude' => $realData[self::$i++]['cinema_latitude'],
+            'phone' => $this->faker->phoneNumber()
         ];
     }
 }
