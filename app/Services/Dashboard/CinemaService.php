@@ -17,7 +17,7 @@ final class CinemaService
 
     public function update(array $validatedData, Cinema $cinema)
     {
-        if ($validatedData['logo_id'] !== $cinema->logo_id) {
+        if ($validatedData['logo_id'] !== $cinema->logo_id && isset($cinema->logo)) {
             Storage::disk('public')->delete(str_replace('storage/', '', $cinema->logo->path));
             $cinema->logo->delete();
         }
