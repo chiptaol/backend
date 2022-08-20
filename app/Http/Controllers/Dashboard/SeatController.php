@@ -85,7 +85,7 @@ class SeatController extends Controller
             ->findOrFail($hallId);
 
         return $this->service->store($request->validated('seats'), $hall)
-            ? response()->noContent(201)
+            ? response()->noContent()
             : response()->json([
                 'message' => trans('Something went wrong.')
             ], 400);
