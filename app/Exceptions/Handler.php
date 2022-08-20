@@ -42,6 +42,12 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
 
+        if ($e instanceof BusinessException) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], $e->getCode());
+        }
+
         $response = parent::render($request, $e);
         if ($response->getStatusCode() !== 500 && $request->expectsJson()) {
             return response()->json([

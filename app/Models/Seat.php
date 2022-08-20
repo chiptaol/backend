@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool $is_available
  * @property int $row
  * @property int $place
- * @property int $x
- * @property int $y
+ * @property numeric $x
+ * @property numeric $y
  * @property int $hall_id
  *
  * @property Hall $hall

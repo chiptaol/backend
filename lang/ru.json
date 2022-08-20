@@ -117,14 +117,10 @@
     "validation.url": "Значение поля :attribute имеет ошибочный формат URL.",
     "validation.user": "Не удалось найти пользователя с указанным электронным адресом.",
     "validation.uuid": "Значение поля :attribute должно быть корректным UUID.",
-
-
-
     "Unauthenticated.": "Не аутентифицирован.",
     "Invalid password provided.": "Неверный пароль.",
-
     "Invalid coordinate provided.": "Указаны неверные координаты.",
     "Cinema with this coordinates already exists.": "Кинотеатр с такими координатами уже существует.",
-
-    "Something went wrong.": "Что то пошло не так."
+    "Something went wrong.": "Что то пошло не так.",
+    "TMDB return ERROR response.": "TMDB вернул неуспешный ответ, повторите еще раз."
 }

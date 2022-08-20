@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @property string $title
  * @property string $original_title
- * @property string $imdb_id
+ * @property string $tmdb_id
  * @property string $description
  * @property array $genres
  * @property int $duration
@@ -28,7 +28,7 @@ class Movie extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'original_title', 'imdb_id', 'description', 'genres',
+        'title', 'original_title', 'tmdb_id', 'description', 'genres',
         'duration', 'tagline', 'actors', 'directors', 'trailer',
         'poster', 'age_rating'
     ];

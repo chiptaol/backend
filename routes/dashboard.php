@@ -41,6 +41,14 @@ Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' =>
 Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\SeatController::class], function () {
     Route::get('/{cinemaId}/halls/{hallId}/seats', 'index')->name('dashboard.seats.index');
     Route::post('/{cinemaId}/halls/{hallId}/seats', 'store')->name('dashboard.seats.store');
-//    Route::delete('/{cinemaId}, delete')-
+    Route::delete('/{cinemaId}/halls/{hallId}/seats', 'delete')->name('dashboard.seats.delete');
 });
 
+Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\SeanceController::class], function () {
+    Route::post('/{cinemaId}/halls/{hallId}/seances', 'store')->name('dashboard.seances.store');
+});
+
+
+Route::group(['prefix' => 'movies', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\MovieController::class], function () {
+    Route::get('/search/{title}', 'search')->name('dashboard.movies.search');
+});

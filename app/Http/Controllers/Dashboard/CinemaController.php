@@ -54,10 +54,9 @@ class CinemaController extends Controller
      * )
      *
      *
-     * @param int $id
      * @return CinemaResource
      */
-    public function show(int $id)
+    public function show($id)
     {
         $cinema = Cinema::findOrFail($id);
 
@@ -164,10 +163,10 @@ class CinemaController extends Controller
      *
      *
      * @param CinemaUpdateFormRequest $request
-     * @param int $id
+     * @param $id
      * @return CinemaResource
      */
-    public function update(CinemaUpdateFormRequest $request, int $id)
+    public function update(CinemaUpdateFormRequest $request, $id)
     {
         $cinema = Cinema::findOrFail($id);
 
@@ -195,10 +194,10 @@ class CinemaController extends Controller
      * )
      *
      *
-     * @param int $id
+     * @param $id
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         $cinema = Cinema::findOrFail($id);
         $cinema->delete();

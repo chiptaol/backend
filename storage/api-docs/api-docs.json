@@ -458,6 +458,44 @@
                 }
             }
         },
+        "/api/dashboard/movies/search/{title}": {
+            "get": {
+                "tags": [
+                    "Dashboard Seances"
+                ],
+                "summary": "Get similar movies with provided title",
+                "operationId": "76353da88cd0b413eb3f44eba7d0af0e",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "required": true,
+                        "example": "Мстители"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-movies-search)"
+                    },
+                    "400": {
+                        "description": "Failure (Bad Request)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "TMDB вернул неуспешный ответ, повторите еще раз."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/dashboard/cinemas/{cinema-id}/halls/{hall-id}/seats": {
             "get": {
                 "tags": [
@@ -483,7 +521,7 @@
                 "tags": [
                     "Dashboard Halls"
                 ],
-                "summary": "Add a new seats for specific hall",
+                "summary": "Add new seats for specific hall",
                 "operationId": "a6abf2e010993879ff47a814a891e33b",
                 "parameters": [
                     {

@@ -45,8 +45,8 @@ class SeatStoreFormRequest extends FormRequest
             'seats.*.is_vip' => ['nullable', 'boolean'],
             'seats.*.row' => ['required', 'integer', 'max:10'],
             'seats.*.place' => ['required', 'integer', 'max:30'],
-            'seats.*.x' => ['required', 'integer'],
-            'seats.*.y' => ['required', 'integer']
+            'seats.*.x' => ['required', 'numeric'],
+            'seats.*.y' => ['required', 'numeric']
         ];
     }
 }

@@ -31,11 +31,11 @@ class SeatController extends Controller
      * )
      *
      *
-     * @param int $cinemaId
-     * @param int $hallId
+     * @param $cinemaId
+     * @param $hallId
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(int $cinemaId, int $hallId)
+    public function index($cinemaId, $hallId)
     {
         $seats = Cinema::without('logo')
             ->findOrFail($cinemaId)
@@ -73,11 +73,11 @@ class SeatController extends Controller
      *
      *
      * @param SeatStoreFormRequest $request
-     * @param int $cinemaId
-     * @param int $hallId
+     * @param $cinemaId
+     * @param $hallId
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function store(SeatStoreFormRequest $request, int $cinemaId, int $hallId)
+    public function store(SeatStoreFormRequest $request, $cinemaId, $hallId)
     {
         $hall = Cinema::without('logo')
             ->findOrFail($cinemaId)
@@ -108,11 +108,11 @@ class SeatController extends Controller
      * )
      *
      *
-     * @param int $cinemaId
-     * @param int $hallId
+     * @param $cinemaId
+     * @param $hallId
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function delete(int $cinemaId, int $hallId)
+    public function delete($cinemaId, $hallId)
     {
         $hall = Cinema::without('logo')
             ->findOrFail($cinemaId)

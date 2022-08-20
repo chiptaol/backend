@@ -37,10 +37,10 @@ class HallController extends Controller
      * )
      *
      *
-     * @param int $cinemaId
+     * @param $cinemaId
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(int $cinemaId)
+    public function index($cinemaId)
     {
         $cinema = Cinema::findOrFail($cinemaId);
 
@@ -81,11 +81,11 @@ class HallController extends Controller
      * )
      *
      *
-     * @param int $cinemaId
-     * @param int $id
+     * @param $cinemaId
+     * @param $id
      * @return HallResource
      */
-    public function show(int $cinemaId, int $id)
+    public function show($cinemaId, $id)
     {
         $hall = Cinema::findOrFail($cinemaId)->halls()->findOrFail($id);
 
@@ -113,10 +113,10 @@ class HallController extends Controller
      *
      *
      * @param HallStoreFormRequest $request
-     * @param int $cinemaId
+     * @param $cinemaId
      * @return HallResource
      */
-    public function store(HallStoreFormRequest $request, int $cinemaId)
+    public function store(HallStoreFormRequest $request, $cinemaId)
     {
         $cinema = Cinema::findOrFail($cinemaId);
 
@@ -146,11 +146,11 @@ class HallController extends Controller
      *
      *
      * @param HallStoreFormRequest $request
-     * @param int $cinemaId
-     * @param int $id
+     * @param $cinemaId
+     * @param $id
      * @return HallResource
      */
-    public function update(HallStoreFormRequest $request, int $cinemaId, int $id)
+    public function update(HallStoreFormRequest $request, $cinemaId, $id)
     {
         $hall = Cinema::findOrFail($cinemaId)->halls()->findOrFail($id);
 
@@ -174,11 +174,11 @@ class HallController extends Controller
      * )
      *
      *
-     * @param int $cinemaId
-     * @param int $id
+     * @param $cinemaId
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(int $cinemaId, int $id)
+    public function delete($cinemaId, $id)
     {
         $hall = Cinema::findOrFail($cinemaId)->halls()->findOrFail($id);
         $hall->delete();
