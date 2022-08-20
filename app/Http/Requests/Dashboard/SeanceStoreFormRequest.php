@@ -25,7 +25,7 @@ class SeanceStoreFormRequest extends FormRequest
     {
         return [
             'movie_id' => ['required', 'integer'],
-            'start_date' => ['required', 'date', 'date_format:Y-m-d H:i'],
+            'start_date_time' => ['required', 'date', 'date_format:Y-m-d H:i'],
             'vip_seat_price' => ['nullable', 'integer'],
             'standard_seat_price' => ['required', 'integer']
         ];

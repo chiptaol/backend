@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
         }
 
         $response = parent::render($request, $e);
-        if ($response->getStatusCode() !== 500 && $request->expectsJson()) {
+        if ($response->getStatusCode() !== 500 && $response->getStatusCode() !== 422 && $request->expectsJson()) {
             return response()->json([
                 'message' => $e->getMessage(),
             ], $response->getStatusCode());
