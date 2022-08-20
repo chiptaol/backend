@@ -19,7 +19,7 @@ class SeatResource extends JsonResource
             'is_vip' => $this->is_vip,
             'row' => $this->row,
             'place' => $this->place,
-            'x' => floatval($this->x),
+            'x' => (float)$this->x  ,
             'y' => floatval($this->y),
             'hall' => $this->whenLoaded('hall')
         ];

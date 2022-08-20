@@ -18,8 +18,8 @@ return new class extends Migration
             $table->boolean('is_vip')->default(false);
             $table->smallInteger('row');
             $table->smallInteger('place');
-            $table->string('x');
-            $table->string('y');
+            $table->float('x');
+            $table->float('y');
             $table->foreignId('hall_id')->constrained('halls')->cascadeOnDelete();
             $table->timestamps();
         });
