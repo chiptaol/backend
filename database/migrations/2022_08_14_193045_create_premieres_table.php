@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('cinema_id')->constrained('cinemas')->cascadeOnDelete();
             $table->foreignId('movie_id')->constrained('movies')->cascadeOnDelete();
             $table->date('release_date');
+            $table->date('release_end_date');
             $table->timestamps();
         });
     }

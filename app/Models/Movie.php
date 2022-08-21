@@ -31,13 +31,15 @@ class Movie extends Model
     protected $fillable = [
         'title', 'original_title', 'tmdb_id', 'description', 'genres',
         'duration', 'tagline', 'actors', 'directors', 'trailer_path',
-        'poster_path', 'backdrop_path', 'age_rating', 'release_date'
+        'poster_path', 'backdrop_path', 'age_rating', 'release_date',
+        'countries', 'rating'
     ];
 
     protected $casts = [
         'genres' => 'array',
         'actors' => 'array',
         'directors' => 'array',
+        'countries' => 'array'
     ];
 
     public function premiere(): HasOne

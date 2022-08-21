@@ -24,10 +24,12 @@ return new class extends Migration
             $table->text('tagline')->nullable();
             $table->json('actors')->nullable();
             $table->json('directors')->nullable();
+            $table->json('countries')->nullable();
             $table->text('trailer_path')->nullable();
             $table->text('poster_path')->nullable();
             $table->text('backdrop_path')->nullable();
             $table->string('age_rating')->nullable();
+            $table->float('rating')->nullable();
             $table->date('release_date')->nullable();
             $table->timestamps();
         });

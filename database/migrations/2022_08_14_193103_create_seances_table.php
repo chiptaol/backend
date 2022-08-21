@@ -22,7 +22,7 @@ return new class extends Migration
             $table->json('prices')->nullable();
             $table->date('start_date');
             $table->timestamp('start_date_time');
-            $table->timestamp('end_date_time');
+            $table->timestamp('end_date_time')->nullable();
             $table->timestamps();
         });
     }

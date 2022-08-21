@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/example-responses/{name}', \App\Http\Controllers\ApiController::class);
 
+
+Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\PremiereController::class], function () {
+    Route::get('/', 'index')->name('premieres.index');
+    Route::get('/actual', 'indexActual')->name('premieres.index.actual');
+    Route::get('/schedule', 'schedule')->name('premieres.schedule');
+});

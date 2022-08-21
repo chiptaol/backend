@@ -39,7 +39,9 @@ final class SeanceService
                     'release_date' => $movieDetails['release_date'],
                     'actors' => collect($movieDetails['credits']['cast'])->pluck('original_name')->slice(0, 5)->toArray(),
                     'directors' => collect($movieDetails['credits']['crew'])->where('job', '=', 'Director')->pluck('original_name')->toArray(),
-                    'age_rating' => $tmdb->getAgeRating($movieDetails['release_dates'])
+                    'countries' => $movieDetails['production_countries'],
+                    'age_rating' => $tmdb->getAgeRating($movieDetails['release_dates']),
+                    'rating' => $movieDetails['vote_average']
                 ];
 
                     $trailerKey = collect($movieDetails['videos']['results'])->where('site', '=', 'YouTube')->first()['key'] ?? null;
@@ -70,28 +72,31 @@ final class SeanceService
                 $currentSeanceEnd = Carbon::createFromFormat('Y-m-d H:i', $currentSeanceStart)->addMinutes($movie->duration)->addMinutes(30);
 
                 $existsSeance = Seance::query()
-                    ->where(function (Builder $builder) use ($currentSeanceStart) {
+                    ->where(function (Builder $builder) use ($currentSeanceStart, $hall) {
                         return $builder->where('start_date_time', '<=', $currentSeanceStart)
-                            ->where('end_date_time', '>=', $currentSeanceStart);
-                    })->orWhere(function (Builder $builder) use ($currentSeanceEnd) {
+                            ->where('end_date_time', '>=', $currentSeanceStart)
+                            ->where('hall_id', '=', $hall->id);
+                    })->orWhere(function (Builder $builder) use ($currentSeanceEnd, $hall) {
                         return $builder->where('start_date_time', '<=', $currentSeanceEnd)
-                            ->where('end_date_time', '>=', $currentSeanceEnd);
-                    })->where('hall_id', '=', $hall->id)
-                    ->first();
+                            ->where('end_date_time', '>=', $currentSeanceEnd)
+                            ->where('hall_id', '=', $hall->id);
+                    })->first();
 
                 if (!empty($existsSeance)) {
                     throw  new BusinessException(trans('This time range is occupied by another seance of this hall.'), 422);
                 }
-
+                $releaseEndDate = Carbon::createFromFormat('Y-m-d H:i', $currentSeanceStart)->addDays(7);
                 $premiere = $cinema->premieres()->firstOrCreate([
                     'movie_id' => $movie->id,
                 ], [
-                    'release_date' => $seance['start_date_time'],
+                    'release_date' => $currentSeanceStart,
+                    'release_end_date' => $releaseEndDate
                 ]);
 
                 if ($seance['start_date_time'] < $premiere->release_date) {
                     $premiere->update([
-                        'release_date' => $seance['start_date_time']
+                        'release_date' => $currentSeanceStart,
+                        'release_end_date' => $releaseEndDate
                     ]);
                 }
 
