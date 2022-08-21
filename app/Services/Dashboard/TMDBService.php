@@ -3,12 +3,25 @@
 namespace App\Services\Dashboard;
 
 use App\Exceptions\BusinessException;
+use Illuminate\Http\Client\Pool;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 final class TMDBService
 {
     private const BASE_PATH = 'https://api.themoviedb.org/3/';
+    private const BASE_IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
+
+    private const US_AGE_CERTIFICATIONS = [
+        'G' => '0+',
+        'PG' => '6+',
+        'PG-13' => '12+',
+        'R' => '16+',
+        'X' => '18+'
+    ];
 
     /**
      * @param string $title
@@ -16,17 +29,44 @@ final class TMDBService
      * @return array
      * @throws BusinessException
      */
-    public function searchByTitle(string $title, int $limit = 5)
+    public function searchMovieByTitle(string $title, int $limit = 5)
     {
         $response = $this->sendRequest('search/movie', [
             'query' => $title
         ]);
         $results = collect($response['results'])
-            ->sortByDesc('vote_average')
+            ->sortByDesc('release_date')
             ->slice(0, 5)
             ->values();
 
         return $results;
+     }
+
+     public function movieDetailsById(int $id)
+     {
+         return $this->sendRequest('movie/' . $id, [
+             'append_to_response' => 'credits,images,release_dates,videos'
+         ]);
+
+     }
+
+     public function movieAgeCertificateById(int $id)
+     {
+         return $this->sendRequest('movie/' . $id . '/release_dates');
+     }
+
+     public function storeMovieFile($fileName, $movieName)
+     {
+         if (empty($fileName)) {
+             return null;
+         }
+
+         $fileContents = Http::get(self::BASE_IMAGE_PATH . $fileName);
+         $filePath = 'movies/' . Str::slug($movieName) . $fileName;
+
+         Storage::disk('public')->put($filePath, $fileContents);
+
+         return 'storage/' . $filePath;
      }
 
     /**
@@ -43,6 +83,7 @@ final class TMDBService
         ], $data));
 
         if ($response->status() !== Response::HTTP_OK) {
+            info($path);
             throw new BusinessException(trans('TMDB return ERROR response.'), 400);
         }
 
@@ -53,4 +94,25 @@ final class TMDBService
     {
         return self::BASE_PATH . $path;
     }
+
+    public function getAgeRating(array $releaseDates)
+    {
+        $certifications = collect($releaseDates['results']);
+
+        $ruCertification = array_slice(array_filter($certifications->where('iso_3166_1', '=', 'RU')->pluck('release_dates.*.certification')->first() ?? [], fn($value) => !empty($value)), 0, 1)[0] ?? null;
+
+        if (empty($ruCertification)) {
+            $usCertifications = $certifications->where('iso_3166_1', '=', 'US')->pluck('release_dates.*.certification')->first();
+
+            if (empty($usCertifications[0] ?? null)) {
+                return null;
+            }
+
+            return self::US_AGE_CERTIFICATIONS[array_slice(array_filter($usCertifications, fn($value) => !empty($value)), 0,  1)[0] ?? null];
+        }
+
+        return $ruCertification;
+    }
+
+
 }

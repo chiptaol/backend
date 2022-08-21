@@ -496,6 +496,93 @@
                 }
             }
         },
+        "/api/dashboard/cinemas/{cinema-id}/seances": {
+            "post": {
+                "tags": [
+                    "Dashboard Seances"
+                ],
+                "summary": "Add a new seance for this cinema halls",
+                "operationId": "33403755d2ea5d5ac6d0051457ab9f3c",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SeanceStoreFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success (No content)"
+                    },
+                    "422": {
+                        "description": "Invalid prices (Unproccessable content)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "default": "Что-то пошло не так при проверке типа кресла и выборе цены, обратите внимание на поля - vip_seat_price, standard_seat_price."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/cinemas/{cinema-id}/seances/{seance-id}": {
+            "get": {
+                "tags": [
+                    "Dashboard Seances"
+                ],
+                "summary": "Get a specific seance data",
+                "operationId": "aa23b70bdf6eb900ab23fb96d55f5b7a",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/seance-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seances-specific)"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dashboard Seances"
+                ],
+                "summary": "Delete specific seance",
+                "operationId": "122e0d489da3eb6348ce613925b6be04",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/seance-id-path"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success (No content)"
+                    }
+                }
+            }
+        },
         "/api/dashboard/cinemas/{cinema-id}/halls/{hall-id}/seats": {
             "get": {
                 "tags": [
@@ -631,6 +718,56 @@
                 },
                 "type": "object"
             },
+            "SeanceStoreFormRequest": {
+                "required": [
+                    "movie_id",
+                    "seances"
+                ],
+                "properties": {
+                    "movie_id": {
+                        "type": "integer",
+                        "example": 731491
+                    },
+                    "seances": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "movie_format",
+                                "start_date_time",
+                                "hall_id"
+                            ],
+                            "properties": {
+                                "movie_format": {
+                                    "description": "Value must equals to: `3D` or `2D`",
+                                    "type": "string",
+                                    "example": "2D"
+                                },
+                                "start_date_time": {
+                                    "description": "format: `Y-m-d H:i`",
+                                    "type": "string",
+                                    "example": "2022-08-20 20:30"
+                                },
+                                "hall_id": {
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "standard_seat_price": {
+                                    "description": "required if `vip_seat_price` is null",
+                                    "type": "integer",
+                                    "example": "3500000"
+                                },
+                                "vip_seat_price": {
+                                    "description": "required if `standard_seat_price` is nul",
+                                    "type": "integer",
+                                    "example": "5000000"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "SeatStoreFormRequest": {
                 "properties": {
                     "seats": {
@@ -683,6 +820,12 @@
                 "in": "path",
                 "description": "Hall ID",
                 "required": true
+            },
+            "seance-id-path": {
+                "name": "seance-id",
+                "in": "path",
+                "required": true,
+                "example": 99
             }
         }
     }

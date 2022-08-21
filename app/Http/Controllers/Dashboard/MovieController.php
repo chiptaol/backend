@@ -45,8 +45,8 @@ class MovieController extends Controller
      */
     public function search($title)
     {
-        $similarMovies = $this->tmdbService->searchByTitle($title);
+        $similarMovies = $this->tmdbService->searchMovieByTitle($title);
 
-        return response()->json(only($similarMovies, 'id', 'title'));
+        return response()->json(only($similarMovies, 'id', 'title', 'release_date'));
     }
 }

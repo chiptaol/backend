@@ -18,9 +18,11 @@ return new class extends Migration
             $table->foreignId('cinema_id')->constrained('cinemas')->cascadeOnDelete();
             $table->foreignId('hall_id')->constrained('halls')->cascadeOnDelete();
             $table->foreignId('premiere_id')->constrained('premieres')->cascadeOnDelete();
-            $table->json('format_ids');
+            $table->enum('format', ['3D', '2D']);
+            $table->json('prices')->nullable();
             $table->date('start_date');
             $table->timestamp('start_date_time');
+            $table->timestamp('end_date_time');
             $table->timestamps();
         });
     }

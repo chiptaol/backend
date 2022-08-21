@@ -17,9 +17,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $tagline
  * @property array $actors
  * @property array $directors
- * @property string $trailer
- * @property string $poster
- * @property int $age_rating
+ * @property string $trailer_path
+ * @property string $poster_path
+ * @property string $backdrop_path
+ * @property string $age_rating
  *
  * @property Premiere $premiere
  */
@@ -29,8 +30,8 @@ class Movie extends Model
 
     protected $fillable = [
         'title', 'original_title', 'tmdb_id', 'description', 'genres',
-        'duration', 'tagline', 'actors', 'directors', 'trailer',
-        'poster', 'age_rating'
+        'duration', 'tagline', 'actors', 'directors', 'trailer_path',
+        'poster_path', 'backdrop_path', 'age_rating', 'release_date'
     ];
 
     protected $casts = [

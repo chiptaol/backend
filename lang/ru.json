@@ -122,5 +122,9 @@
     "Invalid coordinate provided.": "Указаны неверные координаты.",
     "Cinema with this coordinates already exists.": "Кинотеатр с такими координатами уже существует.",
     "Something went wrong.": "Что то пошло не так.",
-    "TMDB return ERROR response.": "TMDB вернул неуспешный ответ, повторите еще раз."
+    "TMDB return ERROR response.": "TMDB вернул неуспешный ответ, повторите еще раз.",
+    "This time range is occupied by another seance of this hall.": "Этот временной диапазон занимает другой сеанс этого зала.",
+    "The vip_seat_price field is required when the standard_seat_price is null.": "Поле vip_seat_price обязательно, когда значение поля standard_seat_price равен null.",
+    "Something went wrong when checking the type of seat and choosing the price, make sure you send valid data.": "Что-то пошло не так при проверке типа кресла и выборе цены, обратите внимание на поля - vip_seat_price, standard_seat_price.",
+    "This hall already has seats.": "В этом кинозале уже есть кресла."
 }

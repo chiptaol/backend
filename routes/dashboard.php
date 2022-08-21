@@ -13,7 +13,6 @@ Route::group(['prefix' => 'auth', 'controller' => \App\Http\Controllers\Dashboar
         Route::post('/sign-out', 'signOut')->name('dashboard.auth.sign-out');
     });
 
-
 });
 
 Route::group(['middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\AuthController::class], function () {
@@ -45,7 +44,9 @@ Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' =>
 });
 
 Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\SeanceController::class], function () {
-    Route::post('/{cinemaId}/halls/{hallId}/seances', 'store')->name('dashboard.seances.store');
+    Route::post('/{cinemaId}/seances', 'store')->name('dashboard.seances.store');
+    Route::get('/{cinemaId}/seances/{seanceId}', 'show')->name('dashboard.seances.show');
+    Route::delete('/{cinemaId}/seances/{seanceId}', 'delete')->name('dashboard.seances.delete');
 });
 
 

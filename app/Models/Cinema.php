@@ -17,6 +17,7 @@ use Illuminate\Support\Collection;
  * @property string $phone
  *
  * @property Collection $halls
+ * @property Collection $premieres
  * @property FileSource $logo
  */
 class Cinema extends Model
@@ -37,6 +38,16 @@ class Cinema extends Model
     public function logo(): BelongsTo
     {
         return $this->belongsTo(FileSource::class, 'logo_id', 'id');
+    }
+
+    public function premieres(): HasMany
+    {
+        return $this->hasMany(Premiere::class, 'cinema_id', 'id');
+    }
+
+    public function seances(): HasMany
+    {
+        return $this->hasMany(Seance::class, 'cinema_id', 'id');
     }
 
 }

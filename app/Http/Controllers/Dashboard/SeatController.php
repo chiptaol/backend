@@ -123,6 +123,6 @@ class SeatController extends Controller
             ? response()->noContent()
             : response()->json([
                 'message' => trans('Something went wrong.')
-            ]);
+            ], 400);
     }
 }

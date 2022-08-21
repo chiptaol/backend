@@ -24,9 +24,11 @@ return new class extends Migration
             $table->text('tagline')->nullable();
             $table->json('actors')->nullable();
             $table->json('directors')->nullable();
-            $table->text('trailer')->nullable();
-            $table->text('poster')->nullable();
-            $table->smallInteger('age_rating');
+            $table->text('trailer_path')->nullable();
+            $table->text('poster_path')->nullable();
+            $table->text('backdrop_path')->nullable();
+            $table->string('age_rating')->nullable();
+            $table->date('release_date')->nullable();
             $table->timestamps();
         });
     }
