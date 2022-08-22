@@ -21,4 +21,5 @@ Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\Pre
     Route::get('/', 'index')->name('premieres.index');
     Route::get('/actual', 'indexActual')->name('premieres.index.actual');
     Route::get('/schedule', 'schedule')->name('premieres.schedule');
+    Route::get('/{movieId}', 'show')->name('premieres.show');
 });

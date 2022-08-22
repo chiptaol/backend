@@ -127,5 +127,6 @@
     "The vip_seat_price field is required when the standard_seat_price is null.": "Поле vip_seat_price обязательно, когда значение поля standard_seat_price равен null.",
     "Something went wrong when checking the type of seat and choosing the price, make sure you send valid data.": "Что-то пошло не так при проверке типа кресла и выборе цены, обратите внимание на поля - vip_seat_price, standard_seat_price.",
     "This hall already has seats.": "В этом кинозале уже есть кресла.",
-    "This hall not support provided movie format.": "Этот зал не поддерживает формат который вы ввели для сеанса."
+    "This hall not support provided movie format.": "Этот зал не поддерживает формат который вы ввели для сеанса.",
+    "Search results returned nothing.": "Результаты поиска ничего не вернули."
 }

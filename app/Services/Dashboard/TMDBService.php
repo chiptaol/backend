@@ -5,6 +5,7 @@ namespace App\Services\Dashboard;
 use App\Exceptions\BusinessException;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\File;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,7 +27,7 @@ final class TMDBService
     /**
      * @param string $title
      * @param int $limit
-     * @return array
+     * @return Collection
      * @throws BusinessException
      */
     public function searchMovieByTitle(string $title, int $limit = 5)
@@ -61,7 +62,7 @@ final class TMDBService
              return null;
          }
 
-         $fileContents = Http::get(self::BASE_IMAGE_PATH . $fileName);
+         $fileContents = file_get_contents(self::BASE_IMAGE_PATH . $fileName);
          $filePath = 'movies/' . Str::slug($movieName) . $fileName;
 
          Storage::disk('public')->put($filePath, $fileContents);
