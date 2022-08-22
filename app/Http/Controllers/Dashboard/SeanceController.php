@@ -42,7 +42,7 @@ class SeanceController extends Controller
         $seances = Cinema::findOrFail($cinemaId)
             ->seances()
             ->with('format', 'hall')
-            ->get();
+            ->paginate();
 
         return SeanceResource::collection($seances);
     }
