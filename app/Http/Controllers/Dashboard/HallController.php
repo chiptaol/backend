@@ -44,7 +44,7 @@ class HallController extends Controller
     {
         $cinema = Cinema::findOrFail($cinemaId);
 
-        return HallResource::collection($cinema->halls()->get());
+        return HallResource::collection($cinema->halls()->with('formats')->get());
     }
 
     /**
@@ -87,7 +87,7 @@ class HallController extends Controller
      */
     public function show($cinemaId, $id)
     {
-        $hall = Cinema::findOrFail($cinemaId)->halls()->findOrFail($id);
+        $hall = Cinema::findOrFail($cinemaId)->halls()->with('formats')->findOrFail($id);
 
         return new HallResource($hall);
     }

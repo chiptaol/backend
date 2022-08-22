@@ -32,7 +32,7 @@ class SeanceStoreFormRequest extends FormRequest
      *          type="object",
      *          required={"movie_format", "start_date_time", "hall_id"},
      *          properties={
-     *              @OA\Property (property="movie_format", type="string", example="2D", description="Value must equals to: `3D` or `2D`"),
+     *              @OA\Property (property="movie_format_id", type="integer", example=1),
      *              @OA\Property (property="start_date_time", type="string", example="2022-08-20 20:30", description="format: `Y-m-d H:i`"),
      *              @OA\Property (property="hall_id", type="integer", example=1),
      *              @OA\Property (property="standard_seat_price", type="integer", example="3500000", description="required if `vip_seat_price` is null"),
@@ -52,7 +52,7 @@ class SeanceStoreFormRequest extends FormRequest
         return [
             'movie_id' => ['required', 'integer'],
             'seances' => ['required', 'array'],
-            'seances.*.movie_format' => ['required', 'string', 'in:3D,2D'],
+            'seances.*.movie_format_id' => ['required', 'integer', 'exists:formats,id'],
             'seances.*.start_date_time' => ['required', 'date', 'date_format:Y-m-d H:i', 'after_or_equal:tomorrow'],
             'seances.*.vip_seat_price' => ['nullable', 'integer'],
             'seances.*.standard_seat_price' => ['nullable', 'integer',],

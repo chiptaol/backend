@@ -1,1 +1,36 @@
-{"data":[{"id":1,"title":"Alice had learnt several.","description":null,"is_vip":false},{"id":2,"title":"WOULD go with Edgar Atheling.","description":"Sunt non quasi porro sit fugiat quibusdam quos.","is_vip":true},{"id":3,"title":"All the time they had to be.","description":null,"is_vip":false},{"id":4,"title":"Will you, won't you join the.","description":null,"is_vip":false},{"id":5,"title":"Mock Turtle, capering wildly.","description":"Neque dolores occaecati dicta.","is_vip":false}]}
+{
+    "data": [
+        {
+            "id": 2,
+            "title": "Зал номер - 3 (VIP)",
+            "description": null,
+            "is_vip": true,
+            "formats": [
+                {
+                    "id": 1,
+                    "title": "2D"
+                },
+                {
+                    "id": 2,
+                    "title": "3D"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Зал номер - 4 (VIP)",
+            "description": null,
+            "is_vip": true,
+            "formats": [
+                {
+                    "id": 1,
+                    "title": "2D"
+                },
+                {
+                    "id": 2,
+                    "title": "3D"
+                }
+            ]
+        }
+    ]
+}

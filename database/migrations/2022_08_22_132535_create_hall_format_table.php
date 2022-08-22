@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formats', function (Blueprint $table) {
+        Schema::create('hall_format', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->foreignId('hall_id')->constrained('halls')->cascadeOnDelete();
+            $table->foreignId('format_id')->constrained('formats')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formats');
+        Schema::dropIfExists('hall_format');
     }
 };

@@ -20,10 +20,13 @@ class HallStoreFormRequest extends FormRequest
      *
      * @OA\Schema (
      *     schema="HallStoreFormRequest",
-     *     required={"title"},
+     *     required={"title", "format_ids"},
      *     @OA\Property (property="title", type="string", example="Зал Номер - 6 (VIP)"),
      *     @OA\Property (property="description", type="string"),
-     *     @OA\Property (property="is_vip", type="boolean", example=true, default=false)
+     *     @OA\Property (property="is_vip", type="boolean", example=true, default=false),
+     *     @OA\Property (property="format_ids", type="array", @OA\Items (
+     *          type="integer"
+     *     ))
      * )
      *
      *
@@ -36,7 +39,8 @@ class HallStoreFormRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:100'],
             'description' => ['nullable', 'string', 'max:200'],
-            'is_vip' => ['nullable', 'boolean']
+            'is_vip' => ['nullable', 'boolean'],
+            'format_ids' => ['required', 'array']
         ];
     }
 }

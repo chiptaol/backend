@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class FormatFactory extends Factory
 {
+    private static $increment = 0;
     /**
      * Define the model's default state.
      *
@@ -16,8 +17,13 @@ class FormatFactory extends Factory
      */
     public function definition()
     {
+        $titles = [
+            '2D',
+            '3D',
+        ];
+
         return [
-            //
+            'title' => $titles[self::$increment++]
         ];
     }
 }

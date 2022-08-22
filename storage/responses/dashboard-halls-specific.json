@@ -1,8 +1,18 @@
 {
     "data": {
-        "id": 11,
+        "id": 22,
         "title": "Зал номер - 3 (VIP)",
         "description": null,
-        "is_vip": true
+        "is_vip": true,
+        "formats": [
+            {
+                "id": 1,
+                "title": "2D"
+            },
+            {
+                "id": 2,
+                "title": "3D"
+            }
+        ]
     }
 }

@@ -29,7 +29,7 @@ class Seance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cinema_id', 'hall_id', 'premiere_id', 'format',
+        'cinema_id', 'hall_id', 'premiere_id', 'format_id',
         'start_date_time', 'start_date', 'end_date_time', 'prices'
     ];
 
@@ -55,6 +55,11 @@ class Seance extends Model
     public function seats(): BelongsToMany
     {
         return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price')->withTimestamps();
+    }
+
+    public function format(): BelongsTo
+    {
+        return $this->belongsTo(Format::class, 'format_id', 'id');
     }
 
 }

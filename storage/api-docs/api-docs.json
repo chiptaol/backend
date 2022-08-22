@@ -324,6 +324,20 @@
                 }
             }
         },
+        "/api/dashboard/formats": {
+            "get": {
+                "tags": [
+                    "Dashboard Halls"
+                ],
+                "summary": "Get a list of formats",
+                "operationId": "cdf7bbbaa70935a53cdcdfc86ac98cfa",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-formats)"
+                    }
+                }
+            }
+        },
         "/api/dashboard/cinemas/{cinema-id}/halls": {
             "get": {
                 "tags": [
@@ -497,6 +511,18 @@
             }
         },
         "/api/dashboard/cinemas/{cinema-id}/seances": {
+            "get": {
+                "tags": [
+                    "Dashboard Seances"
+                ],
+                "summary": "Get a list of seances for specific cinema",
+                "operationId": "8ca656e21297d596c4b97f0aa9ffebf1",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seances)"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Dashboard Seances"
@@ -700,7 +726,8 @@
             },
             "HallStoreFormRequest": {
                 "required": [
-                    "title"
+                    "title",
+                    "format_ids"
                 ],
                 "properties": {
                     "title": {
@@ -714,6 +741,12 @@
                         "type": "boolean",
                         "default": false,
                         "example": true
+                    },
+                    "format_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
                     }
                 },
                 "type": "object"
@@ -737,10 +770,9 @@
                                 "hall_id"
                             ],
                             "properties": {
-                                "movie_format": {
-                                    "description": "Value must equals to: `3D` or `2D`",
-                                    "type": "string",
-                                    "example": "2D"
+                                "movie_format_id": {
+                                    "type": "integer",
+                                    "example": 1
                                 },
                                 "start_date_time": {
                                     "description": "format: `Y-m-d H:i`",

@@ -43,7 +43,12 @@ Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' =>
     Route::delete('/{cinemaId}/halls/{hallId}/seats', 'delete')->name('dashboard.seats.delete');
 });
 
+Route::group(['prefix' => 'formats', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\FormatController::class], function () {
+    Route::get('/', 'index')->name('dashboard.formats.index');
+});
+
 Route::group(['prefix' => 'cinemas', 'middleware' => 'auth:api', 'controller' => \App\Http\Controllers\Dashboard\SeanceController::class], function () {
+    Route::get('{cinemaId}/seances', 'index')->name('dashboard.seances.index');
     Route::post('/{cinemaId}/seances', 'store')->name('dashboard.seances.store');
     Route::get('/{cinemaId}/seances/{seanceId}', 'show')->name('dashboard.seances.show');
     Route::delete('/{cinemaId}/seances/{seanceId}', 'delete')->name('dashboard.seances.delete');

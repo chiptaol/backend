@@ -100,12 +100,16 @@ final class SeanceService
                     ]);
                 }
 
+                if ($hall->formats->doesntContain('id', '=', $seance['movie_format_id'])) {
+                    throw new BusinessException(trans('This hall not support provided movie format.'), 422);
+                }
+
                 $newSeance = $hall->seances()->create([
                     'start_date' => $currentSeanceStart,
                     'start_date_time' => $currentSeanceStart,
                     'end_date_time' => $currentSeanceEnd,
                     'premiere_id' => $premiere->id,
-                    'format' => $seance['movie_format'],
+                    'format_id' => $seance['movie_format_id'],
                     'cinema_id' => $cinema->id
                 ]);
 

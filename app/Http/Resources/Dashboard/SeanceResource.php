@@ -16,7 +16,7 @@ class SeanceResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'format' => $this->format,
+            'format' => new FormatResource($this->format),
             'start_date' => $this->start_date,
             'start_date_time' => $this->start_date_time,
             'prices' => $this->prices,

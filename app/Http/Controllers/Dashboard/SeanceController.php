@@ -19,6 +19,34 @@ class SeanceController extends Controller
 
     /**
      *
+     * @OA\Get (
+     *     path="/api/dashboard/cinemas/{cinema-id}/seances",
+     *     summary="Get a list of seances for specific cinema",
+     *     tags={"Dashboard Seances"},
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seances)"
+     *     )
+     * )
+     *
+     *
+     *
+     * @param $cinemaId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index($cinemaId)
+    {
+        $seances = Cinema::findOrFail($cinemaId)
+            ->seances()
+            ->with('format')
+            ->get();
+
+        return SeanceResource::collection($seances);
+    }
+
+    /**
+     *
      * @OA\Post (
      *     path="/api/dashboard/cinemas/{cinema-id}/seances",
      *     summary="Add a new seance for this cinema halls",
@@ -94,6 +122,7 @@ class SeanceController extends Controller
     {
         $seance = Cinema::findOrFail($cinemaId)
             ->seances()
+            ->with('format')
             ->findOrFail($seanceId);
 
         return new SeanceResource($seance);
