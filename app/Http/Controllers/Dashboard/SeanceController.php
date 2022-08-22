@@ -24,6 +24,8 @@ class SeanceController extends Controller
      *     summary="Get a list of seances for specific cinema",
      *     tags={"Dashboard Seances"},
      *
+     *     @OA\Parameter (ref="#/components/parameters/cinema-id-path"),
+     *
      *     @OA\Response (
      *          response=200,
      *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seances)"
