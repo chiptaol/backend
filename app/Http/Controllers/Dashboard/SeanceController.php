@@ -124,7 +124,7 @@ class SeanceController extends Controller
     {
         $seance = Cinema::findOrFail($cinemaId)
             ->seances()
-            ->with('format', 'hall')
+            ->with('format', 'hall', 'premiere.movie')
             ->findOrFail($seanceId);
 
         return new SeanceResource($seance);

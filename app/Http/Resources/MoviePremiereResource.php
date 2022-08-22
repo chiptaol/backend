@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MovieResource extends JsonResource
+class MoviePremiereResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,8 @@ class MovieResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'is_premiere' => $this->premiere->release_end_date >= now()->format('Y-m-d'),
+            'release_date' => $this->premiere->release_date,
             'poster_path' => $this->poster_path,
-            'genres' => $this->genres
         ];
     }
 }

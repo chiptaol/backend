@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Dashboard;
 
+use App\Http\Resources\MovieResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SeanceResource extends JsonResource
@@ -22,7 +23,7 @@ class SeanceResource extends JsonResource
             'prices' => $this->prices,
             'cinema' => $this->whenLoaded('cinema'),
             'hall' => new HallResource($this->whenLoaded('hall')),
-            'premiere' => $this->whenLoaded('premiere'),
+            'movie' => new MovieResource($this->premiere->movie),
             'seats' => $this->whenLoaded('seats')
         ];
     }

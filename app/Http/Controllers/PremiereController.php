@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PremiereFilterRequest;
+use App\Http\Resources\MoviePremiereResource;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\PremiereResource;
 use App\Models\Movie;
@@ -38,17 +39,12 @@ class PremiereController extends Controller
 
     public function indexActual()
     {
-        $premieres = Movie::query()
+        $premieres = Movie::with('premiere')
             ->whereHas('premiere', function (Builder $builder) {
                 return $builder->actual();
-            })->get()
-            ->each(function ($item) {
-                $item->is_premiere = $item->premiere->release_end_date >= now()->format('Y-m-d');
+            })->get();
 
-                return $item;
-            });
-
-        return MovieResource::collection($premieres);
+        return MoviePremiereResource::collection($premieres);
 
     }
 }

@@ -124,7 +124,7 @@ final class SeanceService
                         throw new BusinessException(trans('Something went wrong when checking the type of seat and choosing the price, make sure you send valid data.'), 422);
                     }
 
-                    $result[$newSeance->id] = compact('price');
+                    $result[$seat->id] = compact('price');
 
                     return $result;
                 }, []);

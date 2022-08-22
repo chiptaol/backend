@@ -17,6 +17,18 @@
                 "title": "Зал номер - 4 (VIP)",
                 "description": null,
                 "is_vip": true
+            },
+            "movie": {
+                "id": 1,
+                "title": "Ноу",
+                "is_premiere": true,
+                "poster_path": "storage/movies/nope/S4kem0xzC0XG3QWae3NsZHrka2.jpg",
+                "genres": [
+                    "Ужасы",
+                    "Детектив",
+                    "Фантастика",
+                    "Триллер"
+                ]
             }
         },
         {
@@ -36,6 +48,18 @@
                 "title": "Зал номер - 5 (VIP)",
                 "description": null,
                 "is_vip": true
+            },
+            "movie": {
+                "id": 1,
+                "title": "Ноу",
+                "is_premiere": true,
+                "poster_path": "storage/movies/nope/S4kem0xzC0XG3QWae3NsZHrka2.jpg",
+                "genres": [
+                    "Ужасы",
+                    "Детектив",
+                    "Фантастика",
+                    "Триллер"
+                ]
             }
         },
         {
@@ -55,6 +79,47 @@
                 "title": "Зал номер - 5 (VIP)",
                 "description": null,
                 "is_vip": true
+            },
+            "movie": {
+                "id": 2,
+                "title": "Тор: Любовь и гром",
+                "is_premiere": true,
+                "poster_path": "storage/movies/thor-love-and-thunder/80ekusNlTdZO5hb9fKsFSCA7k4X.jpg",
+                "genres": [
+                    "Боевик",
+                    "Приключения",
+                    "Фэнтези"
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-24",
+            "start_date_time": "2022-08-24 18:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 1,
+                "title": "Зал номер - 4 (VIP)",
+                "description": null,
+                "is_vip": true
+            },
+            "movie": {
+                "id": 2,
+                "title": "Тор: Любовь и гром",
+                "is_premiere": true,
+                "poster_path": "storage/movies/thor-love-and-thunder/80ekusNlTdZO5hb9fKsFSCA7k4X.jpg",
+                "genres": [
+                    "Боевик",
+                    "Приключения",
+                    "Фэнтези"
+                ]
             }
         }
     ]
