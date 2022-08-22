@@ -11,11 +11,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class UpdateMovieData implements ShouldQueue
+class UpdateMovieData implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $movie;
+
     /**
      * Create a new job instance.
      *
@@ -24,6 +25,11 @@ class UpdateMovieData implements ShouldQueue
     public function __construct(Movie $movie)
     {
         $this->movie = $movie->withoutRelations();
+    }
+
+    public function uniqueId()
+    {
+        return $this->movie->id;
     }
 
     /**
