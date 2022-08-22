@@ -21,7 +21,7 @@ class SeanceResource extends JsonResource
             'start_date_time' => $this->start_date_time,
             'prices' => $this->prices,
             'cinema' => $this->whenLoaded('cinema'),
-            'hall' => $this->whenLoaded('hall'),
+            'hall' => new HallResource($this->whenLoaded('hall')),
             'premiere' => $this->whenLoaded('premiere'),
             'seats' => $this->whenLoaded('seats')
         ];

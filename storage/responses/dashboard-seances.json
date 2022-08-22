@@ -1,1 +1,61 @@
-{"data":[{"id":2,"format":{"id":1,"title":"2D"},"start_date":"2022-08-25","start_date_time":"2022-08-25 22:25:00","prices":{"vip":5000000,"standard":3500000}},{"id":3,"format":{"id":2,"title":"3D"},"start_date":"2022-08-25","start_date_time":"2022-08-25 22:25:00","prices":{"vip":5000000,"standard":3500000}}]}
+{
+    "data": [
+        {
+            "id": 2,
+            "format": {
+                "id": 1,
+                "title": "2D"
+            },
+            "start_date": "2022-08-25",
+            "start_date_time": "2022-08-25 22:25:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 1,
+                "title": "Зал номер - 4 (VIP)",
+                "description": null,
+                "is_vip": true
+            }
+        },
+        {
+            "id": 3,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-25",
+            "start_date_time": "2022-08-25 22:25:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 2,
+                "title": "Зал номер - 5 (VIP)",
+                "description": null,
+                "is_vip": true
+            }
+        },
+        {
+            "id": 4,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-24",
+            "start_date_time": "2022-08-24 18:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 2,
+                "title": "Зал номер - 5 (VIP)",
+                "description": null,
+                "is_vip": true
+            }
+        }
+    ]
+}

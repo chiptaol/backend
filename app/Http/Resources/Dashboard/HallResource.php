@@ -20,7 +20,7 @@ class HallResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'is_vip' => $this->is_vip,
-            'formats' => $this->whenLoaded('formats', FormatResource::collection($this->formats)),
+            'formats' => FormatResource::collection($this->whenLoaded('formats')),
             'cinema' => $this->whenLoaded('cinema'),
             'seances' => $this->whenLoaded('seances'),
             'seats' => $this->whenLoaded('seats')
