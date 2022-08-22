@@ -1,44 +1,160 @@
 {
     "data": [
         {
+            "id": 1,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-24",
+            "start_date_time": "2022-08-24 12:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 1,
+                "title": "Зал номер - 6 (VIP)",
+                "description": null,
+                "is_vip": true
+            },
+            "movie": {
+                "id": 1,
+                "title": "Мир Юрского периода: Господство",
+                "is_premiere": true,
+                "poster_path": "storage/movies/jurassic-world-dominion/6BLMT9T4wRu5QlnqVeQUU5WApLj.jpg",
+                "genres": [
+                    "Приключения",
+                    "Боевик",
+                    "Фантастика"
+                ]
+            }
+        },
+        {
             "id": 2,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-25",
+            "start_date_time": "2022-08-25 12:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 1,
+                "title": "Зал номер - 6 (VIP)",
+                "description": null,
+                "is_vip": true
+            },
+            "movie": {
+                "id": 1,
+                "title": "Мир Юрского периода: Господство",
+                "is_premiere": true,
+                "poster_path": "storage/movies/jurassic-world-dominion/6BLMT9T4wRu5QlnqVeQUU5WApLj.jpg",
+                "genres": [
+                    "Приключения",
+                    "Боевик",
+                    "Фантастика"
+                ]
+            }
+        },
+        {
+            "id": 6,
             "format": {
                 "id": 1,
                 "title": "2D"
             },
             "start_date": "2022-08-25",
-            "start_date_time": "2022-08-25 22:25:00",
+            "start_date_time": "2022-08-25 12:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 2,
+                "title": "Зал номер - 5 (VIP)",
+                "description": null,
+                "is_vip": true
+            },
+            "movie": {
+                "id": 5,
+                "title": "Top Gun: Maverick",
+                "is_premiere": true,
+                "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
+                "genres": [
+                    "Боевик",
+                    "Драма"
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "format": {
+                "id": 1,
+                "title": "2D"
+            },
+            "start_date": "2022-08-26",
+            "start_date_time": "2022-08-26 12:20:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            },
+            "hall": {
+                "id": 2,
+                "title": "Зал номер - 5 (VIP)",
+                "description": null,
+                "is_vip": true
+            },
+            "movie": {
+                "id": 5,
+                "title": "Top Gun: Maverick",
+                "is_premiere": true,
+                "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
+                "genres": [
+                    "Боевик",
+                    "Драма"
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "format": {
+                "id": 2,
+                "title": "3D"
+            },
+            "start_date": "2022-08-24",
+            "start_date_time": "2022-08-24 20:20:00",
             "prices": {
                 "vip": 5000000,
                 "standard": 3500000
             },
             "hall": {
                 "id": 1,
-                "title": "Зал номер - 4 (VIP)",
+                "title": "Зал номер - 6 (VIP)",
                 "description": null,
                 "is_vip": true
             },
             "movie": {
-                "id": 1,
-                "title": "Ноу",
+                "id": 5,
+                "title": "Top Gun: Maverick",
                 "is_premiere": true,
-                "poster_path": "storage/movies/nope/S4kem0xzC0XG3QWae3NsZHrka2.jpg",
+                "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
                 "genres": [
-                    "Ужасы",
-                    "Детектив",
-                    "Фантастика",
-                    "Триллер"
+                    "Боевик",
+                    "Драма"
                 ]
             }
         },
         {
-            "id": 3,
+            "id": 9,
             "format": {
-                "id": 2,
-                "title": "3D"
+                "id": 1,
+                "title": "2D"
             },
             "start_date": "2022-08-25",
-            "start_date_time": "2022-08-25 22:25:00",
+            "start_date_time": "2022-08-25 18:20:00",
             "prices": {
                 "vip": 5000000,
                 "standard": 3500000
@@ -50,77 +166,48 @@
                 "is_vip": true
             },
             "movie": {
-                "id": 1,
-                "title": "Ноу",
+                "id": 6,
+                "title": "Быстрее пули",
                 "is_premiere": true,
-                "poster_path": "storage/movies/nope/S4kem0xzC0XG3QWae3NsZHrka2.jpg",
-                "genres": [
-                    "Ужасы",
-                    "Детектив",
-                    "Фантастика",
-                    "Триллер"
-                ]
-            }
-        },
-        {
-            "id": 4,
-            "format": {
-                "id": 2,
-                "title": "3D"
-            },
-            "start_date": "2022-08-24",
-            "start_date_time": "2022-08-24 18:20:00",
-            "prices": {
-                "vip": 5000000,
-                "standard": 3500000
-            },
-            "hall": {
-                "id": 2,
-                "title": "Зал номер - 5 (VIP)",
-                "description": null,
-                "is_vip": true
-            },
-            "movie": {
-                "id": 2,
-                "title": "Тор: Любовь и гром",
-                "is_premiere": true,
-                "poster_path": "storage/movies/thor-love-and-thunder/80ekusNlTdZO5hb9fKsFSCA7k4X.jpg",
+                "poster_path": "storage/movies/bullet-train/jMopD87ALAbEjhYznqTL5QBJu5T.jpg",
                 "genres": [
                     "Боевик",
-                    "Приключения",
-                    "Фэнтези"
-                ]
-            }
-        },
-        {
-            "id": 5,
-            "format": {
-                "id": 2,
-                "title": "3D"
-            },
-            "start_date": "2022-08-24",
-            "start_date_time": "2022-08-24 18:20:00",
-            "prices": {
-                "vip": 5000000,
-                "standard": 3500000
-            },
-            "hall": {
-                "id": 1,
-                "title": "Зал номер - 4 (VIP)",
-                "description": null,
-                "is_vip": true
-            },
-            "movie": {
-                "id": 2,
-                "title": "Тор: Любовь и гром",
-                "is_premiere": true,
-                "poster_path": "storage/movies/thor-love-and-thunder/80ekusNlTdZO5hb9fKsFSCA7k4X.jpg",
-                "genres": [
-                    "Боевик",
-                    "Приключения",
-                    "Фэнтези"
+                    "Комедия",
+                    "Криминал"
                 ]
             }
         }
-    ]
+    ],
+    "links": {
+        "first": "http://localhost:8000/api/dashboard/cinemas/1/seances?page=1",
+        "last": "http://localhost:8000/api/dashboard/cinemas/1/seances?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "http://localhost:8000/api/dashboard/cinemas/1/seances?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "http://localhost:8000/api/dashboard/cinemas/1/seances",
+        "per_page": 15,
+        "to": 6,
+        "total": 6
+    }
 }
