@@ -517,6 +517,11 @@
                 ],
                 "summary": "Get a list of seances for specific cinema",
                 "operationId": "8ca656e21297d596c4b97f0aa9ffebf1",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-seances)"

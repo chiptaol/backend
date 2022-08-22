@@ -3,6 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Exceptions\BusinessException;
+use App\Jobs\DownloadMovieImages;
 use App\Models\Cinema;
 use App\Models\Hall;
 use App\Models\Movie;
@@ -26,43 +27,11 @@ final class SeanceService
             $movie = Movie::where('tmdb_id', '=', $validatedData['movie_id'])->first();
 
             if (is_null($movie)) {
-                $movieDetails = $tmdb->movieDetailsById($validatedData['movie_id']);
+                $movie = Movie::create([
+                    'tmdb_id' => $validatedData['movie_id']
+                ]);
 
-                $data = [
-                    'title' => $movieDetails['title'],
-                    'tmdb_id' => $movieDetails['id'],
-                    'original_title' => $movieDetails['original_title'],
-                    'genres' => array_map(fn($genre) => mb_convert_case($genre, MB_CASE_TITLE), collect($movieDetails['genres'])->pluck('name')->toArray()),
-                    'description' => $movieDetails['overview'],
-                    'duration' => $movieDetails['runtime'],
-                    'tagline' => $movieDetails['tagline'],
-                    'release_date' => $movieDetails['release_date'],
-                    'actors' => collect($movieDetails['credits']['cast'])->pluck('original_name')->slice(0, 5)->toArray(),
-                    'directors' => collect($movieDetails['credits']['crew'])->where('job', '=', 'Director')->pluck('original_name')->toArray(),
-                    'countries' => $movieDetails['production_countries'],
-                    'age_rating' => $tmdb->getAgeRating($movieDetails['release_dates']),
-                    'rating' => $movieDetails['vote_average']
-                ];
-
-                    $trailerKey = collect($movieDetails['videos']['results'])->where('site', '=', 'YouTube')->first()['key'] ?? null;
-                if (!empty($trailerKey)) {
-                    $data['trailer_path'] = 'https://www.youtube.com/watch?v=' . $trailerKey;
-                }
-
-
-                $posterPath = $tmdb->storeMovieFile(collect($movieDetails['images']['posters'])->sortByDesc('width')->first()['file_path'] ?? null, $movieDetails['original_title']);
-
-                if (!empty($posterPath)) {
-                    $data['poster_path'] = $posterPath;
-                }
-
-                $backdropPath = $tmdb->storeMovieFile($movieDetails['backdrop_path'], $movieDetails['original_title']);
-
-                if (!empty($backdropPath)) {
-                    $data['backdrop_path'] = $backdropPath;
-                }
-
-                $movie = Movie::create($data);
+                DownloadMovieImages::dispatch($movie);
             }
 
             foreach ($validatedData['seances'] as $seance) {

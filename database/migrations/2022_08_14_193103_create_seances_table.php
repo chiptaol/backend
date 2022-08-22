@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('format_id')->nullable()->constrained('formats')->nullOnDelete();
             $table->json('prices')->nullable();
             $table->date('start_date');
-            $table->timestamp('start_date_time');
+            $table->timestamp('start_date_time')->nullable();
             $table->timestamp('end_date_time')->nullable();
             $table->timestamps();
         });
