@@ -12,15 +12,18 @@ final class HallService
     {
         $hall = $cinema->halls()->create(Arr::except($validatedData, 'format_ids'));
         $hall->formats()->sync($validatedData['format_ids']);
+        $hall->load('formats');
+        $hall->refresh();
 
-        return $hall->fresh();
+        return $hall;
     }
 
     public function update(array $validatedData, Hall $hall)
     {
         $hall->update(Arr::except($validatedData, 'format_ids'));
         $hall->formats()->sync($validatedData['format_ids']);
+        $hall->refresh();
 
-        return $hall->fresh();
+        return $hall;
     }
 }

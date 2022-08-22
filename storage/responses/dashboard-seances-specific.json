@@ -10,6 +10,12 @@
         "prices": {
             "vip": 5000000,
             "standard": 3500000
+        },
+        "hall": {
+            "id": 2,
+            "title": "Зал номер - 5 (VIP)",
+            "description": null,
+            "is_vip": true
         }
     }
 }

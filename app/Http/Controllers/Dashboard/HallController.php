@@ -152,7 +152,7 @@ class HallController extends Controller
      */
     public function update(HallStoreFormRequest $request, $cinemaId, $id)
     {
-        $hall = Cinema::findOrFail($cinemaId)->halls()->findOrFail($id);
+        $hall = Cinema::findOrFail($cinemaId)->halls()->with('formats')->findOrFail($id);
 
         return new HallResource($this->service->update($request->validated(), $hall));
     }
