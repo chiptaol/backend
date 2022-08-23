@@ -1,44 +1,59 @@
 {
     "data": [
         {
+            "id": 1,
             "title": "Next Cinema",
-            "seances": [
+            "halls": [
                 {
                     "id": 1,
-                    "format": "3D",
-                    "start_date_time": "2022-08-24 12:20:00",
+                    "title": "Зал номер - 6 (VIP)",
+                    "is_vip": true,
+                    "formats": [
+                        "3D"
+                    ],
                     "cheapest_price": 3500000,
-                    "hall_title": "Зал номер - 6 (VIP)",
-                    "hall_is_vip": true
-                },
-                {
-                    "id": 2,
-                    "format": "3D",
-                    "start_date_time": "2022-08-25 12:20:00",
-                    "cheapest_price": 3500000,
-                    "hall_title": "Зал номер - 6 (VIP)",
-                    "hall_is_vip": true
+                    "seances": [
+                        {
+                            "id": 2,
+                            "start_date_time": "2022-08-25 12:20:00"
+                        }
+                    ]
                 }
             ]
         },
         {
+            "id": 2,
             "title": "Salom Cinema",
-            "seances": [
+            "halls": [
                 {
-                    "id": 11,
-                    "format": "3D",
-                    "start_date_time": "2022-08-24 22:25:00",
+                    "id": 4,
+                    "title": "Зал номер - 5 (VIP)",
+                    "is_vip": true,
+                    "formats": [
+                        "3D"
+                    ],
                     "cheapest_price": 3500000,
-                    "hall_title": "Зал номер - 5 (VIP)",
-                    "hall_is_vip": true
+                    "seances": [
+                        {
+                            "id": 10,
+                            "start_date_time": "2022-08-25 22:25:00"
+                        }
+                    ]
                 },
                 {
-                    "id": 10,
-                    "format": "3D",
-                    "start_date_time": "2022-08-25 22:25:00",
+                    "id": 5,
+                    "title": "Зал номер - 3",
+                    "is_vip": false,
+                    "formats": [
+                        "2D"
+                    ],
                     "cheapest_price": 3500000,
-                    "hall_title": "Зал номер - 5 (VIP)",
-                    "hall_is_vip": true
+                    "seances": [
+                        {
+                            "id": 12,
+                            "start_date_time": "2022-08-25 22:25:00"
+                        }
+                    ]
                 }
             ]
         }

@@ -695,7 +695,7 @@
                 "operationId": "dbe3f1848802a8262371c52be1e0b93d",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/date-query"
+                        "$ref": "#/components/parameters/seance-date-query"
                     }
                 ],
                 "responses": {
@@ -748,6 +748,9 @@
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/premiere-id-path"
+                    },
+                    {
+                        "$ref": "#/components/parameters/seance-date-query"
                     }
                 ],
                 "responses": {
@@ -935,7 +938,7 @@
                 "required": true,
                 "example": 99
             },
-            "date-query": {
+            "seance-date-query": {
                 "name": "date",
                 "in": "query",
                 "description": "Format: `Y-m-d`, if not specified today date will be taken.",

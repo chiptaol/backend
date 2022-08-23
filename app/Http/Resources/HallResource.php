@@ -14,8 +14,28 @@ class HallResource extends JsonResource
      */
     public function toArray($request)
     {
+        $additionalData = $this->additionalData();
+
         return [
-            'id' => $this->hall->id
+            'id' => $this->id,
+            'title' => $this->title,
+            'is_vip' => $this->is_vip,
+            'formats' => $additionalData['formats'],
+            'cheapest_price' => $additionalData['cheapest_price'],
+            'seances' => SeanceResource::collection($this->seances)
         ];
+    }
+
+    protected function additionalData()
+    {
+        return $this->seances->reduce(function ($result, $item) {
+            $result['formats'][] = $item->format->title;
+            $result['prices'][] = min(array_filter($item->prices));
+
+            return [
+                'formats' => array_unique($result['formats']),
+                'cheapest_price' => min($result['prices'])
+            ];
+        }, []);
     }
 }

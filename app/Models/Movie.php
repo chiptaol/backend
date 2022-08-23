@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -42,8 +43,8 @@ class Movie extends Model
         'countries' => 'array'
     ];
 
-    public function premiere(): HasOne
+    public function premieres(): HasMany
     {
-        return $this->hasOne(Premiere::class , 'movie_id', 'id');
+        return $this->hasMany(Premiere::class , 'movie_id', 'id');
     }
 }

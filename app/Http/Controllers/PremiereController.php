@@ -25,7 +25,7 @@ class PremiereController extends Controller
      *     in="query",
      *     description="Format: `Y-m-d`, if not specified today date will be taken.",
      *     example="2022-08-23",
-     *     parameter="date-query"
+     *     parameter="seance-date-query"
      * )
      *
      *
@@ -34,7 +34,7 @@ class PremiereController extends Controller
      *     summary="Get a list of all premieres for specific day",
      *     tags={"Premieres"},
      *
-     *     @OA\Parameter (ref="#/components/parameters/date-query"),
+     *     @OA\Parameter (ref="#/components/parameters/seance-date-query"),
      *
      *     @OA\Response (
      *          response=200,
@@ -141,6 +141,7 @@ class PremiereController extends Controller
      *     tags={"Premieres"},
      *
      *     @OA\Parameter (ref="#/components/parameters/premiere-id-path"),
+     *     @OA\Parameter (ref="#/components/parameters/seance-date-query"),
      *
      *     @OA\Response (
      *          response=200,
@@ -148,21 +149,40 @@ class PremiereController extends Controller
      *     )
      * )
      *
+     * @param Request $request
      * @param $movieId
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function seances($movieId)
+    public function seances(Request $request, $movieId)
     {
-        $premieres = Premiere::with(['cinema:id,title', 'seances' => function ($query) {
-            return $query->with('hall:id,title,is_vip')
-                ->orderBy('start_date_time');
-        }])->select('id', 'cinema_id')
-            ->where('movie_id', '=', $movieId)
-            ->get();
+        $validator = Validator::make([
+            'date' => $request->query('date')
+        ], [
+            'date' => ['filled', 'date', 'date_format:Y-m-d']
+        ]);
 
-
-        return $premieres;
-
+        $premieres = Cinema::query()
+            ->select('id', 'title')
+            ->whereHas('premieres', function ($query) use ($movieId) {
+                return $query->where('movie_id', '=', $movieId);
+            })->with(['halls' => function ($query) use ($movieId, $validator) {
+                return $query->select('id', 'title', 'is_vip', 'cinema_id')
+                    ->whereHas('seances', function ($query) use ($movieId, $validator) {
+                        return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                            ->whereIn('premiere_id', function ($query) use ($movieId) {
+                                return $query->select('id')
+                                    ->from('premieres')
+                                    ->where('movie_id', '=', $movieId);
+                            });
+                    })->with(['seances' => function ($query) use ($validator) {
+                        return $query->select('id', 'prices', 'format_id', 'start_date_time', 'hall_id')
+                            ->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                            ->orderBy('start_date_time');
+                    }])->orderBy('created_at');
+            }])->without('logo')
+            ->orderBy('title')
+            ->get()
+            ->filter(fn($item) => $item->halls->isNotEmpty());
 
         return CinemaResource::collection($premieres);
     }

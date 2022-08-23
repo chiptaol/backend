@@ -15,8 +15,9 @@ class CinemaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->cinema->title,
-            'seances' => SeanceResource::collection($this->seances)
+            'id' => $this->id,
+            'title' => $this->title,
+            'halls' => HallResource::collection($this->halls)
         ];
     }
 }
