@@ -6,18 +6,18 @@
                 {
                     "id": 1,
                     "format": "3D",
-                    "start_date_time": "2022-08-23 00:00:00",
+                    "start_date_time": "2022-08-24 12:20:00",
                     "cheapest_price": 3500000,
-                    "hall_title": "Зал №1",
+                    "hall_title": "Зал номер - 6 (VIP)",
                     "hall_is_vip": true
                 },
                 {
                     "id": 2,
-                    "format": "2D",
-                    "start_date_time": "2022-08-23 22:00:00",
-                    "cheapest_price": 0,
-                    "hall_title": "Зал №2",
-                    "hall_is_vip": false
+                    "format": "3D",
+                    "start_date_time": "2022-08-25 12:20:00",
+                    "cheapest_price": 3500000,
+                    "hall_title": "Зал номер - 6 (VIP)",
+                    "hall_is_vip": true
                 }
             ]
         },
@@ -25,12 +25,20 @@
             "title": "Salom Cinema",
             "seances": [
                 {
-                    "id": 18,
-                    "format": "2D",
-                    "start_date_time": "2022-08-26 07:00:00",
-                    "cheapest_price": 5000000,
-                    "hall_title": "Премьер (Premier)",
-                    "hall_is_vip": false
+                    "id": 11,
+                    "format": "3D",
+                    "start_date_time": "2022-08-24 22:25:00",
+                    "cheapest_price": 3500000,
+                    "hall_title": "Зал номер - 5 (VIP)",
+                    "hall_is_vip": true
+                },
+                {
+                    "id": 10,
+                    "format": "3D",
+                    "start_date_time": "2022-08-25 22:25:00",
+                    "cheapest_price": 3500000,
+                    "hall_title": "Зал номер - 5 (VIP)",
+                    "hall_is_vip": true
                 }
             ]
         }

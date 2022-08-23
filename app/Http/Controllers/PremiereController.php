@@ -149,7 +149,10 @@ class PremiereController extends Controller
      */
     public function seances($movieId)
     {
-        $premieres = Premiere::with('cinema', 'seances.hall')
+        $premieres = Premiere::with(['cinema:id,title', 'seances' => function ($query) {
+            return $query->with('hall:id,title,is_vip')
+                ->orderBy('start_date_time');
+        }])->select('id', 'cinema_id')
             ->where('movie_id', '=', $movieId)
             ->get();
 
