@@ -728,12 +728,31 @@
                 "operationId": "868ba9ebaa8d88ad3dd561eecae44b5d",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/movie-id-path"
+                        "$ref": "#/components/parameters/premiere-id-path"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-movie.json)"
+                    }
+                }
+            }
+        },
+        "/api/premieres/{id}/seances": {
+            "get": {
+                "tags": [
+                    "Premieres"
+                ],
+                "summary": "Get a list of seances for specific premiere",
+                "operationId": "5cceca328c48f2d774e7a8730fb0839b",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/premiere-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-seances)"
                     }
                 }
             }
@@ -922,7 +941,7 @@
                 "description": "Format: `Y-m-d`, if not specified today date will be taken.",
                 "example": "2022-08-23"
             },
-            "movie-id-path": {
+            "premiere-id-path": {
                 "name": "id",
                 "in": "path",
                 "description": "Premiere ID",

@@ -59,6 +59,7 @@ class PremiereController extends Controller
             })->get();
 
         $schedule = Seance::query()
+            ->where('start_date', '>=', now()->format('Y-m-d'))
             ->select('start_date')
             ->groupBy('start_date')
             ->get()->pluck('start_date');
@@ -158,6 +159,9 @@ class PremiereController extends Controller
         }])->select('id', 'cinema_id')
             ->where('movie_id', '=', $movieId)
             ->get();
+
+
+        return $premieres;
 
 
         return CinemaResource::collection($premieres);
