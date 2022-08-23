@@ -1,0 +1,36 @@
+{
+    "data": {
+        "id": 5,
+        "title": "Top Gun: Maverick",
+        "original_title": "Top Gun: Maverick",
+        "description": "Пит «Мэверик» Митчелл более 30 лет остается одним из лучших пилотов ВМФ: бесстрашный летчик-испытатель, он расширяет границы возможного и старательно избегает повышения в звании, которое заставило бы его приземлиться навсегда. Приступив к подготовке отряда выпускников Топ Ган для специальной миссии, подобной которой никогда не было, Мэверик встречает лейтенанта Брэдли Брэдшоу, сына своего покойного друга, лейтенанта Ника Брэдшоу. Впереди – неопределенность, за спиной – призраки прошлого. Мэверик вынужден противостоять своим глубинным страхам, которые грозят ожить в рамках миссии, требующей исключительной самоотверженности от тех, кто будет назначен на вылет.",
+        "tagline": "Чувствуй жажду... жажду скорости.",
+        "duration": 130,
+        "rating": 8.33,
+        "age_rating": "12+",
+        "is_premiere": true,
+        "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
+        "trailer_path": "https://www.youtube.com/watch?v=WKlWUNRjB_8",
+        "backdrop_path": "storage/movies/top-gun-maverick/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg",
+        "actors": [
+            "Tom Cruise",
+            "Miles Teller",
+            "Jennifer Connelly",
+            "Jon Hamm",
+            "Glen Powell"
+        ],
+        "directors": [
+            "Joseph Kosinski"
+        ],
+        "countries": [
+            {
+                "name": "United States of America",
+                "iso_3166_1": "US"
+            }
+        ],
+        "genres": [
+            "Боевик",
+            "Драма"
+        ]
+    }
+}

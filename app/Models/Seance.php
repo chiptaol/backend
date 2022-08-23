@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Collection;
 
 /**
@@ -36,6 +37,8 @@ class Seance extends Model
     protected $casts = [
         'prices' => 'array'
     ];
+
+    protected $with = ['format:id,title'];
 
     public function cinema(): BelongsTo
     {

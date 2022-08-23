@@ -20,6 +20,6 @@ Route::get('/example-responses/{name}', \App\Http\Controllers\ApiController::cla
 Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\PremiereController::class], function () {
     Route::get('/', 'index')->name('premieres.index');
     Route::get('/actual', 'indexActual')->name('premieres.index.actual');
-    Route::get('/schedule', 'schedule')->name('premieres.schedule');
-    Route::get('/{movieId}', 'show')->name('premieres.show');
+    Route::get('/{movieId}/movie', 'movie')->name('premieres.movie');
+    Route::get('/{movieId}/seances', 'seances')->name('premieres.movie.seances');
 });

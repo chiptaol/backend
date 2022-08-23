@@ -685,6 +685,58 @@
                     }
                 }
             }
+        },
+        "/api/premieres": {
+            "get": {
+                "tags": [
+                    "Premieres"
+                ],
+                "summary": "Get a list of all premieres for specific day",
+                "operationId": "dbe3f1848802a8262371c52be1e0b93d",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/date-query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-of-the-day)"
+                    }
+                }
+            }
+        },
+        "/api/premieres/actual": {
+            "get": {
+                "tags": [
+                    "Premieres"
+                ],
+                "summary": "Get a list of actual premieres",
+                "operationId": "f529d09ad4269550dad58d5b54bc6ced",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-actual)"
+                    }
+                }
+            }
+        },
+        "/api/premieres/{id}/movie": {
+            "get": {
+                "tags": [
+                    "Premieres"
+                ],
+                "summary": "Get an extended data for specific premiere's movie",
+                "operationId": "868ba9ebaa8d88ad3dd561eecae44b5d",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/movie-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-movie.json)"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -863,6 +915,18 @@
                 "in": "path",
                 "required": true,
                 "example": 99
+            },
+            "date-query": {
+                "name": "date",
+                "in": "query",
+                "description": "Format: `Y-m-d`, if not specified today date will be taken.",
+                "example": "2022-08-23"
+            },
+            "movie-id-path": {
+                "name": "id",
+                "in": "path",
+                "description": "Premiere ID",
+                "required": true
             }
         }
     }

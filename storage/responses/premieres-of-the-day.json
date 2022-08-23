@@ -1,0 +1,41 @@
+{
+    "schedule": [
+        "2022-08-24",
+        "2022-08-25",
+        "2022-08-26"
+    ],
+    "premieres": [
+        {
+            "id": 1,
+            "title": "Мир Юрского периода: Господство",
+            "is_premiere": true,
+            "poster_path": "storage/movies/jurassic-world-dominion/6BLMT9T4wRu5QlnqVeQUU5WApLj.jpg",
+            "genres": [
+                "Приключения",
+                "Боевик",
+                "Фантастика"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Top Gun: Maverick",
+            "is_premiere": true,
+            "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
+            "genres": [
+                "Боевик",
+                "Драма"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Быстрее пули",
+            "is_premiere": true,
+            "poster_path": "storage/movies/bullet-train/jMopD87ALAbEjhYznqTL5QBJu5T.jpg",
+            "genres": [
+                "Боевик",
+                "Комедия",
+                "Криминал"
+            ]
+        }
+    ]
+}

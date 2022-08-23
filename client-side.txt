@@ -1,0 +1,14 @@
+1. Movie extended data
+
+2. Specific movie seances.
+	data: [
+		{
+			cinema-title,
+			seances: [
+				{
+					id, date_time, cheapest_price, hall_is_vip, hall_title, movie_format,
+				}
+			]
+		}
+
+	]
