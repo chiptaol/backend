@@ -89,7 +89,8 @@ class PremiereController extends Controller
         $premieres = Movie::with('premiere')
             ->whereHas('premiere', function (Builder $builder) {
                 return $builder->actual();
-            })->get();
+            })->select('id', 'title', 'backdrop_path')
+            ->get();
 
         return MoviePremiereResource::collection($premieres);
 

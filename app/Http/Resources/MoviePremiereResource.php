@@ -18,7 +18,7 @@ class MoviePremiereResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'release_date' => $this->premiere->release_date,
-            'poster_path' => $this->poster_path,
+            'backdrop_path' => $this->backdrop_path,
         ];
     }
 }
