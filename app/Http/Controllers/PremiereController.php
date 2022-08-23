@@ -111,7 +111,7 @@ class PremiereController extends Controller
      *     summary="Get an extended data for specific premiere's movie",
      *     tags={"Premieres"},
      *
-     *     @OA\Parameter (ref="#/components/parameters/movie-id-path"),
+     *     @OA\Parameter (ref="#/components/parameters/premiere-id-path"),
      *
      *     @OA\Response (
      *          response=200,
