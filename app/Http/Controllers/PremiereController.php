@@ -90,7 +90,9 @@ class PremiereController extends Controller
             ->whereHas('premiere', function (Builder $builder) {
                 return $builder->actual();
             })->select('id', 'title', 'backdrop_path')
-            ->get();
+            ->limit(5)
+            ->get()
+            ->sortByDesc('premiere.release_date');
 
         return MoviePremiereResource::collection($premieres);
 
