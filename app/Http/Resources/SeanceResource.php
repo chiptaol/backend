@@ -18,7 +18,7 @@ class SeanceResource extends JsonResource
             'id' => $this->id,
             'format' => $this->format->title,
             'start_date_time' => $this->start_date_time,
-            'cheapest_price' => min($this->prices),
+            'cheapest_price' => min(array_filter($this->prices)),
             'hall_title' => $this->hall->title,
             'hall_is_vip' => $this->hall->is_vip,
 
