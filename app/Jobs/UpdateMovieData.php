@@ -63,6 +63,8 @@ class UpdateMovieData implements ShouldQueue, ShouldBeUnique
             $data['trailer_path'] = 'https://www.youtube.com/watch?v=' . $trailerKey;
         }
 
+        $this->movie->update($data);
+
         $posterPath = $tmdb->storeMovieFile(collect($movieDetails['images']['posters'])->sortByDesc('width')->first()['file_path'] ?? null, $movieDetails['original_title']);
         if (!empty($posterPath)) {
             $data['poster_path'] = $posterPath;
