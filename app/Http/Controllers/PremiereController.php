@@ -53,8 +53,8 @@ class PremiereController extends Controller
             'date' => ['filled', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
         ]);
 
-        $premieres = Movie::with('premiere')
-            ->whereHas('premiere.seances', function ($query) use ($validator) {
+        $premieres = Movie::query()
+            ->whereHas('premieres.seances', function ($query) use ($validator) {
                 return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'));
             })->get();
 
@@ -87,13 +87,12 @@ class PremiereController extends Controller
      */
     public function indexActual()
     {
-        $premieres = Movie::with('premiere')
-            ->whereHas('premiere', function (Builder $builder) {
+        $premieres = Movie::query()
+            ->whereHas('premieres', function (Builder $builder) {
                 return $builder->actual();
             })->select('id', 'title', 'backdrop_path')
             ->limit(5)
-            ->get()
-            ->sortByDesc('premiere.release_date');
+            ->get();
 
         return MoviePremiereResource::collection($premieres);
 
