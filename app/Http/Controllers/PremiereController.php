@@ -127,7 +127,7 @@ class PremiereController extends Controller
      */
     public function movie($movieId)
     {
-        $movie = Movie::with('premiere')->findOrFail($movieId);
+        $movie = Movie::with('premieres')->findOrFail($movieId);
 
         return new MovieExtendedResource($movie);
     }

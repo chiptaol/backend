@@ -23,7 +23,6 @@ class MovieExtendedResource extends JsonResource
             'duration' => $this->duration,
             'rating' => $this->rating,
             'age_rating' => $this->age_rating,
-            'is_premiere' => $this->premiere->release_end_date >= now()->format('Y-m-d'),
             'poster_path' => $this->poster_path,
             'trailer_path' => $this->trailer_path,
             'backdrop_path' => $this->backdrop_path,
