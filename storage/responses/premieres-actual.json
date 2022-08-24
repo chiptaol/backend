@@ -3,19 +3,16 @@
         {
             "id": 1,
             "title": "Мир Юрского периода: Господство",
-            "release_date": "2022-08-24",
             "backdrop_path": "storage/movies/jurassic-world-dominion/jauI01vUIkPA0xVsamGj0Gs1nNL.jpg"
         },
         {
             "id": 5,
             "title": "Top Gun: Maverick",
-            "release_date": "2022-08-24",
             "backdrop_path": "storage/movies/top-gun-maverick/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg"
         },
         {
             "id": 6,
             "title": "Быстрее пули",
-            "release_date": "2022-08-25",
             "backdrop_path": "storage/movies/bullet-train/C8FpZfTPEZDjngPlatiFsaDB4A.jpg"
         }
     ]

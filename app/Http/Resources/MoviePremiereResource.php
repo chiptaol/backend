@@ -17,7 +17,6 @@ class MoviePremiereResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'release_date' => $this->premiere->release_date,
             'backdrop_path' => $this->backdrop_path,
         ];
     }
