@@ -21,6 +21,7 @@
             "movie": {
                 "id": 1,
                 "title": "Мир Юрского периода: Господство",
+                "is_premiere": true,
                 "poster_path": "storage/movies/jurassic-world-dominion/6BLMT9T4wRu5QlnqVeQUU5WApLj.jpg",
                 "genres": [
                     "Приключения",
@@ -50,6 +51,7 @@
             "movie": {
                 "id": 1,
                 "title": "Мир Юрского периода: Господство",
+                "is_premiere": true,
                 "poster_path": "storage/movies/jurassic-world-dominion/6BLMT9T4wRu5QlnqVeQUU5WApLj.jpg",
                 "genres": [
                     "Приключения",
@@ -79,6 +81,7 @@
             "movie": {
                 "id": 5,
                 "title": "Top Gun: Maverick",
+                "is_premiere": true,
                 "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
                 "genres": [
                     "Боевик",
@@ -107,6 +110,7 @@
             "movie": {
                 "id": 5,
                 "title": "Top Gun: Maverick",
+                "is_premiere": true,
                 "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
                 "genres": [
                     "Боевик",
@@ -135,6 +139,7 @@
             "movie": {
                 "id": 5,
                 "title": "Top Gun: Maverick",
+                "is_premiere": true,
                 "poster_path": "storage/movies/top-gun-maverick/zq7MTO6DWxaEo7oshfCsRRv3ysm.jpg",
                 "genres": [
                     "Боевик",
@@ -163,6 +168,7 @@
             "movie": {
                 "id": 6,
                 "title": "Быстрее пули",
+                "is_premiere": true,
                 "poster_path": "storage/movies/bullet-train/jMopD87ALAbEjhYznqTL5QBJu5T.jpg",
                 "genres": [
                     "Боевик",

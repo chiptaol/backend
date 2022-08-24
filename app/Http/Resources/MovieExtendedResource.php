@@ -17,6 +17,7 @@ class MovieExtendedResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'is_premiere' => $this->premieres->first()->release_end_date >= now()->format('Y-m-d'),
             'original_title' => $this->original_title,
             'description' => $this->description,
             'tagline' => $this->tagline,

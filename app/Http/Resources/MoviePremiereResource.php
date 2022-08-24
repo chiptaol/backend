@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class MoviePremiereResource extends JsonResource
 {
@@ -17,7 +18,13 @@ class MoviePremiereResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'release_date' => $this->releaseDate(),
             'backdrop_path' => $this->backdrop_path,
         ];
+    }
+
+    protected function releaseDate()
+    {
+        return $this->premieres->first()->release_date;
     }
 }

@@ -17,6 +17,7 @@ class MovieResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'is_premiere' => $this->premieres->first()->release_end_date >= now()->format('Y-m-d'),
             'poster_path' => $this->poster_path,
             'genres' => $this->genres
         ];
