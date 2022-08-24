@@ -20,7 +20,6 @@
         "movie": {
             "id": 1,
             "title": "Ноу",
-            "is_premiere": true,
             "poster_path": "storage/movies/nope/S4kem0xzC0XG3QWae3NsZHrka2.jpg",
             "genres": [
                 "Ужасы",
