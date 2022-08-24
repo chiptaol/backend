@@ -118,7 +118,7 @@ class PremiereController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-movie.json)"
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/premieres-movie)"
      *     )
      * )
      *
