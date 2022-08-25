@@ -23,3 +23,7 @@ Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\Pre
     Route::get('/{movieId}/movie', 'movie')->name('premieres.movie');
     Route::get('/{movieId}/seances', 'seances')->name('premieres.movie.seances');
 });
+
+Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\SeanceController::class], function () {
+    Route::get('/{seanceId}', 'show')->name('seances.show');
+});

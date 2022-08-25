@@ -13,6 +13,7 @@ use App\Models\Movie;
 use App\Models\Premiere;
 use App\Models\Seance;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -150,17 +151,17 @@ class PremiereController extends Controller
      *
      * @param Request $request
      * @param $movieId
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return JsonResponse
      */
     public function seances(Request $request, $movieId)
     {
         $validator = Validator::make([
             'date' => $request->query('date')
         ], [
-            'date' => ['filled', 'date', 'date_format:Y-m-d']
+            'date' => ['filled', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
         ]);
 
-        $premieres = Cinema::query()
+        $seances = Cinema::query()
             ->select('id', 'title')
             ->whereHas('premieres', function ($query) use ($movieId) {
                 return $query->where('movie_id', '=', $movieId);
@@ -168,6 +169,7 @@ class PremiereController extends Controller
                 return $query->select('id', 'title', 'is_vip', 'cinema_id')
                     ->whereHas('seances', function ($query) use ($movieId, $validator) {
                         return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                            ->upcoming()
                             ->whereIn('premiere_id', function ($query) use ($movieId) {
                                 return $query->select('id')
                                     ->from('premieres')
@@ -176,6 +178,7 @@ class PremiereController extends Controller
                     })->with(['seances' => function ($query) use ($validator) {
                         return $query->select('id', 'prices', 'format_id', 'start_date_time', 'hall_id')
                             ->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                            ->upcoming()
                             ->orderBy('start_date_time');
                     }])->orderBy('created_at');
             }])->without('logo')
@@ -183,6 +186,17 @@ class PremiereController extends Controller
             ->get()
             ->filter(fn($item) => $item->halls->isNotEmpty());
 
-        return CinemaResource::collection($premieres);
+        $schedule = Seance::without('format')
+            ->whereRelation('premiere', 'movie_id', '=', $movieId)
+            ->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+            ->select('start_date')
+            ->groupBy('start_date')
+            ->get()
+            ->pluck('start_date');
+
+        return new JsonResponse([
+            'schedule' => $schedule,
+            'data' => $seances
+        ]);
     }
 }

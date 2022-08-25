@@ -1,14 +1,26 @@
-1. Movie extended data
+1.
+{
+    "data": [
+        "movie_title": "",
+        "cinema_title": "",
+        "hall_title": "",
+        "seance": {
+            "title": "",
+            "format": "",
+            "prices": {
+                "vip": "",
+                "standard": ""
+            },
+            "start_date_time": "",
+            "seats_left": "",
+            "seats": [
+                {
+                    (object)
+                }
+            ]
+        },
+        "schedule": [dates]
+    ]
+}
 
-2. Specific movie seances.
-	data: [
-		{
-			cinema-title,
-			seances: [
-				{
-					id, date_time, cheapest_price, hall_is_vip, hall_title, movie_format,
-				}
-			]
-		}
-
-	]
+2. add schedule info to premieres/{id}/seances

@@ -20,8 +20,8 @@ class HallResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'is_vip' => $this->is_vip,
-            'formats' => $additionalData['formats'],
-            'cheapest_price' => $additionalData['cheapest_price'],
+            'formats' => $additionalData['formats'] ?? null,
+            'cheapest_price' => $additionalData['cheapest_price'] ?? null,
             'seances' => SeanceResource::collection($this->seances)
         ];
     }

@@ -57,12 +57,17 @@ class Seance extends Model
 
     public function seats(): BelongsToMany
     {
-        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price')->withTimestamps();
+        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price', 'status')->withTimestamps();
     }
 
     public function format(): BelongsTo
     {
         return $this->belongsTo(Format::class, 'format_id', 'id');
+    }
+
+    public function scopeUpcoming(Builder $builder)
+    {
+        return $builder->where('start_date_time', '>', now()->addMinutes(5)->format('Y-m-d H:i'));
     }
 
 }
