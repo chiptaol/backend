@@ -54,17 +54,17 @@ class PremiereController extends Controller
             'date' => ['filled', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
         ]);
 
-        $premieres = Movie::with(['premieres' => fn($q) => $q->orderBy('release_date')])
-            ->whereHas('premieres.seances', function ($query) use ($validator) {
-                return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
-                    ->upcoming();
-            })->get();
-
         $schedule = Seance::query()
             ->where('start_date', '>=', now()->format('Y-m-d'))
             ->select('start_date')
             ->groupBy('start_date')
             ->get()->pluck('start_date');
+
+        $premieres = Movie::with(['premieres' => fn($q) => $q->orderBy('release_date')])
+            ->whereHas('premieres.seances', function ($query) use ($validator, $schedule) {
+                return $query->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
+                    ->upcoming();
+            })->get();
 
         return response()->json([
             'schedule' => $schedule,
