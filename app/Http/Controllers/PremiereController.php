@@ -91,7 +91,8 @@ class PremiereController extends Controller
     {
         $premieres = Movie::with(['premieres' => fn($q) => $q->orderBy('release_date')])
             ->whereHas('premieres', function (Builder $builder) {
-                return $builder->actual();
+                return $builder->actual()
+                    ->whereHas('seances', fn($q) => $q->upcoming());
             })->select('id', 'title', 'backdrop_path')
             ->limit(5)
             ->get();

@@ -14,7 +14,7 @@ class SeanceController extends Controller
      *
      * @OA\Get (
      *     path="/api/seances/{seance-id}",
-     *     summary="Get a specific seanse data",
+     *     summary="Get a specific seance data",
      *     tags={"Seances"},
      *
      *
