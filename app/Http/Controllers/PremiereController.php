@@ -196,7 +196,7 @@ class PremiereController extends Controller
 
         return new JsonResponse([
             'schedule' => $schedule,
-            'data' => $seances
+            'data' => CinemaResource::collection($seances)
         ]);
     }
 }
