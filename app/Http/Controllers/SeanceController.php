@@ -22,7 +22,7 @@ class SeanceController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/s)"
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/seances-specific)"
      *     )
      * )
      *
