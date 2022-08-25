@@ -56,7 +56,8 @@ class PremiereController extends Controller
 
         $premieres = Movie::with(['premieres' => fn($q) => $q->orderBy('release_date')])
             ->whereHas('premieres.seances', function ($query) use ($validator) {
-                return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'));
+                return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                    ->upcoming();
             })->get();
 
         $schedule = Seance::query()
@@ -164,6 +165,7 @@ class PremiereController extends Controller
         $schedule = Seance::without('format')
             ->whereRelation('premiere', 'movie_id', '=', $movieId)
             ->where('start_date', '>=', now()->format('Y-m-d'))
+            ->upcoming()
             ->select('start_date')
             ->groupBy('start_date')
             ->get()
@@ -183,10 +185,15 @@ class PremiereController extends Controller
                                     ->from('premieres')
                                     ->where('movie_id', '=', $movieId);
                             });
-                    })->with(['seances' => function ($query) use ($validator, $schedule) {
+                    })->with(['seances' => function ($query) use ($validator, $schedule, $movieId) {
                         return $query->select('id', 'prices', 'format_id', 'start_date_time', 'hall_id')
                             ->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
                             ->upcoming()
+                            ->whereIn('premiere_id', function ($query) use ($movieId) {
+                                return $query->select('id')
+                                    ->from('premieres')
+                                    ->where('movie_id', '=', $movieId);
+                            })
                             ->orderBy('start_date_time');
                     }])->orderBy('created_at');
             }])->without('logo')

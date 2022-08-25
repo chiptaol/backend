@@ -67,7 +67,7 @@ class Seance extends Model
 
     public function scopeUpcoming(Builder $builder)
     {
-        return $builder->where('start_date_time', '>', now()->addMinutes(5)->format('Y-m-d H:i'));
+        return $builder->where('start_date_time', '>', now()->subMinutes(30)->format('Y-m-d H:i'));
     }
 
 }
