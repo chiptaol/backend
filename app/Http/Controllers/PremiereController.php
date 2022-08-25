@@ -188,7 +188,7 @@ class PremiereController extends Controller
 
         $schedule = Seance::without('format')
             ->whereRelation('premiere', 'movie_id', '=', $movieId)
-            ->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+            ->where('start_date', '>=', now()->format('Y-m-d'))
             ->select('start_date')
             ->groupBy('start_date')
             ->get()
