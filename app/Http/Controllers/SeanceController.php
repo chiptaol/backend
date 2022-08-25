@@ -9,7 +9,27 @@ use Illuminate\Http\Request;
 
 class SeanceController extends Controller
 {
-    public function show(Request $request, $seanceId)
+    /**
+     *
+     *
+     * @OA\Get (
+     *     path="/api/seances/{seance-id}",
+     *     summary="Get a specific seanse data",
+     *     tags={"Seances"},
+     *
+     *
+     *     @OA\Parameter (ref="#/components/parameters/seance-id-path"),
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/s)"
+     *     )
+     * )
+     *
+     * @param $seanceId
+     * @return JsonResponse
+     */
+    public function show($seanceId)
     {
         $seance = Seance::with(['hall:id,title', 'cinema' => function ($query) {
             return $query->without('logo')

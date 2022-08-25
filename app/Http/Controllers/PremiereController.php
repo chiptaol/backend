@@ -161,23 +161,31 @@ class PremiereController extends Controller
             'date' => ['filled', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
         ]);
 
+        $schedule = Seance::without('format')
+            ->whereRelation('premiere', 'movie_id', '=', $movieId)
+            ->where('start_date', '>=', now()->format('Y-m-d'))
+            ->select('start_date')
+            ->groupBy('start_date')
+            ->get()
+            ->pluck('start_date');
+
         $seances = Cinema::query()
             ->select('id', 'title')
             ->whereHas('premieres', function ($query) use ($movieId) {
                 return $query->where('movie_id', '=', $movieId);
-            })->with(['halls' => function ($query) use ($movieId, $validator) {
+            })->with(['halls' => function ($query) use ($movieId, $validator, $schedule) {
                 return $query->select('id', 'title', 'is_vip', 'cinema_id')
-                    ->whereHas('seances', function ($query) use ($movieId, $validator) {
-                        return $query->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                    ->whereHas('seances', function ($query) use ($movieId, $validator, $schedule) {
+                        return $query->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
                             ->upcoming()
                             ->whereIn('premiere_id', function ($query) use ($movieId) {
                                 return $query->select('id')
                                     ->from('premieres')
                                     ->where('movie_id', '=', $movieId);
                             });
-                    })->with(['seances' => function ($query) use ($validator) {
+                    })->with(['seances' => function ($query) use ($validator, $schedule) {
                         return $query->select('id', 'prices', 'format_id', 'start_date_time', 'hall_id')
-                            ->where('start_date', '=', $validator->valid()['date'] ?? now()->format('Y-m-d'))
+                            ->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
                             ->upcoming()
                             ->orderBy('start_date_time');
                     }])->orderBy('created_at');
@@ -186,13 +194,7 @@ class PremiereController extends Controller
             ->get()
             ->filter(fn($item) => $item->halls->isNotEmpty());
 
-        $schedule = Seance::without('format')
-            ->whereRelation('premiere', 'movie_id', '=', $movieId)
-            ->where('start_date', '>=', now()->format('Y-m-d'))
-            ->select('start_date')
-            ->groupBy('start_date')
-            ->get()
-            ->pluck('start_date');
+
 
         return new JsonResponse([
             'schedule' => $schedule,
