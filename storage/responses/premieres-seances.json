@@ -1,61 +1,35 @@
 {
-    "data": [
-        {
-            "id": 1,
-            "title": "Next Cinema",
-            "halls": [
-                {
-                    "id": 1,
-                    "title": "Зал номер - 6 (VIP)",
-                    "is_vip": true,
-                    "formats": [
-                        "3D"
-                    ],
-                    "cheapest_price": 3500000,
-                    "seances": [
-                        {
-                            "id": 2,
-                            "start_date_time": "2022-08-25 12:20:00"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
+    "schedule": [
+        "2022-08-26"
+    ],
+    "data": {
+        "1": {
             "id": 2,
             "title": "Salom Cinema",
             "halls": [
                 {
-                    "id": 4,
-                    "title": "Зал номер - 5 (VIP)",
-                    "is_vip": true,
-                    "formats": [
-                        "3D"
-                    ],
-                    "cheapest_price": 3500000,
-                    "seances": [
-                        {
-                            "id": 10,
-                            "start_date_time": "2022-08-25 22:25:00"
-                        }
-                    ]
-                },
-                {
-                    "id": 5,
-                    "title": "Зал номер - 3",
+                    "id": 3,
+                    "title": "Премьер (Premier)",
                     "is_vip": false,
-                    "formats": [
-                        "2D"
-                    ],
-                    "cheapest_price": 3500000,
+                    "cinema_id": 2,
                     "seances": [
                         {
-                            "id": 12,
-                            "start_date_time": "2022-08-25 22:25:00"
+                            "id": 18,
+                            "prices": {
+                                "vip": 7500000,
+                                "standard": 5000000
+                            },
+                            "format_id": 1,
+                            "start_date_time": "2022-08-26 07:00:00",
+                            "hall_id": 3,
+                            "format": {
+                                "id": 1,
+                                "title": "2D"
+                            }
                         }
                     ]
                 }
             ]
         }
-    ]
+    }
 }
