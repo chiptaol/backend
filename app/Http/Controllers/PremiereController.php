@@ -56,6 +56,7 @@ class PremiereController extends Controller
 
         $schedule = Seance::query()
             ->where('start_date', '>=', now()->format('Y-m-d'))
+            ->upcoming()
             ->select('start_date')
             ->groupBy('start_date')
             ->get()->pluck('start_date');
