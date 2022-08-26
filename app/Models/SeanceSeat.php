@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class SeanceSeat extends Pivot
 {
     protected $fillable = [
-        'price', 'status'
+        'price', 'is_available'
+    ];
+
+    protected $casts = [
+        'is_available' => 'boolean'
     ];
 }
