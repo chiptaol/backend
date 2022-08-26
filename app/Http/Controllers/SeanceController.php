@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SeanceBookFormRequest;
 use App\Http\Resources\SeanceExtendedResource;
 use App\Models\Seance;
+use App\Models\SeanceSeat;
+use App\Services\SeanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SeanceController extends Controller
 {
+    public function __construct(private SeanceService $service)
+    {
+    }
+
     /**
      *
      *
@@ -59,5 +66,18 @@ class SeanceController extends Controller
                 'seance' => new SeanceExtendedResource($seance)
             ]
         ]);
+    }
+
+    public function book(SeanceBookFormRequest $request, $seanceId)
+    {
+        /** @var Seance $seance */
+        $seance = Seance::upcoming()
+            ->findOrFail($seanceId);
+
+        return $this->service->book($request->validated(), $seance)
+            ? new JsonResponse(status: 204)
+            : new JsonResponse([
+                'message' => trans('Something went wrong when creating ticket.')
+            ]);
     }
 }

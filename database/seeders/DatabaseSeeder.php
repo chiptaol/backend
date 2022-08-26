@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Cinema;
 use App\Models\Format;
 use App\Models\Hall;
-use App\Models\User;
+use App\Models\AdminUser;
 use Database\Factories\CinemaFactory;
 use Database\Factories\HallFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(1)->create([
+        AdminUser::factory()->count(1)->create([
             'email' => 'fbb@gmail.com',
             'password' => bcrypt('300620036Fbb')
         ]);

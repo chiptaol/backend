@@ -24,7 +24,7 @@ class SignInFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email:filter', 'exists:users'],
+            'email' => ['required', 'string', 'email:filter', 'exists:admin_users'],
             'password' => ['required', 'string',
                 \Illuminate\Validation\Rules\Password::min(8)
                 ->letters()

@@ -48,13 +48,6 @@ class Handler extends ExceptionHandler
             ], $e->getCode());
         }
 
-        $response = parent::render($request, $e);
-        if ($response->getStatusCode() !== 500 && $response->getStatusCode() !== 422 && $request->expectsJson()) {
-            return response()->json([
-                'message' => $e->getMessage(),
-            ], $response->getStatusCode());
-        }
-
         return parent::render($request, $e);
 
     }

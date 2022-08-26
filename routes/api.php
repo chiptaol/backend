@@ -26,4 +26,5 @@ Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\Pre
 
 Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\SeanceController::class], function () {
     Route::get('/{seanceId}', 'show')->name('seances.show');
+    Route::post('/{seanceId}/book', 'book')->name('seances.book');
 });

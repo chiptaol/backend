@@ -11,7 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * @property int $cinema_id
@@ -57,7 +59,7 @@ class Seance extends Model
 
     public function seats(): BelongsToMany
     {
-        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price', 'status')->withTimestamps();
+        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('id', 'price', 'is_available')->withTimestamps();
     }
 
     public function format(): BelongsTo

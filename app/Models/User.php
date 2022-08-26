@@ -2,23 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     protected $fillable = [
-        'email',
-        'password',
+        'phone', 'email'
     ];
 
-    protected $hidden = [
-        'password',
-    ];
-
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'user_id', 'id');
+    }
 }
