@@ -8,23 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-/**
- * @property string $title
- * @property string $original_title
- * @property string $tmdb_id
- * @property string $description
- * @property array $genres
- * @property int $duration
- * @property string $tagline
- * @property array $actors
- * @property array $directors
- * @property string $trailer_path
- * @property string $poster_path
- * @property string $backdrop_path
- * @property string $age_rating
- *
- * @property Premiere $premiere
- */
 class Movie extends Model
 {
     use HasFactory;

@@ -44,7 +44,7 @@ class SeanceController extends Controller
         }, 'premiere' => function ($query) {
             return $query->with('movie:id,title')
                 ->select('id', 'movie_id');
-        }, 'seats' => fn($q) => $q->orderBy('row')->orderBy('place')])
+        }, 'seats' => fn($q) => $q->orderBy('row')->orderBy('place'), 'premiere:id,movie_id'])
             ->upcoming()
             ->findOrFail($seanceId);
 
@@ -53,7 +53,7 @@ class SeanceController extends Controller
             ->where('cinema_id', '=', $seance->cinema->id)
             ->where('start_date', '=', $seance->start_date)
             ->upcoming()
-            ->select('id', 'start_date_time')
+            ->select('id', 'start_date_time', 'prices')
             ->orderBy('start_date_time')
             ->get();
 

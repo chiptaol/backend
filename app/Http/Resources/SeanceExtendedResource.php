@@ -16,10 +16,11 @@ class SeanceExtendedResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'movie_id' => $this->premiere->movie_id,
             'format' => $this->format->title,
             'prices' => $this->prices,
             'start_date_time' => $this->start_date_time,
-            'seats_left' => $this->seats->where('is_available', true)->count(),
+            'seats_left' => $this->seats->where('pivot.is_available', true)->count(),
             'seats' => SeatResource::collection($this->seats)
         ];
     }

@@ -4,29 +4,11 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
-use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
-/**
- * @property int $cinema_id
- * @property int $hall_id
- * @property int $premiere_id
- * @property array $format_ids
- * @property string $start_date_time
- *
- * @property Cinema $cinema
- * @property Hall $hall
- * @property Premiere $premiere
- * @property Collection $seats
- */
 class Seance extends Model
 {
     use HasFactory;
@@ -59,7 +41,7 @@ class Seance extends Model
 
     public function seats(): BelongsToMany
     {
-        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('id', 'price', 'is_available')->withTimestamps();
+        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price', 'is_available')->withTimestamps();
     }
 
     public function format(): BelongsTo

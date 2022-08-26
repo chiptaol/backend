@@ -9,17 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-/**
- * @property string $title
- * @property int $seats_quantity
- * @property string $description
- * @property bool $is_vip
- * @property int $cinema_id
- *
- * @property Cinema $cinema
- * @property Collection $seances
- * @property Collection $seats
- */
 class Hall extends Model
 {
     use HasFactory;

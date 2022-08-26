@@ -9,12 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-/**
- * @property int $movie_id
- * @property string $release_date
- *
- * @property Collection $seances
- */
 class Premiere extends Model
 {
     use HasFactory;

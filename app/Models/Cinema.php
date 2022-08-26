@@ -8,18 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
-/**
- * @property string $title
- * @property string $address
- * @property string $logo_id
- * @property numeric $longitude
- * @property numeric $latitude
- * @property string $phone
- *
- * @property Collection $halls
- * @property Collection $premieres
- * @property FileSource $logo
- */
 class Cinema extends Model
 {
     use HasFactory;

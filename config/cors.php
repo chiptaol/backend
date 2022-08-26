@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:7000', 'https://chiptaol.uz', 'https://admin.chiptaol.uz'],
+    'allowed_origins' => ['http://localhost:7000', 'https://chiptaol.uz', 'https://admin.chiptaol.uz', 'http://192.168.50.146:7000'],
 
     'allowed_origins_patterns' => [],
 
