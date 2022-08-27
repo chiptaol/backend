@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\SeanceSeat;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,9 +30,12 @@ class BookSeatJob implements ShouldQueue
      */
     public function handle()
     {
-        $websocket = new Client(config('app.ws_url'));
-        $websocket->send($this->id);
-        $websocket->close();
+        if (SeanceSeat::find($this->id)->is_available) {
+            $websocket = new Client(config('app.ws_url'));
+            $websocket->send($this->id);
+            $websocket->close();
+        }
+
 
     }
 }

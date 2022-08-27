@@ -3,12 +3,8 @@
 namespace App\Services;
 
 use App\Enums\TicketStatus;
-use App\Exceptions\BusinessException;
 use App\Jobs\BookSeatJob;
-use App\Models\BookedSeat;
 use App\Models\Seance;
-use App\Models\SeanceSeat;
-use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +35,7 @@ class SeanceService
             }
 
             foreach ($validatedData['seat_ids'] as $id) {
-                Cache::put('booked-seat-id:' . $id, true, 60);
+                Cache::put('booked-seat-id:' . $id, true, 90);
             }
 
             $prices = $seance->seats()
@@ -71,7 +67,8 @@ class SeanceService
         DB::commit();
 
         foreach ($validatedData['seat_ids'] as $id) {
-            BookSeatJob::dispatch($id)->delay(now()->addSeconds(70));
+            BookSeatJob::dispatch($id);
+            BookSeatJob::dispatch($id)->delay(now()->addSeconds(90));
         }
 
         return $ticket;
