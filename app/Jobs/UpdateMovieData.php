@@ -39,7 +39,7 @@ class UpdateMovieData implements ShouldQueue, ShouldBeUnique
      */
     public function handle(TMDBService $tmdb)
     {
-        info('job is started.');
+        info('job is started. movie_id - ' . $this->movie->tmdb_id);
 
         $movieDetails = $tmdb->movieDetailsById($this->movie->tmdb_id);
 
@@ -77,6 +77,6 @@ class UpdateMovieData implements ShouldQueue, ShouldBeUnique
 
         $this->movie->update($data);
 
-        info('job is processed');
+        info('job is processed. movie_id - ' . $this->movie->tmdb_id);
     }
 }
