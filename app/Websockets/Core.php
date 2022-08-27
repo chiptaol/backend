@@ -22,6 +22,7 @@ class Core implements MessageComponentInterface
      */
     function onOpen(ConnectionInterface $conn)
     {
+        dump('new Connection');
         $this->clients->attach($conn);
     }
 
