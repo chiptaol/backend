@@ -30,10 +30,9 @@ class BookSeatJob implements ShouldQueue
      */
     public function handle()
     {
-        $websocket = new Client('ws://localhost:8080');
+        $websocket = new Client(config('app.ws_url'));
         $websocket->send($this->id);
         $websocket->close();
 
-        return true;
     }
 }
