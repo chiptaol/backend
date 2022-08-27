@@ -28,3 +28,12 @@ Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\Seanc
     Route::get('/{seanceId}', 'show')->name('seances.show');
     Route::post('/{seanceId}/book', 'book')->name('seances.book');
 });
+
+
+Route::get('/send-message', function () {
+
+    $connection = new \WebSocket\Client('');
+    $connection->send('First message bro!');
+    $connection->close();
+
+});
