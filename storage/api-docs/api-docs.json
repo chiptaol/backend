@@ -759,6 +759,54 @@
                     }
                 }
             }
+        },
+        "/api/seances/{seance-id}": {
+            "get": {
+                "tags": [
+                    "Seances"
+                ],
+                "summary": "Get a specific seance data",
+                "operationId": "fc1de93abc549f8bba05e45749b580a9",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/seance-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/seances-specific)"
+                    }
+                }
+            }
+        },
+        "/api/seances/{seance-id}/book": {
+            "post": {
+                "tags": [
+                    "Seances"
+                ],
+                "summary": "Booking multiple seats for specific seance",
+                "operationId": "6395305b2dbb47d5cf3dac4d96f7158c",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/seance-id-path"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SeanceBookFormRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/seances-book)"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -914,6 +962,31 @@
                             },
                             "type": "object"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "SeanceBookFormRequest": {
+                "required": [
+                    "email",
+                    "phone",
+                    "seat_ids"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "bakhadyrovf@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+998909144615"
+                    },
+                    "seat_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "example": "[1,2,3,4]"
                     }
                 },
                 "type": "object"

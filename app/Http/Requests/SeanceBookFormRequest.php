@@ -18,6 +18,17 @@ class SeanceBookFormRequest extends FormRequest
     }
 
     /**
+     *
+     * @OA\Schema (
+     *     schema="SeanceBookFormRequest",
+     *     required={"email", "phone", "seat_ids"},
+     *     @OA\Property (property="email", type="string", example="bakhadyrovf@gmail.com"),
+     *     @OA\Property (property="phone", type="string", example="+998909144615"),
+     *     @OA\Property (property="seat_ids", type="array", @OA\Items (
+     *          type="integer"
+     *     ), example="[1,2,3,4]"),
+     * )
+     *
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
@@ -26,7 +37,7 @@ class SeanceBookFormRequest extends FormRequest
     {
         return [
             'seat_ids' => ['required', 'array', 'max:5'],
-            'seat_ids.*' => ['integer', Rule::exists('seance_seat', 'id')
+            'seat_ids.*' => ['integer', 'distinct', Rule::exists('seance_seat', 'id')
                 ->where('is_available', true)
                 ->where('seance_id', $this->route('seanceId'))
             ],

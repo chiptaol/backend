@@ -1,0 +1,36 @@
+{
+    "id": 9,
+    "cinema_title": "Next Cinema",
+    "hall_title": "Зал номер - 1",
+    "movie": {
+        "title": "Тор: Бог грома",
+        "original_title": "Thor: God of Thunder",
+        "poster_path": "storage/movies/thor-god-of-thunder/poster.jpg",
+        "genres": [
+            "Боевик",
+            "Фэнтези"
+        ]
+    },
+    "start_date_time": "2022-08-28 23:25:00",
+    "end_date_time": "2022-08-28 23:31:00",
+    "seats": [
+        {
+            "id": 5,
+            "row": 2,
+            "place": 1,
+            "price": 5000000
+        },
+        {
+            "id": 8,
+            "row": 2,
+            "place": 2,
+            "price": 5000000
+        },
+        {
+            "id": 10,
+            "row": 1,
+            "place": 2,
+            "price": 3500000
+        }
+    ]
+}

@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('booked_seats', function (Blueprint $table) {
             $table->id();
-            $table->string('cinema_title');
-            $table->string('hall_title');
             $table->foreignId('seance_id')->constrained('seances')->cascadeOnDelete();
-            $table->foreignId('movie_id')->constrained('movies')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->bigInteger('total_price');
-            $table->enum('status', ['prepared', 'completed']);
+            $table->foreignId('seat_id')->constrained('seats')->cascadeOnDelete();
+            $table->unique(['seance_id', 'seat_id']);
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('booked_seats');
     }
 };

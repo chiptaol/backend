@@ -3,7 +3,7 @@
 namespace App\Services\Dashboard;
 
 use App\Exceptions\BusinessException;
-use App\Jobs\UpdateMovieData;
+use App\Jobs\UpdateMovieDataJob;
 use App\Models\Cinema;
 use App\Models\Hall;
 use App\Models\Movie;
@@ -31,7 +31,7 @@ final class SeanceService
                     'tmdb_id' => $validatedData['movie_id']
                 ]);
 
-                UpdateMovieData::dispatch($movie);
+                UpdateMovieDataJob::dispatch($movie);
             }
 
             foreach ($validatedData['seances'] as $seance) {

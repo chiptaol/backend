@@ -2,11 +2,15 @@
 
 namespace App\Services;
 
+use App\Enums\TicketStatus;
 use App\Exceptions\BusinessException;
+use App\Jobs\BookSeatJob;
+use App\Models\BookedSeat;
 use App\Models\Seance;
 use App\Models\SeanceSeat;
 use App\Models\Ticket;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -22,23 +26,40 @@ class SeanceService
                 ], [
                     'phone' => $validatedData['phone'] ?? null
                 ]);
-            $seance->load('premiere:id,movie_id');
+            $seance->load(['premiere:id,movie_id', 'cinema:id,title', 'hall:id,title']);
 
-            collect($validatedData['seat_ids'])->each(function ($id) use ($seance, $user) {
+            if ($seance->bookedSeats()->whereIn('seat_id', $validatedData['seat_ids'])->get()->isNotEmpty()) {
+                return false;
+            }
 
-                if ($user->tickets()->where('seance_seat_id', '=', $id)->first()) {
-                    throw new BusinessException('Seance seat with ID: ' . $id . ' is not available.');
+            foreach ($validatedData['seat_ids'] as $id) {
+                if (Cache::has('booked-seat-id:' . $id)) {
+                    return false;
                 }
+            }
 
-                $seance->seats()->updateExistingPivot($id, [
-                    'is_available' => false
-                ]);
+            foreach ($validatedData['seat_ids'] as $id) {
+                Cache::put('booked-seat-id:' . $id, true, 60);
+            }
 
-                $user->tickets()->create([
-                    'seance_id' => $seance->id,
-                    'movie_id' => $seance->premiere->movie_id,
-                    'seance_seat_id' => $id,
-                ]);
+            $prices = $seance->seats()
+                ->whereIn('seat_id', $validatedData['seat_ids'])
+                ->get()
+                ->pluck('pivot.price', 'id');
+
+            $ticket = $user->tickets()->create([
+                'seance_id' => $seance->id,
+                'movie_id' => $seance->premiere->movie_id,
+                'cinema_title' => $seance->cinema->title,
+                'hall_title' => $seance->hall->title,
+                'total_price' => $prices->sum(),
+                'status' => TicketStatus::PREPARED
+            ]);
+
+            $ticket->seats()->attach($validatedData['seat_ids']);
+            $ticket->load('movie');
+            $ticket->seats->each(function ($item) use ($prices) {
+                $item->price = $prices[$item->id];
             });
 
         } catch (\Exception $e) {
@@ -49,8 +70,10 @@ class SeanceService
         }
         DB::commit();
 
-        // TODO Broadcast a new event!
+        foreach ($validatedData['seat_ids'] as $id) {
+            BookSeatJob::dispatch($id)->delay(now()->addSeconds(70));
+        }
 
-        return true;
+        return $ticket;
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Seance extends Model
 {
@@ -52,6 +53,11 @@ class Seance extends Model
     public function scopeUpcoming(Builder $builder)
     {
         return $builder->where('start_date_time', '>', now()->subMinutes(30)->format('Y-m-d H:i'));
+    }
+
+    public function bookedSeats(): HasMany
+    {
+        return $this->hasMany(BookedSeat::class, 'seance_id', 'id');
     }
 
 }

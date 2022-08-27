@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SeanceBookFormRequest;
 use App\Http\Resources\SeanceExtendedResource;
+use App\Http\Resources\TicketResource;
 use App\Models\Seance;
 use App\Models\SeanceSeat;
 use App\Services\SeanceService;
@@ -68,14 +69,41 @@ class SeanceController extends Controller
         ]);
     }
 
+    /**
+     *
+     * @OA\Post (
+     *     path="/api/seances/{seance-id}/book",
+     *     summary="Booking multiple seats for specific seance",
+     *     tags={"Seances"},
+     *
+     *     @OA\Parameter (ref="#/components/parameters/seance-id-path"),
+     *
+     *     @OA\RequestBody (
+     *          required=true,
+     *          @OA\JsonContent (ref="#/components/schemas/SeanceBookFormRequest")
+     *     ),
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/seances-book)"
+     *     )
+     * )
+     *
+     *
+     * @param SeanceBookFormRequest $request
+     * @param $seanceId
+     * @return TicketResource|JsonResponse
+     */
     public function book(SeanceBookFormRequest $request, $seanceId)
     {
         /** @var Seance $seance */
         $seance = Seance::upcoming()
             ->findOrFail($seanceId);
 
-        return $this->service->book($request->validated(), $seance)
-            ? new JsonResponse(status: 204)
+        $ticket = $this->service->book($request->validated(), $seance);
+
+        return $ticket
+            ? new JsonResponse(new TicketResource($ticket))
             : new JsonResponse([
                 'message' => trans('Something went wrong when creating ticket.')
             ]);
