@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\SeanceSeatStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -38,7 +39,7 @@ class SeanceBookFormRequest extends FormRequest
         return [
             'seat_ids' => ['required', 'array', 'max:5'],
             'seat_ids.*' => ['integer', 'distinct', Rule::exists('seance_seat', 'id')
-                ->where('is_available', true)
+                ->where('status', SeanceSeatStatus::AVAILABLE)
                 ->where('seance_id', $this->route('seanceId'))
             ],
             'email' => ['required', 'string', 'email:filter'],

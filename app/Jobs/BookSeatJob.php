@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\SeanceSeatStatus;
 use App\Models\SeanceSeat;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,14 +15,18 @@ class BookSeatJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $seat;
+    public $websocket;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(public int $id)
+    public function __construct(SeanceSeat $seat, Client $websocket)
     {
-        //
+        $this->seat = $seat;
+        $this->websocket = $websocket;
     }
     /**
      * Execute the job.
@@ -30,12 +35,13 @@ class BookSeatJob implements ShouldQueue
      */
     public function handle()
     {
-        if (SeanceSeat::find($this->id)->is_available) {
-            $websocket = new Client(config('app.ws_url'));
-            $websocket->send($this->id);
-            $websocket->close();
+        $this->seat->refresh();
+
+        if ($this->seat->status === SeanceSeatStatus::PENDING) {
+            $this->seat->update([
+                'status' => SeanceSeatStatus::AVAILABLE
+            ]);
+            $this->websocket->send(json_encode($this->seat->only('id', 'status')));
         }
-
-
     }
 }

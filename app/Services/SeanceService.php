@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
+use App\Enums\SeanceSeatStatus;
 use App\Enums\TicketStatus;
 use App\Jobs\BookSeatJob;
 use App\Models\Seance;
+use App\Models\SeanceSeat;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use WebSocket\Client;
 
 class SeanceService
 {
@@ -43,6 +46,13 @@ class SeanceService
                 ->get()
                 ->pluck('pivot.price', 'id');
 
+            SeanceSeat::query()
+                ->where('seance_id', '=', $seance->id)
+                ->whereIn('seat_id', $validatedData['seat_ids'])
+                ->update([
+                    'status' => SeanceSeatStatus::PENDING
+                ]);
+
             $ticket = $user->tickets()->create([
                 'seance_id' => $seance->id,
                 'movie_id' => $seance->premiere->movie_id,
@@ -66,10 +76,17 @@ class SeanceService
         }
         DB::commit();
 
-        foreach ($validatedData['seat_ids'] as $id) {
-            BookSeatJob::dispatch($id);
-            BookSeatJob::dispatch($id)->delay(now()->addSeconds(90));
+        $websocket = new Client(config('app.ws_url'));
+        $seats = SeanceSeat::select('id', 'status')
+            ->where('seance_id', '=', $seance->id)
+            ->whereIn('seat_id', $validatedData['seat_ids'])->get();
+
+        foreach ($seats as $seat) {
+            $websocket->send($seat);
+            BookSeatJob::dispatch($seat, $websocket)->delay(now()->addSeconds(90));
         }
+
+        $websocket->close();
 
         return $ticket;
     }

@@ -1,323 +1,260 @@
 {
     "schedule": [
         {
-            "id": 15,
-            "start_date_time": "2022-08-25 17:17:00"
+            "id": 3,
+            "start_date_time": "2022-08-30 09:10:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            }
+        },
+        {
+            "id": 2,
+            "start_date_time": "2022-08-30 14:00:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            }
+        },
+        {
+            "id": 4,
+            "start_date_time": "2022-08-30 17:25:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            }
+        },
+        {
+            "id": 5,
+            "start_date_time": "2022-08-30 20:30:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            }
+        },
+        {
+            "id": 1,
+            "start_date_time": "2022-08-30 23:25:00",
+            "prices": {
+                "vip": 5000000,
+                "standard": 3500000
+            }
         }
     ],
     "data": {
-        "movie_title": "Доктор Стрэндж: В мультивселенной безумия",
-        "cinema_title": "Salom Cinema",
-        "hall_title": "Премьер (Premier)",
+        "movie_title": "Тор: Бог грома",
+        "cinema_title": "Next Cinema",
+        "hall_title": "Зал номер - 1",
         "seance": {
-            "id": 15,
+            "id": 1,
+            "movie_id": 1,
             "format": "2D",
             "prices": {
-                "vip": 8000000,
-                "standard": 3000000
+                "vip": 5000000,
+                "standard": 3500000
             },
-            "start_date_time": "2022-08-25 17:17:00",
-            "seats_left": 0,
+            "start_date_time": "2022-08-30 23:25:00",
+            "seats_left": 20,
             "seats": [
                 {
-                    "id": 148,
-                    "is_available": true,
+                    "id": 18,
+                    "status": "available",
                     "is_vip": false,
                     "row": 1,
                     "place": 1,
-                    "x": 0,
-                    "y": 0,
-                    "price": 3000000
+                    "x": 300.75,
+                    "y": 60,
+                    "price": 3500000
                 },
                 {
-                    "id": 149,
-                    "is_available": true,
+                    "id": 15,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 1,
+                    "x": 300.75,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 9,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 1,
+                    "x": 300.75,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 12,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 1,
+                    "x": 300.75,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 19,
+                    "status": "available",
                     "is_vip": false,
                     "row": 1,
                     "place": 2,
-                    "x": 41,
-                    "y": 0,
-                    "price": 3000000
+                    "x": 335.18,
+                    "y": 60,
+                    "price": 3500000
                 },
                 {
-                    "id": 150,
-                    "is_available": true,
+                    "id": 16,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 2,
+                    "x": 335.18,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 10,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 2,
+                    "x": 335.18,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 13,
+                    "status": "available",
+                    "is_vip": false,
+                    "row": 1,
+                    "place": 2,
+                    "x": 335.18,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 11,
+                    "status": "available",
                     "is_vip": false,
                     "row": 1,
                     "place": 3,
-                    "x": 82,
-                    "y": 0,
-                    "price": 3000000
+                    "x": 370,
+                    "y": 60,
+                    "price": 3500000
                 },
                 {
-                    "id": 151,
-                    "is_available": true,
+                    "id": 20,
+                    "status": "available",
                     "is_vip": false,
                     "row": 1,
-                    "place": 4,
-                    "x": 123,
-                    "y": 0,
-                    "price": 3000000
+                    "place": 3,
+                    "x": 370,
+                    "y": 60,
+                    "price": 3500000
                 },
                 {
-                    "id": 152,
-                    "is_available": true,
+                    "id": 17,
+                    "status": "available",
                     "is_vip": false,
                     "row": 1,
-                    "place": 5,
-                    "x": 164,
-                    "y": 0,
-                    "price": 3000000
+                    "place": 3,
+                    "x": 370,
+                    "y": 60,
+                    "price": 3500000
                 },
                 {
-                    "id": 153,
-                    "is_available": true,
+                    "id": 14,
+                    "status": "available",
                     "is_vip": false,
+                    "row": 1,
+                    "place": 3,
+                    "x": 370,
+                    "y": 60,
+                    "price": 3500000
+                },
+                {
+                    "id": 1,
+                    "status": "available",
+                    "is_vip": true,
                     "row": 2,
                     "place": 1,
-                    "x": 0,
-                    "y": 41,
-                    "price": 3000000
+                    "x": 300.1,
+                    "y": 100,
+                    "price": 5000000
                 },
                 {
-                    "id": 154,
-                    "is_available": true,
-                    "is_vip": false,
+                    "id": 7,
+                    "status": "available",
+                    "is_vip": true,
+                    "row": 2,
+                    "place": 1,
+                    "x": 300.1,
+                    "y": 100,
+                    "price": 5000000
+                },
+                {
+                    "id": 5,
+                    "status": "available",
+                    "is_vip": true,
+                    "row": 2,
+                    "place": 1,
+                    "x": 300.1,
+                    "y": 100,
+                    "price": 5000000
+                },
+                {
+                    "id": 3,
+                    "status": "available",
+                    "is_vip": true,
+                    "row": 2,
+                    "place": 1,
+                    "x": 300.1,
+                    "y": 100,
+                    "price": 5000000
+                },
+                {
+                    "id": 8,
+                    "status": "available",
+                    "is_vip": true,
                     "row": 2,
                     "place": 2,
-                    "x": 41,
-                    "y": 41,
-                    "price": 3000000
+                    "x": 335,
+                    "y": 60,
+                    "price": 5000000
                 },
                 {
-                    "id": 155,
-                    "is_available": true,
-                    "is_vip": false,
+                    "id": 6,
+                    "status": "available",
+                    "is_vip": true,
                     "row": 2,
-                    "place": 3,
-                    "x": 82,
-                    "y": 41,
-                    "price": 3000000
+                    "place": 2,
+                    "x": 335,
+                    "y": 60,
+                    "price": 5000000
                 },
                 {
-                    "id": 156,
-                    "is_available": true,
-                    "is_vip": false,
+                    "id": 4,
+                    "status": "available",
+                    "is_vip": true,
                     "row": 2,
-                    "place": 4,
-                    "x": 123,
-                    "y": 41,
-                    "price": 3000000
+                    "place": 2,
+                    "x": 335,
+                    "y": 60,
+                    "price": 5000000
                 },
                 {
-                    "id": 157,
-                    "is_available": true,
-                    "is_vip": false,
+                    "id": 2,
+                    "status": "available",
+                    "is_vip": true,
                     "row": 2,
-                    "place": 5,
-                    "x": 164,
-                    "y": 41,
-                    "price": 3000000
-                },
-                {
-                    "id": 158,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 3,
-                    "place": 1,
-                    "x": 0,
-                    "y": 82,
-                    "price": 3000000
-                },
-                {
-                    "id": 159,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 3,
                     "place": 2,
-                    "x": 41,
-                    "y": 82,
-                    "price": 3000000
-                },
-                {
-                    "id": 160,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 3,
-                    "place": 3,
-                    "x": 82,
-                    "y": 82,
-                    "price": 3000000
-                },
-                {
-                    "id": 161,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 3,
-                    "place": 4,
-                    "x": 123,
-                    "y": 82,
-                    "price": 3000000
-                },
-                {
-                    "id": 162,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 3,
-                    "place": 5,
-                    "x": 164,
-                    "y": 82,
-                    "price": 3000000
-                },
-                {
-                    "id": 163,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 4,
-                    "place": 1,
-                    "x": 0,
-                    "y": 123,
-                    "price": 3000000
-                },
-                {
-                    "id": 164,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 4,
-                    "place": 2,
-                    "x": 41,
-                    "y": 123,
-                    "price": 3000000
-                },
-                {
-                    "id": 165,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 4,
-                    "place": 3,
-                    "x": 82,
-                    "y": 123,
-                    "price": 3000000
-                },
-                {
-                    "id": 166,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 4,
-                    "place": 4,
-                    "x": 123,
-                    "y": 123,
-                    "price": 3000000
-                },
-                {
-                    "id": 167,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 4,
-                    "place": 5,
-                    "x": 164,
-                    "y": 123,
-                    "price": 3000000
-                },
-                {
-                    "id": 168,
-                    "is_available": true,
-                    "is_vip": true,
-                    "row": 5,
-                    "place": 1,
-                    "x": 0,
-                    "y": 164,
-                    "price": 8000000
-                },
-                {
-                    "id": 169,
-                    "is_available": true,
-                    "is_vip": true,
-                    "row": 5,
-                    "place": 2,
-                    "x": 41,
-                    "y": 164,
-                    "price": 8000000
-                },
-                {
-                    "id": 170,
-                    "is_available": true,
-                    "is_vip": true,
-                    "row": 5,
-                    "place": 3,
-                    "x": 82,
-                    "y": 164,
-                    "price": 8000000
-                },
-                {
-                    "id": 171,
-                    "is_available": true,
-                    "is_vip": true,
-                    "row": 5,
-                    "place": 4,
-                    "x": 123,
-                    "y": 164,
-                    "price": 8000000
-                },
-                {
-                    "id": 172,
-                    "is_available": true,
-                    "is_vip": true,
-                    "row": 5,
-                    "place": 5,
-                    "x": 164,
-                    "y": 164,
-                    "price": 8000000
-                },
-                {
-                    "id": 173,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 6,
-                    "place": 1,
-                    "x": 0,
-                    "y": 205,
-                    "price": 3000000
-                },
-                {
-                    "id": 174,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 6,
-                    "place": 2,
-                    "x": 41,
-                    "y": 205,
-                    "price": 3000000
-                },
-                {
-                    "id": 175,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 6,
-                    "place": 3,
-                    "x": 82,
-                    "y": 205,
-                    "price": 3000000
-                },
-                {
-                    "id": 176,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 6,
-                    "place": 4,
-                    "x": 123,
-                    "y": 205,
-                    "price": 3000000
-                },
-                {
-                    "id": 177,
-                    "is_available": true,
-                    "is_vip": false,
-                    "row": 6,
-                    "place": 5,
-                    "x": 164,
-                    "y": 205,
-                    "price": 3000000
+                    "x": 335,
+                    "y": 60,
+                    "price": 5000000
                 }
             ]
         }

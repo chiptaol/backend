@@ -42,7 +42,7 @@ class Seance extends Model
 
     public function seats(): BelongsToMany
     {
-        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price', 'is_available')->withTimestamps();
+        return $this->belongsToMany(Seat::class)->using(SeanceSeat::class)->withPivot('price', 'status')->withTimestamps();
     }
 
     public function format(): BelongsTo

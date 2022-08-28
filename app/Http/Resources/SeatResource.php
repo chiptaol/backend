@@ -16,7 +16,7 @@ class SeatResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'is_available' => $this->pivot->is_available,
+            'status' => $this->pivot->status,
             'is_vip' => $this->is_vip,
             'row' => $this->row,
             'place' => $this->place,

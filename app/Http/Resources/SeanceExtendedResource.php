@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\SeanceSeatStatus;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SeanceExtendedResource extends JsonResource
@@ -20,7 +21,7 @@ class SeanceExtendedResource extends JsonResource
             'format' => $this->format->title,
             'prices' => $this->prices,
             'start_date_time' => $this->start_date_time,
-            'seats_left' => $this->seats->where('pivot.is_available', true)->count(),
+            'seats_left' => $this->seats->where('pivot.status', SeanceSeatStatus::AVAILABLE)->count(),
             'seats' => SeatResource::collection($this->seats)
         ];
     }

@@ -26,7 +26,6 @@ class TicketResource extends JsonResource
                 'genres' => $this->movie->genres
             ],
             'start_date_time' => $this->seance->start_date_time,
-            'end_date_time' => Carbon::parse($this->seance->end_date_time)->subMinutes(25)->format('Y-m-d H:i:s'),
             'seats' => TicketSeatResource::collection($this->seats)
         ];
     }
