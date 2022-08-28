@@ -807,6 +807,41 @@
                     }
                 }
             }
+        },
+        "api/seances/{ticket-id}/cancel-book": {
+            "post": {
+                "tags": [
+                    "Seances"
+                ],
+                "summary": "Cancel booking seance seats",
+                "operationId": "06f6823fbf226400b4c5a6de77faf104",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/ticket-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            },
+                                            "example": "[3,4,5]"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1021,6 +1056,11 @@
                 "name": "id",
                 "in": "path",
                 "description": "Premiere ID",
+                "required": true
+            },
+            "ticket-id-path": {
+                "name": "ticket-id",
+                "in": "path",
                 "required": true
             }
         }

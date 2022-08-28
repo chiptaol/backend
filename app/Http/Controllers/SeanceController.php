@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SeanceSeatStatus;
+use App\Enums\TicketStatus;
 use App\Http\Requests\SeanceBookFormRequest;
 use App\Http\Resources\SeanceExtendedResource;
 use App\Http\Resources\TicketResource;
 use App\Models\Seance;
 use App\Models\SeanceSeat;
+use App\Models\Ticket;
 use App\Services\SeanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -107,5 +110,55 @@ class SeanceController extends Controller
             : new JsonResponse([
                 'message' => trans('Something went wrong when creating ticket.')
             ]);
+    }
+
+    /**
+     *
+     * @OA\Parameter (
+     *     in="path",
+     *     name="ticket-id",
+     *     required=true,
+     *     parameter="ticket-id-path"
+     * )
+     *
+     * @OA\Post (
+     *     path="api/seances/{ticket-id}/cancel-book",
+     *     summary="Cancel booking seance seats",
+     *     tags={"Seances"},
+     *
+     *     @OA\Parameter (ref="#/components/parameters/ticket-id-path"),
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK)",
+     *          @OA\JsonContent (
+     *              @OA\Property (property="data", type="array", @OA\Items (
+     *                  type="integer"
+     *              ), example="[3,4,5]")
+     *          )
+     *     )
+     * )
+     *
+     * @param $ticketId
+     * @return JsonResponse
+     */
+    public function cancelBook($ticketId)
+    {
+        $ticket = Ticket::with(['seance', 'seats'])
+            ->where('status', '=', TicketStatus::PREPARED)
+            ->findOrFail($ticketId);
+
+        $ticket->delete();
+
+        SeanceSeat::query()
+            ->where('seance_id', '=', $ticket->seance->id)
+            ->whereIn('seat_id', $ticket->seats->pluck('id'))
+            ->update([
+                'status' => SeanceSeatStatus::AVAILABLE
+            ]);
+
+        return new JsonResponse([
+            'data' => $ticket->seats->pluck('id')
+        ]);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Enums\SeanceSeatStatus;
 use App\Enums\TicketStatus;
-use App\Jobs\BookSeatJob;
+use App\Jobs\CancelSeatBooking;
 use App\Models\Seance;
 use App\Models\SeanceSeat;
 use App\Models\User;
@@ -29,16 +29,6 @@ class SeanceService
 
             if ($seance->bookedSeats()->whereIn('seat_id', $validatedData['seat_ids'])->get()->isNotEmpty()) {
                 return false;
-            }
-
-            foreach ($validatedData['seat_ids'] as $id) {
-                if (Cache::has('booked-seat-id:' . $id)) {
-                    return false;
-                }
-            }
-
-            foreach ($validatedData['seat_ids'] as $id) {
-                Cache::put('booked-seat-id:' . $id, true, 120);
             }
 
             $prices = $seance->seats()
@@ -77,9 +67,11 @@ class SeanceService
         DB::commit();
 
         $websocket = new Client(config('app.ws_url') . '/seances/' . $seance->id);
+
         $seats = SeanceSeat::select('id', 'status', 'seat_id')
             ->where('seance_id', '=', $seance->id)
-            ->whereIn('seat_id', $validatedData['seat_ids'])->get();
+            ->whereIn('seat_id', $validatedData['seat_ids'])
+            ->get();
 
         foreach ($seats as $seat) {
             $data = [
@@ -89,7 +81,7 @@ class SeanceService
 
             $websocket->send(json_encode($data));
 
-            BookSeatJob::dispatch($seat, $websocket)->delay(now()->addSeconds(120));
+            CancelSeatBooking::dispatch($seat, $websocket)->delay(now()->addSeconds(90));
         }
 
         $websocket->close();

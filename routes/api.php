@@ -27,6 +27,7 @@ Route::group(['prefix' => 'premieres', 'controller' => \App\Http\Controllers\Pre
 Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\SeanceController::class], function () {
     Route::get('/{seanceId}', 'show')->name('seances.show');
     Route::post('/{seanceId}/book', 'book')->name('seances.book');
+    Route::post('/{ticketId}/cancel-book', 'cancelBook')->name('seances.cancel-book');
 });
 
 Route::group(['prefix' => 'cinemas', 'controller' => \App\Http\Controllers\CinemaController::class], function () {
