@@ -38,7 +38,7 @@ class SeanceService
             }
 
             foreach ($validatedData['seat_ids'] as $id) {
-                Cache::put('booked-seat-id:' . $id, true, 90);
+                Cache::put('booked-seat-id:' . $id, true, 120);
             }
 
             $prices = $seance->seats()
@@ -83,7 +83,7 @@ class SeanceService
 
         foreach ($seats as $seat) {
             $websocket->send($seat);
-            BookSeatJob::dispatch($seat, $websocket)->delay(now()->addSeconds(90));
+            BookSeatJob::dispatch($seat, $websocket)->delay(now()->addSeconds(120));
         }
 
         $websocket->close();

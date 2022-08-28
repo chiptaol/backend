@@ -41,7 +41,12 @@ class BookSeatJob implements ShouldQueue
             $this->seat->update([
                 'status' => SeanceSeatStatus::AVAILABLE
             ]);
-            $this->websocket->send(json_encode($this->seat->only('id', 'status')));
+
+            $data = [
+                'id' => $this->seat->seat_id,
+                'status' => $this->status
+            ];
+            $this->websocket->send(json_encode($data));
         }
     }
 }
