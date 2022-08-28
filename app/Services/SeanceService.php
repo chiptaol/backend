@@ -76,7 +76,7 @@ class SeanceService
         }
         DB::commit();
 
-        $websocket = new Client(config('app.ws_url'));
+        $websocket = new Client(config('app.ws_url') . '/seances/' . $seance->id);
         $seats = SeanceSeat::select('id', 'status')
             ->where('seance_id', '=', $seance->id)
             ->whereIn('seat_id', $validatedData['seat_ids'])->get();
