@@ -44,7 +44,7 @@ class BookSeatJob implements ShouldQueue
 
             $data = [
                 'id' => $this->seat->seat_id,
-                'status' => $this->status
+                'status' => $this->seat->status
             ];
             $this->websocket->send(json_encode($data));
         }
