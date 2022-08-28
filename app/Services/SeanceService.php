@@ -77,12 +77,18 @@ class SeanceService
         DB::commit();
 
         $websocket = new Client(config('app.ws_url') . '/seances/' . $seance->id);
-        $seats = SeanceSeat::select('id', 'status')
+        $seats = SeanceSeat::select('id', 'status', 'seat_id')
             ->where('seance_id', '=', $seance->id)
             ->whereIn('seat_id', $validatedData['seat_ids'])->get();
 
         foreach ($seats as $seat) {
-            $websocket->send($seat);
+            $data = [
+                'id' => $seat->seat_id,
+                'status' => $seat->status
+            ];
+
+            $websocket->send(json_encode($data));
+
             BookSeatJob::dispatch($seat, $websocket)->delay(now()->addSeconds(120));
         }
 

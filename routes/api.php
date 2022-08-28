@@ -29,6 +29,10 @@ Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\Seanc
     Route::post('/{seanceId}/book', 'book')->name('seances.book');
 });
 
+Route::group(['prefix' => 'cinemas', 'controller' => \App\Http\Controllers\CinemaController::class], function () {
+    Route::get('/', 'index')->name('cinemas.index');
+});
+
 
 Route::get('/send-message', function () {
 
