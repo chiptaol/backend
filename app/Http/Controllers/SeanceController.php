@@ -144,7 +144,10 @@ class SeanceController extends Controller
      */
     public function cancelBook($ticketId)
     {
-        $ticket = Ticket::with(['seance', 'seats'])
+        $ticket = Ticket::with(['seance' => function ($query) {
+            return $query->without('format')
+                ->select('id');
+        }, 'seats:id'])
             ->where('status', '=', TicketStatus::PREPARED)
             ->findOrFail($ticketId);
 
