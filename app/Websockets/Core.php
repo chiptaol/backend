@@ -73,7 +73,10 @@ class Core implements MessageComponentInterface
         $path = $connection->httpRequest->getUri()->getPath();
 
         if (str_contains($path, '/seances/')) {
-            return str_replace('/seances/', '', $path);
+            $position = strpos($path, '/seances/');
+            $id = str_replace('/seances/', '', substr($path, $position));
+
+            return $id ?? false;
         }
 
         return false;
