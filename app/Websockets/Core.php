@@ -2,17 +2,17 @@
 
 namespace App\Websockets;
 
+use GuzzleHttp\Psr7\Uri;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 
 class Core implements MessageComponentInterface
 {
-
-    protected $clients;
+    protected $seanceSubscribers;
 
     public function __construct()
     {
-        $this->clients = new \SplObjectStorage();
+        $this->seanceSubscribers = [];
     }
 
     /**
@@ -22,8 +22,11 @@ class Core implements MessageComponentInterface
      */
     function onOpen(ConnectionInterface $conn)
     {
-        dump('new Connection');
-        $this->clients->attach($conn);
+
+        if ($id = $this->getPathId($conn)) {
+            $this->seanceSubscribers[$id][$conn->resourceId] = $conn;
+        }
+
     }
 
     /**
@@ -33,7 +36,7 @@ class Core implements MessageComponentInterface
      */
     function onClose(ConnectionInterface $conn)
     {
-        // TODO: Implement onClose() method.
+        unset($this->seanceSubscribers[$this->getPathId($conn)][$conn->resourceId]);
     }
 
     /**
@@ -56,8 +59,23 @@ class Core implements MessageComponentInterface
      */
     function onMessage(ConnectionInterface $from, $msg)
     {
-        foreach ($this->clients as $client) {
-            $client->send($msg);
+        foreach ($this->seanceSubscribers[$this->getPathId($from)] as $subscriber) {
+
+            if ($subscriber->resourceId !== $from->resourceId) {
+                $subscriber->send($msg);
+            }
+
         }
+    }
+
+    protected function getPathId($connection)
+    {
+        $path = $connection->httpRequest->getUri()->getPath();
+
+        if (str_contains($path, '/seances/')) {
+            return str_replace('/seances/', '', $path);
+        }
+
+        return false;
     }
 }

@@ -31,16 +31,18 @@ class WebsocketServe extends Command
      */
     public function handle()
     {
+        $wsServer = new WsServer(new Core());
+
         $server = IoServer::factory(
             new HttpServer(
-                new WsServer(
-                    new Core()
-                )
+                $wsServer
             ),
             8080
         );
 
-        $server->run();
+        $wsServer->enableKeepAlive($server->loop, 20);
+
+        $server->run();;
 
         return true;
     }
