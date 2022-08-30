@@ -68,7 +68,7 @@ class SeanceService
 
         $websocket = new Client(config('app.ws_url') . '/seances/' . $seance->id);
 
-        $seats = SeanceSeat::select('id', 'status', 'seat_id')
+        $seats = SeanceSeat::select('id', 'seat_id')
             ->where('seance_id', '=', $seance->id)
             ->whereIn('seat_id', $validatedData['seat_ids'])
             ->get();
@@ -76,7 +76,7 @@ class SeanceService
         foreach ($seats as $seat) {
             $data = [
                 'id' => $seat->seat_id,
-                'status' => $seat->status
+                'status' => SeanceSeatStatus::PENDING
             ];
 
             $websocket->send(json_encode($data));

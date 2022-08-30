@@ -44,7 +44,7 @@ class CancelSeatBooking implements ShouldQueue
 
             $data = [
                 'id' => $this->seat->seat_id,
-                'status' => $this->seat->status
+                'status' => SeanceSeatStatus::AVAILABLE
             ];
             $this->websocket->send(json_encode($data));
         }

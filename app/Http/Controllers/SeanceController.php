@@ -13,6 +13,7 @@ use App\Models\Ticket;
 use App\Services\SeanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use WebSocket\Client;
 
 class SeanceController extends Controller
 {
@@ -152,6 +153,19 @@ class SeanceController extends Controller
             ->findOrFail($ticketId);
 
         $ticket->delete();
+
+        $websocket = new Client(config('app.ws_url') . '/seances/' . $ticket->seance->id);
+
+        foreach ($ticket->seats as $seat) {
+            $data = [
+                'id' => $seat->id,
+                'status' => SeanceSeatStatus::AVAILABLE
+            ];
+
+            $websocket->send(json_encode($data));
+        }
+
+        $websocket->close();
 
         SeanceSeat::query()
             ->where('seance_id', '=', $ticket->seance->id)
