@@ -133,7 +133,7 @@ class CinemaController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinema-seances)"
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinemas-seances)"
      *     )
      * )
      *
