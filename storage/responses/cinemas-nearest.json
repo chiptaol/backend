@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": 3,
+            "title": "Parus Cinema",
+            "address": "27357 Kiehn Lakes\nGoyettetown, IL 97257",
+            "distance": 1383,
+            "logo": {
+                "id": "17428f3b-75a9-4c1d-bfaf-c24cd29ac690",
+                "path": "storage/file_sources/2022/9/1/cinema-logo/fcrfLpCBUaMTaQv1TKuoGNnWN8PayQqZEXOMl2pt.jpg"
+            }
+        },
+        {
+            "id": 1,
+            "title": "Next Cinema",
+            "address": "8521 Shaniya Drive\nNorth Maci, NV 65973-1626",
+            "distance": 4340,
+            "logo": {
+                "id": "17428f3b-75a9-4c1d-bfaf-c24cd29ac690",
+                "path": "storage/file_sources/2022/9/1/cinema-logo/fcrfLpCBUaMTaQv1TKuoGNnWN8PayQqZEXOMl2pt.jpg"
+            }
+        }
+    ]
+}

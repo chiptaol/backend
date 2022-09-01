@@ -1,0 +1,45 @@
+{
+    "data": [
+        {
+            "id": 5,
+            "title": "Magic Cinema",
+            "address": "Adress",
+            "reference_point": "Reference point",
+            "logo": {
+                "id": "94e42fde-d224-4f9a-a169-d77b7565c044",
+                "path": "storage/file_sources/2022/9/1/cinema-logo/iwQh86gEK8ZLRTYS6J2i6TuPNq1AeGh6EBoZNcI6.jpg"
+            }
+        },
+        {
+            "id": 1,
+            "title": "Next Cinema",
+            "address": "8521 Shaniya Drive\nNorth Maci, NV 65973-1626",
+            "reference_point": "25407 Kihn Green\nPort Hunterport, MD 09304",
+            "logo": {
+                "id": "17428f3b-75a9-4c1d-bfaf-c24cd29ac690",
+                "path": "storage/file_sources/2022/9/1/cinema-logo/fcrfLpCBUaMTaQv1TKuoGNnWN8PayQqZEXOMl2pt.jpg"
+            }
+        },
+        {
+            "id": 3,
+            "title": "Parus Cinema",
+            "address": "27357 Kiehn Lakes\nGoyettetown, IL 97257",
+            "reference_point": "66517 Lucy Highway Apt. 851\nNorth Emelyshire, AL 14295",
+            "logo": null
+        },
+        {
+            "id": 4,
+            "title": "Riviera",
+            "address": "378 Terry Port\nPort Monicastad, WA 50221",
+            "reference_point": "116 Branson Throughway Suite 273\nEast Lilly, MT 56134-5452",
+            "logo": null
+        },
+        {
+            "id": 2,
+            "title": "Salom Cinema",
+            "address": "625 Monroe Forge\nNew Tiara, MN 38791",
+            "reference_point": "6216 Alexzander Drive\nNorth Connorburgh, MI 45463-6961",
+            "logo": null
+        }
+    ]
+}

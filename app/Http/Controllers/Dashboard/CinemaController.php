@@ -49,7 +49,7 @@ class CinemaController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)",
      *     )
      * )
      *
@@ -77,7 +77,7 @@ class CinemaController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)",
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)",
      *     ),
      *
      *     @OA\Response (
@@ -157,7 +157,7 @@ class CinemaController extends Controller
      *
      *     @OA\Response (
      *          response=200,
-     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)"
      *     )
      * )
      *
