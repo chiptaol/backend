@@ -171,7 +171,7 @@ class CinemaController extends Controller
                         return $q->select('id', 'start_date_time', 'prices', 'premiere_id', 'format_id', 'hall_id')
                             ->upcoming()
                             ->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
-                            ->with('hall:id,title')
+                            ->with('hall:id,title,is_vip')
                             ->orderBy('start_date_time');
                     }]);
             }])->orderByDesc('id')

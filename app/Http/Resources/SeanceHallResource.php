@@ -19,6 +19,7 @@ class SeanceHallResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'is_vip' => $this->is_vip,
             'formats' => $additionalData['formats'] ?? null,
             'cheapest_price' => $additionalData['cheapest_price'] ?? null,
             'seances' => SeanceResource::collection($this->seances)
