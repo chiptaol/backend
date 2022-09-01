@@ -2,87 +2,41 @@
     "schedule": [
         "2022-09-02",
         "2022-09-03",
-        "2022-09-04"
+        "2022-09-04",
+        "2022-09-05",
+        "2022-09-06",
+        "2022-09-07",
+        "2022-09-08"
     ],
     "data": [
         {
-            "id": 2,
-            "title": "Мстители: Финал",
-            "original_title": "Avengers: Endgame",
-            "rating": 8.28,
-            "duration": 182,
-            "poster_path": "storage/movies/avengers-endgame/97Vh0jjRm1iND3kui7frYLU3Ajs.jpg",
+            "id": 7,
+            "title": "Доктор Стрэндж: В мультивселенной безумия",
+            "original_title": "Doctor Strange in the Multiverse of Madness",
+            "rating": 7.5,
+            "duration": 126,
+            "poster_path": "storage/movies/doctor-strange-in-the-multiverse-of-madness/dE757mrROBDcPOFuhkrc9SeqO4c.jpg",
             "genres": [
-                "Приключения",
-                "Фантастика",
-                "Боевик"
-            ],
-            "halls": [
-                {
-                    "id": 1,
-                    "title": "Зал номер - 1",
-                    "formats": [
-                        "2D"
-                    ],
-                    "cheapest_price": 3500000,
-                    "seances": [
-                        {
-                            "id": 7,
-                            "start_date_time": "2022-09-02 14:00:00"
-                        },
-                        {
-                            "id": 6,
-                            "start_date_time": "2022-09-02 23:25:00"
-                        }
-                    ]
-                },
-                {
-                    "id": 2,
-                    "title": "Зал номер - 2",
-                    "formats": [
-                        "2D"
-                    ],
-                    "cheapest_price": 3500000,
-                    "seances": [
-                        {
-                            "id": 11,
-                            "start_date_time": "2022-09-02 23:25:00"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "title": "Тор: Бог грома",
-            "original_title": "Thor: God of Thunder",
-            "rating": 5.22,
-            "duration": 90,
-            "poster_path": null,
-            "genres": [
+                "Фэнтези",
                 "Боевик",
-                "Фэнтези"
+                "Приключения"
             ],
             "halls": [
                 {
                     "id": 1,
-                    "title": "Зал номер - 1",
+                    "title": "Зал №1",
+                    "is_vip": false,
                     "formats": [
                         "2D"
                     ],
-                    "cheapest_price": 3500000,
+                    "cheapest_price": 6000000,
                     "seances": [
                         {
-                            "id": 7,
-                            "start_date_time": "2022-09-02 14:00:00"
-                        },
-                        {
-                            "id": 6,
-                            "start_date_time": "2022-09-02 23:25:00"
+                            "id": 9,
+                            "start_date_time": "2022-09-02 13:35:00"
                         }
                     ]
                 }
             ]
         }
     ]
-}
