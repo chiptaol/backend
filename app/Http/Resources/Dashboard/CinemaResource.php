@@ -20,8 +20,8 @@ class CinemaResource extends JsonResource
             'address' => $this->address,
             'logo' => $this->logo,
             'reference_point' => $this->reference_point,
-            'longitude' => $this->longitude,
-            'latitude' => $this->latitude,
+            'longitude' => floatval($this->longitude),
+            'latitude' => floatval($this->latitude),
             'phone' => $this->phone
         ];
     }

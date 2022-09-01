@@ -32,6 +32,8 @@ Route::group(['prefix' => 'seances', 'controller' => \App\Http\Controllers\Seanc
 
 Route::group(['prefix' => 'cinemas', 'controller' => \App\Http\Controllers\CinemaController::class], function () {
     Route::get('/', 'index')->name('cinemas.index');
+    Route::get('/nearest', 'indexNearest')->name('cinemas.nearest');
+    Route::get('/{cinemaId}', 'show')->name('cinemas.show');
 });
 
 

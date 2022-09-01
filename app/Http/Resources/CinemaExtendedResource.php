@@ -18,7 +18,7 @@ class CinemaExtendedResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'address' => $this->address,
-            'reference_point' => $this->reference_point,
+            'reference_point' => $this->whenNotNull($this->reference_point),
             'distance' => $this->whenNotNull($this->distance),
             'logo' => $this->whenLoaded('logo'),
         ];

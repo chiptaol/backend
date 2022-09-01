@@ -14,6 +14,65 @@
         }
     ],
     "paths": {
+        "/api/cinemas": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Get a list of all cinemas",
+                "operationId": "d4442fa37f46d2f9df418f697dd88075",
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinemas)"
+                    }
+                }
+            }
+        },
+        "/api/cinemas/nearest": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Get a list of nearest cinemas",
+                "operationId": "cd2ce9ec2055063defa0312e6e47611d",
+                "parameters": [
+                    {
+                        "name": "latitude",
+                        "in": "query",
+                        "example": 41.2963223
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "query",
+                        "example": 69.1933242
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinemas-nearest)"
+                    }
+                }
+            }
+        },
+        "/api/cinemas/{cinema-id}": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Get a specific cinema",
+                "operationId": "c5656e6f338675509aad190432a015e7",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinemas-specific)"
+                    }
+                }
+            }
+        },
         "/api/dashboard/auth/sign-in": {
             "post": {
                 "tags": [
