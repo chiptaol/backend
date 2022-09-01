@@ -6,11 +6,9 @@ use App\Http\Requests\SeanceFilterRequest;
 use App\Http\Resources\MovieExtendedResource;
 use App\Http\Resources\MoviePremiereResource;
 use App\Http\Resources\MovieResource;
-use App\Http\Resources\PremiereResource;
 use App\Http\Resources\CinemaResource;
 use App\Models\Cinema;
 use App\Models\Movie;
-use App\Models\Premiere;
 use App\Models\Seance;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -54,8 +52,7 @@ class PremiereController extends Controller
             'date' => ['filled', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
         ]);
 
-        $schedule = Seance::query()
-            ->where('start_date', '>=', now()->format('Y-m-d'))
+        $schedule = Seance::where('start_date', '>=', now()->format('Y-m-d'))
             ->upcoming()
             ->select('start_date')
             ->groupBy('start_date')
@@ -171,11 +168,9 @@ class PremiereController extends Controller
             ->upcoming()
             ->select('start_date')
             ->groupBy('start_date')
-            ->get()
             ->pluck('start_date');
 
-        $seances = Cinema::query()
-            ->select('id', 'title')
+        $seances = Cinema::select(['id', 'title'])
             ->whereHas('premieres', function ($query) use ($movieId) {
                 return $query->where('movie_id', '=', $movieId);
             })->with(['halls' => function ($query) use ($movieId, $validator, $schedule) {

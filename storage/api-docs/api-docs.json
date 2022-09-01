@@ -73,6 +73,25 @@
                 }
             }
         },
+        "/api/cinemas/{cinema-id}/seances": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Get a list of seances for specific cinema",
+                "operationId": "08a38d2f8cda567cc417a2b243da3777",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/cinema-id-path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinema-seances)"
+                    }
+                }
+            }
+        },
         "/api/dashboard/auth/sign-in": {
             "post": {
                 "tags": [
@@ -255,7 +274,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)"
                     },
                     "422": {
                         "description": "Invalid coordinates (Unproccessable content)",
@@ -285,7 +304,7 @@
                 "operationId": "7bdbab5f92108f33b75d255dd6ffd095",
                 "responses": {
                     "200": {
-                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)"
                     }
                 }
             },
@@ -315,7 +334,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific)"
+                        "description": "Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/dashboard-cinemas-specific.json)"
                     }
                 }
             },

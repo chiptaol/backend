@@ -1,0 +1,88 @@
+{
+    "schedule": [
+        "2022-09-02",
+        "2022-09-03",
+        "2022-09-04"
+    ],
+    "data": [
+        {
+            "id": 2,
+            "title": "Мстители: Финал",
+            "original_title": "Avengers: Endgame",
+            "rating": 8.28,
+            "duration": 182,
+            "poster_path": "storage/movies/avengers-endgame/97Vh0jjRm1iND3kui7frYLU3Ajs.jpg",
+            "genres": [
+                "Приключения",
+                "Фантастика",
+                "Боевик"
+            ],
+            "halls": [
+                {
+                    "id": 1,
+                    "title": "Зал номер - 1",
+                    "formats": [
+                        "2D"
+                    ],
+                    "cheapest_price": 3500000,
+                    "seances": [
+                        {
+                            "id": 7,
+                            "start_date_time": "2022-09-02 14:00:00"
+                        },
+                        {
+                            "id": 6,
+                            "start_date_time": "2022-09-02 23:25:00"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "Зал номер - 2",
+                    "formats": [
+                        "2D"
+                    ],
+                    "cheapest_price": 3500000,
+                    "seances": [
+                        {
+                            "id": 11,
+                            "start_date_time": "2022-09-02 23:25:00"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "title": "Тор: Бог грома",
+            "original_title": "Thor: God of Thunder",
+            "rating": 5.22,
+            "duration": 90,
+            "poster_path": null,
+            "genres": [
+                "Боевик",
+                "Фэнтези"
+            ],
+            "halls": [
+                {
+                    "id": 1,
+                    "title": "Зал номер - 1",
+                    "formats": [
+                        "2D"
+                    ],
+                    "cheapest_price": 3500000,
+                    "seances": [
+                        {
+                            "id": 7,
+                            "start_date_time": "2022-09-02 14:00:00"
+                        },
+                        {
+                            "id": 6,
+                            "start_date_time": "2022-09-02 23:25:00"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

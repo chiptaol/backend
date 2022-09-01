@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CinemaIndexRequest;
 use App\Http\Requests\CinemaNearestRequest;
 use App\Http\Resources\CinemaExtendedResource;
-use App\Http\Resources\CinemaNearestResource;
 use App\Http\Resources\Dashboard\CinemaResource;
+use App\Http\Resources\CinemaMovieResource;
 use App\Models\Cinema;
-use App\Rules\CoordinateRule;
+use App\Models\Movie;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
-use const http\Client\Curl\Features\HTTP2;
 
 class CinemaController extends Controller
 {
@@ -31,7 +31,7 @@ class CinemaController extends Controller
      *     )
      * )
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function index()
     {
@@ -69,7 +69,7 @@ class CinemaController extends Controller
      *
      *
      * @param CinemaNearestRequest $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
     public function indexNearest(CinemaNearestRequest $request)
     {
@@ -120,5 +120,69 @@ class CinemaController extends Controller
         $cinema = Cinema::findOrFail($cinemaId);
 
         return new CinemaResource($cinema);
+    }
+
+    /**
+     *
+     * @OA\Get (
+     *     path="/api/cinemas/{cinema-id}/seances",
+     *     summary="Get a list of seances for specific cinema",
+     *     tags={"Cinemas"},
+     *
+     *     @OA\Parameter (ref="#/components/parameters/cinema-id-path"),
+     *
+     *     @OA\Response (
+     *          response=200,
+     *          description="Success (OK) [Response](https://api.chiptaol.uz/api/example-responses/cinema-seances)"
+     *     )
+     * )
+     *
+     * @param Request $request
+     * @param $cinemaId
+     * @return JsonResponse
+     */
+    public function seances(Request $request, $cinemaId)
+    {
+        $validator = Validator::make([
+            'date' => $request->query('date')
+        ], [
+            'date' => ['filled', 'string', 'date', 'date_format:Y-m-d', 'after_or_equal:today']
+        ]);
+
+        $cinema = Cinema::select('id')
+            ->without('logo')
+            ->findOrFail($cinemaId);
+
+        $schedule = $cinema->seances()
+            ->select('start_date')
+            ->without('format')
+            ->upcoming()
+            ->groupBy('start_date')
+            ->pluck('start_date');
+
+        $seances = Movie::select(['id', 'title', 'original_title', 'rating', 'genres', 'duration', 'poster_path'])
+            ->with(['premieres' => function (HasMany $query) use ($cinema, $validator, $schedule) {
+                $query->select('id', 'movie_id', 'cinema_id')
+                    ->where('cinema_id', '=', $cinema->id)
+                    ->whereHas('seances', function (Builder $query) use ($validator, $schedule) {
+                        return $query->upcoming()
+                            ->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')));
+                    })->with(['seances' => function (HasMany $q) use ($validator, $schedule) {
+                        return $q->select('id', 'start_date_time', 'prices', 'premiere_id', 'format_id', 'hall_id')
+                            ->upcoming()
+                            ->where('start_date', '=', $validator->valid()['date'] ?? ($schedule[0] ?? now()->format('Y-m-d')))
+                            ->with('hall:id,title')
+                            ->orderBy('start_date_time');
+                    }]);
+            }])->orderByDesc('id')
+            ->get()
+            ->filter(fn($item) => $item->premieres->isNotEmpty());
+
+
+        return new JsonResponse([
+            'schedule' => $schedule,
+            'data' => CinemaMovieResource::collection($seances)
+        ]);
+
     }
 }
