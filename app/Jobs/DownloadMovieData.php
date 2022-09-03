@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class UpdateMovieDataJob implements ShouldQueue, ShouldBeUnique
+class DownloadMovieData implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -70,7 +70,8 @@ class UpdateMovieDataJob implements ShouldQueue, ShouldBeUnique
             $data['poster_path'] = $posterPath;
         }
 
-        $backdropPath = $tmdb->storeMovieFile($movieDetails['backdrop_path'], $movieDetails['original_title']);
+        // 967x384
+        $backdropPath = $tmdb->storeMovieFile($movieDetails['backdrop_path'], $movieDetails['original_title'], 'backdrop');
         if (!empty($backdropPath)) {
             $data['backdrop_path'] = $backdropPath;
         }
