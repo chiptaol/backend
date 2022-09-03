@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Enums\MovieImageType;
 use App\Models\Movie;
+use App\Services\Dashboard\ImageService;
 use App\Services\Dashboard\TMDBService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -37,7 +39,7 @@ class DownloadMovieData implements ShouldQueue, ShouldBeUnique
      *
      * @return void
      */
-    public function handle(TMDBService $tmdb)
+    public function handle(TMDBService $tmdb, ImageService $imageService)
     {
         info('job is started. movie_id - ' . $this->movie->tmdb_id);
 
@@ -65,13 +67,14 @@ class DownloadMovieData implements ShouldQueue, ShouldBeUnique
 
         $this->movie->update($data);
 
-        $posterPath = $tmdb->storeMovieFile(collect($movieDetails['images']['posters'])->sortByDesc('width')->first()['file_path'] ?? null, $movieDetails['original_title']);
+        // 183
+        $posterPath = $tmdb->storeMovieFile(collect($movieDetails['images']['posters'])->sortByDesc('width')->first()['file_path'] ?? null, $movieDetails['original_title'], $imageService);
         if (!empty($posterPath)) {
             $data['poster_path'] = $posterPath;
         }
 
-        // 967x384
-        $backdropPath = $tmdb->storeMovieFile($movieDetails['backdrop_path'], $movieDetails['original_title'], 'backdrop');
+        // 967
+        $backdropPath = $tmdb->storeMovieFile($movieDetails['backdrop_path'], $movieDetails['original_title'], $imageService, MovieImageType::BACKDROP);
         if (!empty($backdropPath)) {
             $data['backdrop_path'] = $backdropPath;
         }

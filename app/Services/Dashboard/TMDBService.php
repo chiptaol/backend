@@ -2,6 +2,7 @@
 
 namespace App\Services\Dashboard;
 
+use App\Enums\MovieImageType;
 use App\Exceptions\BusinessException;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Http\File;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\Response;
+use function PHPUnit\Framework\directoryExists;
 
 final class TMDBService
 {
@@ -52,30 +54,25 @@ final class TMDBService
 
      }
 
-     public function movieAgeCertificateById(int $id)
-     {
-         return $this->sendRequest('movie/' . $id . '/release_dates');
-     }
-
-     public function storeMovieFile($fileName, $movieName, $type = 'poster')
+     public function storeMovieFile(string $fileName, string $movieName, ImageService $imageService, $type = MovieImageType::POSTER)
      {
          if (empty($fileName)) {
              return null;
          }
 
          $fileContents = file_get_contents(self::BASE_IMAGE_PATH . $fileName);
-         $filePath = 'movies/' . Str::slug($movieName) . $fileName;
+         $fileRelativePath = 'movies/' . Str::slug($movieName);
 
-         if ($type === 'backdrop') {
-             info('backdrop');
-             $image = Image::make($fileContents)->fit(967, 384);
-             $image->save(public_path('storage/' . $filePath));
+         if ($type === MovieImageType::BACKDROP) {
+             $path = $imageService->resize($fileContents, 967)->save($fileRelativePath, $fileName);
+         } elseif ($type === MovieImageType::POSTER) {
+             $path = $imageService->resize($fileContents, 184)->save($fileRelativePath, $fileName);
          } else {
-             info('not backdrop');
-             Storage::disk('public')->put($filePath, $fileContents);
+             return null;
          }
 
-         return 'storage/' . $filePath;
+         return $path;
+
      }
 
     /**

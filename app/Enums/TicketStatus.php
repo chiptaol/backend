@@ -4,6 +4,6 @@ namespace App\Enums;
 
 final class TicketStatus
 {
-    const PREPARED = 'prepared';
-    const COMPLETED = 'completed';
+    public const PREPARED = 'prepared';
+    public const COMPLETED = 'completed';
 }

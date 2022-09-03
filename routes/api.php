@@ -37,11 +37,3 @@ Route::group(['prefix' => 'cinemas', 'controller' => \App\Http\Controllers\Cinem
     Route::get('/{cinemaId}/seances', 'seances')->name('cinemas.seances');
 });
 
-
-Route::get('/send-message', function () {
-
-    $connection = new \WebSocket\Client('');
-    $connection->send('First message bro!');
-    $connection->close();
-
-});
