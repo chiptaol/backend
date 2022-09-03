@@ -2,18 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class Ticket extends Model
 {
     use HasFactory;
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
         'seance_id', 'movie_id', 'user_id', 'cinema_title', 'hall_title', 'total_price', 'status'
     ];
+
+    public static function boot()
+    {
+        static::creating(function ($ticket) {
+           $ticket->{$ticket->getKeyName()} = Str::orderedUuid();
+        });
+    }
 
     public function user(): BelongsTo
     {

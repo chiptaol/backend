@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('cinema_title');
             $table->string('hall_title');
             $table->foreignId('seance_id')->constrained('seances')->cascadeOnDelete();

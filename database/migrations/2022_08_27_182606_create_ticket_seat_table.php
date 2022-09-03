@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ticket_seat', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ticket_id')->constrained('tickets')->cascadeOnDelete();
+            $table->foreignUuid('ticket_id')->constrained('tickets')->cascadeOnDelete();
             $table->foreignId('seat_id')->constrained('seats')->cascadeOnDelete();
             $table->unique(['ticket_id', 'seat_id']);
             $table->timestamps();
