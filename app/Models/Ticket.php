@@ -22,6 +22,8 @@ class Ticket extends Model
 
     public static function boot()
     {
+        parent::boot();
+
         static::creating(function ($ticket) {
            $ticket->{$ticket->getKeyName()} = Str::orderedUuid();
         });
