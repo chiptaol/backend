@@ -19,12 +19,17 @@ class SeanceService
     {
         DB::beginTransaction();
         try {
-            $user = User::query()
-                ->firstOrCreate([
-                    'email' => $validatedData['email']
-                ], [
-                    'phone' => $validatedData['phone'] ?? null
+            $user = User::where('email', '=', $validatedData['email'])
+                ->orWhere('phone', '=', $validatedData['phone'])
+                ->first();
+
+            if (is_null($user)) {
+                $user = User::create([
+                    'email' => $validatedData['email'],
+                    'phone' => $validatedData['phone']
                 ]);
+            }
+
             $seance->load(['premiere:id,movie_id', 'cinema:id,title', 'hall:id,title']);
 
             if ($seance->bookedSeats()->whereIn('seat_id', $validatedData['seat_ids'])->get()->isNotEmpty()) {
