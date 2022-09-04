@@ -22,7 +22,7 @@ class WebsocketServe extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Serve the websockets';
 
     /**
      * Execute the console command.
