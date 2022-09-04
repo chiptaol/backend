@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Hall;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
+use stdClass;
 
 class CinemaMovieResource extends JsonResource
 {
@@ -30,11 +33,13 @@ class CinemaMovieResource extends JsonResource
     {
         return $this->premieres->first()->seances->reduce(function ($result, $item) {
             if (!array_key_exists($item->hall->id, $result)) {
-                $result[$item->hall->id] = $item->hall;
-                $result[$item->hall->id]->seances = collect([]);
+                $hall = (object) $item->hall->getAttributes();
+                $result[$item->hall->id] = $hall;
+                $result[$item->hall->id]->seances = [];
             }
 
-            $result[$item->hall->id]->seances->push($item);
+            $result[$item->hall->id]->seances[] = $item;
+
 
             return $result;
         }, []);
