@@ -54,7 +54,7 @@ final class TMDBService
 
      }
 
-     public function storeMovieFile(string $fileName, string $movieName, ImageService $imageService, $type = MovieImageType::POSTER)
+     public function storeMovieFile(?string $fileName, ?string $movieName, ImageService $imageService, $type = MovieImageType::POSTER)
      {
          if (empty($fileName)) {
              return null;
